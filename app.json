@@ -2,7 +2,11 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/individual/investigation"
+    "pages/individual/investigation",
+    "pages/individual/commit",
+    "pages/individual/my_program",
+    "pages/individual/square",
+    "pages/individual/contents"
   ],
   "window":{
     "backgroundTextStyle":"light",

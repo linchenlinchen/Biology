@@ -5,7 +5,11 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    login: '微信登录',
+    investigation: '进入调查页面',
+    commit:'进入提交页面',
+    programs:'进入我的项目',
+    square:'进入项目广场',
+    contents:'进入项目内容',
     exit: '退出小程序',
     userInfo: {},
     hasUserInfo: false,
@@ -15,6 +19,31 @@ Page({
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'
+    })
+  },
+  jump2Investigate(){
+    wx.navigateTo({
+      url: '../individual/investigation',
+    })
+  },
+  jump2Commit(){
+    wx.navigateTo({
+      url: '../individual/commit',
+    })
+  },
+  jump2My(){
+    wx.navigateTo({
+      url: '../individual/my_program',
+    })
+  },
+  jump2Square(){
+    wx.navigateTo({
+      url: '../individual/square',
+    })
+  },
+  jump2Contents(){
+    wx.navigateTo({
+      url: '../individual/contents',
     })
   },
   onLoad() {
