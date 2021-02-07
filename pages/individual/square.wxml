@@ -1,2 +1,47 @@
 <!--pages/individual/square.wxml-->
-<text>pages/individual/square.wxml</text>
+<view> 
+  <view class="top">
+    <view wx:if="{{hasUserInfo}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      
+    </view>
+ 
+      <!-- 一般情况下的搜索框显示 -->
+      <view wx:if="{{!focus}}" class='search'>    
+        <input type='text' placeholder='搜索' placeholder-class="center"         confirm-type='search' bindfocus="focusHandler" style="background-image: url(../../images/search_background.png)"></input>
+        
+      </view>
+      <view wx:if="{{!focus}}" class='search'>    
+        <image class="search_image" src='../../images/search.png'></image>
+      </view>
+      <!-- 获得焦点时的搜索框，多一个取消按钮 -->
+      <view wx:if="{{focus}}" class='search'>
+        <input type='text' placeholder='搜索' confirm-type='search' value="{{inputValue}}"  bindinput='query' style="background-image: url(../../images/search_background.png)"></input>
+        
+      </view>
+      <view wx:if="{{focus}}" class='search'>
+        
+        <image class="search_image" src='../../images/cancel.jpeg' bindtap='cancelHandler'></image>
+      </view>
+
+   
+    <view>
+      
+        <image class="message" src='../../images/message.png'></image>
+      
+    </view>
+  </view>
+  <view wx:for="{{projects}}" wx:for-item="item" class="container">
+    <view><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
+    <view class="content">
+      <title>{{item.title}}</title>
+      <p>项目发布时间： {{item.time}}</p>
+      <p>项目简介： {{item.background}}</p>
+    </view>
+    <view class="block"></view>
+  </view>
+  <view class="tail">
+    <button>只显示未参加项目</button>
+    <button>只显示已参加项目</button>
+  </view>
+</view>
