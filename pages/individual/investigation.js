@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    items: [
+      {name: 'always', value: '总是征求同意'},
+      {name: 'seldom', value: '偶尔征求同意', checked: 'true'},
+      {name: 'bucket_receive', value: '一揽子同意（接收消息）'},
+      {name: 'bucket_refuse', value: '一揽子同意（不再打扰）'},
+      {name: 'disagree_save', value: '不同意（保留数据）'},
+      {name: 'disagree_delete', value: '不同意（删除数据）'},
+    ]
   },
 
   /**

@@ -1,1 +1,119 @@
 /* pages/individual/investigation.wxss */
+.horizontal {
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  height: 510rpx;
+}
+
+.btn-area {
+  width: 25%;
+  margin-right: 30rpx;
+}
+
+.btn-area view {
+  width: 150rpx;
+  height: 100rpx;
+  font-size: 70%;
+  /*下边界*/
+  border-block-end:5rpx solid gray;
+  /*文字居中*/
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*内padding*/
+  padding: 10%;
+  padding-inline-end: 5% blue;
+}
+#biology {
+  border-inline-end:20rpx solid #fcc877;
+}
+#body {
+  border-inline-end:20rpx solid #a681e6;
+}
+#medicine {
+  border-inline-end: 20rpx solid #acc354;
+}
+#brain {
+  border-inline-end: 20rpx solid #d6bb99;
+}
+#other {
+  border-inline-end: 20rpx solid #f660a3;
+}
+.navigator-hover {
+  color:blue;
+
+}
+/** 自定义其他点击态样式类 **/
+.other-navigator-hover {
+  color:red;
+}
+
+
+.page-body {
+  width: 65%;
+  
+}
+#bucket_receive {
+  font-size: 70%;
+}
+.page-body .radio-group {
+  margin: 25rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.radio {
+  width: 250rpx;
+  background-color: #e6e6e6;
+  border-radius: 100rpx;
+  padding: 10rpx;
+  /*文字居中*/
+  font-size: 60%;
+  text-align: center;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /*行距*/
+  margin-block: 25rpx;
+  word-break: keep-all;
+  white-space: nowrap;
+  transform:scale(1.5);
+}
+
+
+
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 5rpx;
+ }
+
+ .meaning {
+   color:gray
+ }
+
+
+ #tips {
+   flex-direction: column;
+   text-align: left;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ #tips view {
+   width: 60%;
+   flex-direction: column;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #e6e6e6;
+   padding: 10rpx;
+   border-radius: 30rpx;
+ }
+ button {
+   border-radius: 500rpx;
+   background-color: #1a97d4;
+ }

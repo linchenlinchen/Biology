@@ -1,29 +1,53 @@
 <!--pages/individual/investigation.wxml-->
-<text>pages/individual/investigation.wxml</text>
-<view class="page-body">
-  <view class="page-section">
-    <view class="page-section-title">默认样式</view>
-    <label class="radio">
-      <radio value="r1" checked="true"/>选中
-    </label>
-    <label class="radio">
-      <radio value="r2" />未选中
-    </label>
+<!-- <text>pages/individual/investigation.wxml</text> -->
+<view class="horizontal">
+  <view class="btn-area">
+    <view id="biology" url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">面部、声纹、掌纹、指纹、基因序列等生物识别数据</view>
+    <view id="body" url="../../redirect/redirect/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">形态特征数据</view>
+    <view id="medicine" url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">电子医疗记录</view>
+    <view id="brain" url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">脑影像资料</view>
+    <view id="other" url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">剩余样本与样本中提取的其他数据</view>
   </view>
-
-
-  <view class="page-section">
-    <view class="page-section-title">推荐展示样式</view>
-    <view class="weui-cells weui-cells_after-title">
-      <radio-group bindchange="radioChange">
-        <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
-
-          <view class="weui-cell__hd">
-            <radio value="{{item.value}}" checked="true"/>
-          </view>
-          <view class="weui-cell__bd">{{item.name}}</view>
-        </label>
-      </radio-group>
-    </view>
+  <view class="page-body">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{items}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
   </view>
+</view>
+
+<view class="container">
+     <!-- 分割线 -->
+  <view class="divLine"></view>
+</view>
+
+
+<view id="tips">
+  <view>
+  <label>
+    <text class="item">"总是征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
+  </label>
+  <label>
+    <text class="item">"偶尔征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
+  </label>
+  <label>
+    <text class="item">"一揽子同意（接收消息）"：</text><text class="meaning">每次使用前都向您询问</text>
+  </label>
+  <label>
+    <text class="item">"一揽子同意（不再打扰）"：</text><text class="meaning">每次使用前都向您询问</text>
+  </label>
+  <label>
+    <text class="item">"不同意（保留数据）"：</text><text class="meaning">每次使用前都向您询问</text>
+  </label>
+  <label>
+    <text class="item">"不同意（删除数据）"：</text><text class="meaning">每次使用前都向您询问</text>
+  </label>
+  <text>点击屏幕任意位置消失</text>
+</view>
+</view>
+
+
+<view>
+  <button>确认并提交</button>
 </view>
