@@ -4,10 +4,40 @@ Page({
   /**
    * 页面的初始数据
    */
+  
   data: {
-
+    imgUrls: [
+      '../../images/1.png',
+      '../../images/1.png',
+      '../../images/1.png'
+    ],
+    indicatorDots: true,
+    autoplay: true,
+    circular: true,
+    interval: 5000,
+    duration: 1000
   },
-
+  
+  changeIndicatorDots: function(e) {
+    this.setData({
+      indicatorDots: !this.data.indicatorDots
+    })
+  },
+  changeAutoplay: function(e) {
+    this.setData({
+      autoplay: !this.data.autoplay
+    })
+  },
+  intervalChange: function(e) {
+    this.setData({
+      interval: e.detail.value
+    })
+  },
+  durationChange: function(e) {
+    this.setData({
+      duration: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
