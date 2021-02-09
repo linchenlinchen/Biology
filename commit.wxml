@@ -1,0 +1,7 @@
+<!--pages/individual/commit.wxml-->
+<view class='container'>
+<icon class='icon-img' type='success'></icon>
+<text>提交成功</text>
+<text>所提交内容已经成功存储</text>
+<button type="primary">返回项目广场</button>
+</view>
