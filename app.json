@@ -1,19 +1,26 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/individual/investigation",
     "pages/individual/commit",
     "pages/individual/my_program",
     "pages/individual/square",
-    "pages/individual/contents"
+    "pages/individual/contents",
+    "pages/individual/login",
+    "pages/individual/volunteer_login",
+    "pages/individual/agreement",
+    "pages/individual/agreement_type",
+    "pages/individual/apartment_login",
+    "pages/individual/management",
+    "pages/individual/query_result",
+    "pages/individual/edit"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1a97d4",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
-    
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -13,6 +13,16 @@
     <button open-type="programs" bindtap="jump2My">{{programs}}</button>
     <button open-type="square" bindtap="jump2Square">{{square}}</button>
     <button open-type="contents" bindtap="jump2Contents">{{contents}}</button>
+
+    <button open-type="commit" bindtap="jump2Login">{{login}}</button>
+    <button open-type="programs" bindtap="jump2VolunteerLogin">{{volunteer_login}}</button>
+    <button open-type="square" bindtap="jump2Agreement">{{agreement}}</button>
+    <button open-type="contents" bindtap="jump2AgreementType">{{agreement_type}}</button>
+    <button open-type="commit" bindtap="jump2AartmentLogin">{{apartment_login}}</button>
+    <button open-type="programs" bindtap="jump2Management">{{management}}</button>
+    <button open-type="square" bindtap="jump2QueryResult">{{query_result}}</button>
+    <button open-type="contents" bindtap="jump2Edit">{{edit}}</button>
+
     <button>{{exit}}</button>
     <text class="user-motto">{{motto}}</text>
   </view>

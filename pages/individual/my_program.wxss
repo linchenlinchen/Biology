@@ -1,1 +1,54 @@
 /* pages/individual/my_program.wxss */
+.container{
+  background-color: #fff;
+  height:100vh;
+  align-items: center;
+}
+.container1{
+  height:40rpx;
+  width:750rpx;
+background-color: dimgrey;
+  font-size: 25rpx  ;
+font-weight: bold; /*字体加粗*/ /*正常字体*/
+font-family: "微软雅黑"; /*字体家族，用来设置各种字体，避免误伤不要乱动*/
+}
+.container2{
+  height:100rpx;
+  width:750rpx;
+  background-color: gainsboro;
+  flex-direction: row;
+  font-size:30rpx;
+}
+.but1{
+  margin-left: 500rpx;
+  top:-100rpx;
+}
+.but2{
+  position:absolute;
+  top:85rpx;
+  left:200rpx;
+}
+.but3{
+  position:absolute;
+  top:85rpx;
+  left:400rpx;
+}
+.txt1{
+  position:absolute;
+  top:30rpx;
+  left:200rpx;
+}
+.txt2{
+  font-size: 25rpx;
+  color: burlywood;
+}
+.home-header-line {
+  background: #e0e3da;
+
+  width: 100%;
+
+  height: 2rpx;
+
+}
+
+
