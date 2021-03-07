@@ -1,1 +1,75 @@
 /* pages/individual/login.wxss */
+button{
+  width: 320pt;
+  height: 50pt;
+  left: 27pt;
+  color: rgba(98, 113, 122, 1);
+  background-color: rgba(98, 113, 122, 1);
+  font-size: 16pt;
+	line-height: 150%;
+	text-align: center;
+}
+text{
+  letter-spacing: 1pt;
+	color: rgba(255, 255, 255, 1);
+	font-size: 11pt;
+	line-height: 120%;
+  text-align: center;
+}
+#v_login{
+  width: 640rpx;
+	height: 100rpx;
+	left: 27rpx;
+	top: 218rpx;
+	color: rgba(98, 113, 122, 1);
+	background-color: rgba(98, 113, 122, 1);
+	font-size: 33rpx;
+	line-height: 150%;
+	text-align: center;
+}
+
+#v_login text{
+  width: 169pt;
+	height: 14pt;
+	left: 103pt;
+	top: 236pt;
+}
+
+#a_login{
+  width: 640rpx;
+	height: 100rpx;
+	left: 27rpx;
+	top: 278rpx;
+	color: rgba(98, 113, 122, 1);
+	background-color: rgba(98, 113, 122, 1);
+	font-size: 33rpx;
+	line-height: 150%;
+	text-align: center;
+}
+
+#a_login text{
+  width: 157pt;
+	height: 14pt;
+	left: 109pt;
+	top: 296pt;
+	
+}
+
+#u_login{
+	width: 640rpx;
+	height: 100rpx;
+	left: 25rpx;
+	top: 334rpx;
+	color: rgba(98, 113, 122, 1);
+	background-color: rgba(98, 113, 122, 1);
+	font-size: 33rpx;
+	line-height: 150%;
+	text-align: center;
+}
+
+#u_login text{
+  width: 157pt;
+	height: 14pt;
+	left: 109pt;
+	top: 352pt;
+}

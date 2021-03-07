@@ -1,2 +1,5 @@
 <!--pages/individual/login.wxml-->
-<text>pages/individual/login.wxml</text>
+
+<button id='v_login'><text>志愿者账号登录</text></button>
+<button id="a_login"><text>单位账号登录</text></button>
+<button id="u_login"><text>游客访问</text></button>
