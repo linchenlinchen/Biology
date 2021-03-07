@@ -5,6 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    result:[
+      {
+        name:"志愿者手机号",
+        content:"13812233333"
+      },
+      {
+        name:"指纹",
+        content:"一揽子同意"
+      },
+      {
+        name:"人脸识别",
+        content:"一揽子同意"
+      },
+      {
+        name:"血型",
+        content:"偶尔征求同意"
+      },
+    ],
 
   },
 
