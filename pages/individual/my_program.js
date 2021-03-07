@@ -4,8 +4,8 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-
+  data: { 
+    programamu:[{number:'项目1',message1:'加入项目时间',message2:'项目发布时间'},{number:'项目2',message1:'加入项目时间',message2:'项目发布时间'},{number:'项目3',message1:'加入项目时间',message2:'项目发布时间'}]
   },
 
   /**

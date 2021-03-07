@@ -4,7 +4,7 @@
   height:100vh;
   align-items: center;
 }
-.container1{
+.containerdiv1{
   height:40rpx;
   width:750rpx;
 background-color: dimgrey;
@@ -12,7 +12,7 @@ background-color: dimgrey;
 font-weight: bold; /*字体加粗*/ /*正常字体*/
 font-family: "微软雅黑"; /*字体家族，用来设置各种字体，避免误伤不要乱动*/
 }
-.container2{
+.list{
   height:100rpx;
   width:750rpx;
   background-color: gainsboro;
