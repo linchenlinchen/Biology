@@ -1,8 +1,0 @@
-/* pages/individual/commit.wxss */
-.container {
-  background-color: #eee;
-  height:50vh;
-
-  display:flex;
-  align-items: center;
-}

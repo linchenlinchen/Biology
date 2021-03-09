@@ -1,1 +1,35 @@
 /* pages/individual/query_result.wxss */
+.search{
+  background-color: #e0dede;
+  border-radius: 8px;
+  text-align: center;
+  margin: 5px;
+}
+.content{
+  border-color: rgb(192, 192, 190);
+  border-style: solid;
+  
+  border-width: 0px 0px 4px 0px;
+  margin: -2px -5px 0px -5px;
+  padding: 10px 10px 10px 10px;
+  
+}
+.content p{
+  font-size: 35rpx;
+  font-family: 'Courier New', Courier, monospace;
+}
+.button{
+  margin: 10px 0 10px 0;
+  border-radius: 15px;
+  
+  background-color:green;
+  text-align: center;
+
+  
+}
+.button p{
+  color: white;
+  font-size: 35rpx;
+  font-family: 'Courier New', Courier, monospace;
+
+}
