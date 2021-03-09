@@ -1,2 +1,17 @@
 <!--pages/individual/agreement.wxml-->
-<text>pages/individual/agreement.wxml</text>
+<view class="page">
+  <text class="title">知 情 同 意</text>
+  <view class="note">
+    <text>如果您授权\n</text>
+    <text>您提供的生物样本与数据将被长期存储\n</text>
+    <text>用于未来目的不确定的研究</text>
+  </view>
+  <button id="continue">继续</button>
+  <view class="comment">
+    <text>我们将引导您选择您偏好的征求同意与隐私保护模式\n</text>
+    <text>注意：在最终提交之前您可以随时退出本应用\n</text>
+    <text>一旦最终同意，我们将采集您的手机号\n</text>
+    <text>以便在需要再次征求您的同意时联系您</text>
+  </view>
+  <button id="exit">退出</button>
+</view>

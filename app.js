@@ -35,5 +35,8 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  setGlobalData: function(data) {
+    this.globalData = data;
   }
 })

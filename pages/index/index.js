@@ -19,6 +19,8 @@ Page({
     query_result:'查询问卷结果页',
     edit:'编辑或创建问卷结果页',
     exit: '退出小程序',
+
+    
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -66,7 +68,7 @@ Page({
   },
   jump2Agreement(){
     wx.navigateTo({
-      url: '../individual/agreeement',
+      url: '../individual/agreement',
     })
   },
   jump2AgreementType(){
@@ -121,6 +123,7 @@ Page({
         }
       })
     }
+    this.jump2AgreementType()
   },
   getUserInfo(e) {
     console.log(e)

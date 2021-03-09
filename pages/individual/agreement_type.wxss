@@ -1,1 +1,56 @@
 /* pages/individual/agreement_type.wxss */
+/* pages/individual/agreement.wxss */
+.page{
+  padding: 2rem;
+  padding-top: 1rem;
+  text-align: center;
+  align-content: center;
+}
+
+
+.title {
+	text-align: center;
+  font-size: 2.3rem;
+  font-weight: bolder;
+}
+.comment{
+  margin-top: 1.2rem;
+}
+
+.comment text{
+	font-size: 0.9rem;
+  line-height: 1.5rem;
+  font-weight: bold;
+}
+.note{
+	width: 100%;
+	margin-top: 0.5rem;
+	font-size: 0.4rem bold;
+	line-height: 0.6rem;
+	border: 1px solid gainsboro
+}
+
+.abstract{
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5rem;
+}
+
+.agree{
+  margin-top: 1rem;
+  align-content: center;
+}
+.agree button{
+  width: 351rpx;
+  height: 62rpx;
+  font-size: 0.7rem;
+  line-height: 62rpx;
+}
+.agree text{
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+}
+
+text{
+  font-size: 15rpx;
+}

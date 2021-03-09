@@ -1,1 +1,48 @@
 /* pages/individual/agreement.wxss */
+.page{
+	margin-top: 3rem;
+	padding: 3rem;
+	text-align: center;
+}
+.title{
+	text-align: center;
+	font-size: 2rem;
+}
+.note{
+	width: 100%;
+	margin-top: 3rem;
+	font-size: 0.8rem bold;
+	line-height: 1.5rem;
+	border: 1px solid gainsboro
+}
+#continue{
+  width: 215rpx;
+	height: 72rpx;
+	color: rgba(0, 0, 0, 1);
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: rgba(0, 0, 0, 0.2) solid 2rpx;
+	border-radius: 9rpx;
+	font-size: 38rpx;
+	line-height: 72rpx;
+	text-align: center;
+	margin-top: 3rem;
+}
+
+.comment{
+	width: 100%;
+	margin-top: 0.5rem;
+	font-size: 0.6rem;
+	line-height: 1rem;
+}
+#exit{
+  width: 215rpx;
+	height: 69rpx;
+	color: rgba(0, 0, 0, 1);
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: rgba(0, 0, 0, 0.2) solid 2rpx;
+	border-radius: 9rpx;
+	font-size: 38rpx;
+	line-height: 69rpx;
+	text-align: center;
+	margin-top: 3rem;
+}

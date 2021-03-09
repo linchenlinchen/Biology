@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    volunteer_account_login:"志愿者账号登录",
+    apartment_account_login:"单位账号登录",
+    user_random_login:"游客登录",
   },
 
   /**

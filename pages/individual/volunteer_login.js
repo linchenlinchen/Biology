@@ -5,7 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    remind: '加载中',
+    angle: 0,
+    loginInfo:{
+      title:'微信授权',
+      content:'获得您的公开信息(昵称、头像等)',
+      logName:'小程序申请获得以下权限',
+      logImage:'../../images/logo.jpg',
+      
+    }
   },
 
   /**
@@ -26,7 +34,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log("222")
+    let userInfo = wx.getStorageSync('userInfo')
+    console.log(userInfo);
+    let dialogComponent = this.selectComponent('.wxc-dialog');
+    // if (!userInfo) {
+      dialogComponent && dialogComponent.show();
+    // } else {
+    //   this.setData({
+    //     userInfo: userInfo
+    //   })
+    //   dialogComponent && dialogComponent.hide();
+    // }
   },
 
   /**
