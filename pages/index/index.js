@@ -72,7 +72,7 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
   jump2Investigate(){
      wx.navigateTo({
        url: path_head+app.globalData.investigation,
