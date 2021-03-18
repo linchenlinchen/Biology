@@ -1,4 +1,5 @@
 // pages/individual/volunteer_login.js
+var object = require("../../utils/util")
 Page({
 
   /**
@@ -81,5 +82,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onConfirm:function(){
+      object.jump2Agreement()
   }
 })

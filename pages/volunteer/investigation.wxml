@@ -10,7 +10,7 @@
   </view>
   <view class="page-body">
     <radio-group class="radio-group" bindchange="radioChange">
-      <label class="radio" wx:for="{{items}}">
+      <label class="radio" wx:key="{{items}}">
           <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
       </label>
     </radio-group>
@@ -49,5 +49,5 @@
 
 
 <view>
-  <button>确认并提交</button>
+  <button bindtap="submit">确认并提交</button>
 </view>

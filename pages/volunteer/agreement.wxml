@@ -6,7 +6,7 @@
     <text>您提供的生物样本与数据将被长期存储\n</text>
     <text>用于未来目的不确定的研究</text>
   </view>
-  <button id="continue">继续</button>
+  <button id="continue" bindtap="continue">继续</button>
   <view class="comment">
     <text>我们将引导您选择您偏好的征求同意与隐私保护模式\n</text>
     <text>注意：在最终提交之前您可以随时退出本应用\n</text>

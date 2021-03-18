@@ -77,6 +77,10 @@ Page({
 
   ap_login:function(){
     object.jump2ApartmentLogin()
+  },
+
+  vo_login:function(){
+    object.jump2VolunteerLogin()
   }
 })
 

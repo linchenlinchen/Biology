@@ -1,4 +1,5 @@
 // pages/individual/investigation.js
+var object = require("../../utils/util")
 Page({
 
   /**
@@ -68,6 +69,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+
+  submit:function(){
+      object.jump2Commit()
+  },
+
+  radioChange:function(){
 
   }
 })

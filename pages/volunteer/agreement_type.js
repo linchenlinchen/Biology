@@ -1,4 +1,5 @@
 // pages/individual/agreement_type.js
+var object = require("../../utils/util")
 Page({
 
   /**
@@ -62,5 +63,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  investigate:function(){
+      object.jump2Investigate()
   }
 })

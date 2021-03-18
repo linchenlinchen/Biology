@@ -43,7 +43,7 @@
     <text>（注意：正在用于研究的数据，以及依据法律法规需要保留的数据无法被删除）。</text>
   </view>
   <view class="agree">
-    <button id="konw"><text>我已知晓上述同意模式区别</text></button>
+    <button id="konw" bindtap="investigate"><text>我已知晓上述同意模式区别</text></button>
   </view>
 </view>
 

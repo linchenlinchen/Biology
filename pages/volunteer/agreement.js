@@ -1,4 +1,5 @@
 // pages/individual/agreement.js
+var object = require("../../utils/util")
 Page({
 
   /**
@@ -62,5 +63,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  continue:function(){
+      object.jump2AgreementType()
   }
 })

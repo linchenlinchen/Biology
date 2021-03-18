@@ -1,4 +1,5 @@
 // pages/individual/commit.js
+var object = require("../../utils/util")
 Page({
 
   /**
@@ -62,5 +63,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  to_square:function(){
+      object.jump2Square()
   }
 })
