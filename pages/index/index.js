@@ -73,4 +73,70 @@ Page({
       hasUserInfo: true
     })
   }
-})
+  jump2Investigate(){
+     wx.navigateTo({
+       url: path_head+app.globalData.investigation,
+     })
+   },
+  jump2Commit(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.commit,
+     })
+   },
+  jump2My(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.my_program,
+     })
+   },
+  jump2Square(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.square,
+     })
+   },
+  jump2Contents(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.contents,
+     })
+   },
+  jump2Login(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.login,
+     })
+   },
+  jump2VolunteerLogin(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.volunteer_login,
+     })
+   },
+  jump2Agreement(){
+     wx.navigateTo({
+       url: path_head+app.globalData.agreement,
+     })
+   },
+  jump2AgreementType(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.agreement_type,
+     })
+   },
+  jump2ApartmentLogin(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.apartment_login,
+     })
+   },
+  jump2Management(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.managemnet,
+     })
+   },
+  jump2QueryResult(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.query_result,
+     })
+   },
+  jump2Edit(){
+     wx.navigateTo({
+       url:  path_head+app.globalData.edit,
+     })
+   }
+ })
+ 
