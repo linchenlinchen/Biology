@@ -31,6 +31,10 @@ button{
 #u_login{
 	top: 374rpx;
 }
+
+#reg{
+	top:394rpx
+}
 text{
 	width: 339rpx;
 	height: 29rpx;

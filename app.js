@@ -34,7 +34,25 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    baseUrl:"https://shengwu",
+    index:"pages/index/index",
+    logs:"pages/logs/logs",
+    commit:"pages/individual/commit",
+    square:"pages/individual/square",
+    contents:"pages/individual/contents",
+    login:"pages/individual/login",
+    apartment_login:"pages/individual/apartment_login",
+    management:"pages/individual/management",
+    query_result:"pages/individual/query_result",
+    edit:"pages/individual/edit",
+    register:"pages/individual/register",
+    investigation:"pages/volunteer/investigation",
+    my_program:"pages/volunteer/my_program",
+    volunteer_login:"pages/volunteer/volunteer_login",
+    agreement:"pages/volunteer/agreement",
+    agreement_type:"pages/volunteer/agreement_type",
+    json:""
   },
   setGlobalData: function(data) {
     this.globalData = data;

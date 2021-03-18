@@ -1,9 +1,11 @@
 <!--pages/individual/login.wxml-->
 <view>
   <view class="wrapper">
-    <button class="box" id='v_login'><text>{{volunteer_account_login}}</text></button>
-    <button class="box" id="a_login"><text>{{apartment_account_login}}</text></button>
-    <button class="box" id="u_login"><text>{{user_random_login}}</text></button>
+    <button class="box" id='v_login' bindtap="vo_login"><text>{{volunteer_account_login}}</text></button>
+    <button class="box" id="a_login" bindtap="ap_login"><text>{{apartment_account_login}}</text></button>
+    <button class="box" id="u_login" bindtap=""><text>{{user_random_login}}</text></button>
+    <button class="box" id="reg" bindtap="to_register"><text>{{register}}</text></button>
   </view>
+
 </view>
 

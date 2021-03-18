@@ -1,5 +1,8 @@
 // index.js
 // 获取应用实例
+var object=require("../../utils/util")
+
+
 const app = getApp()
 
 Page({
@@ -31,71 +34,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  jump2Investigate(){
-    wx.navigateTo({
-      url: '../individual/investigation',
-    })
-  },
-  jump2Commit(){
-    wx.navigateTo({
-      url: '../individual/commit',
-    })
-  },
-  jump2My(){
-    wx.navigateTo({
-      url: '../individual/my_program',
-    })
-  },
-  jump2Square(){
-    wx.navigateTo({
-      url: '../individual/square',
-    })
-  },
-  jump2Contents(){
-    wx.navigateTo({
-      url: '../individual/contents',
-    })
-  },
-  jump2Login(){
-    wx.navigateTo({
-      url: '../individual/login',
-    })
-  },
-  jump2VolunteerLogin(){
-    wx.navigateTo({
-      url: '../individual/volunteer_login',
-    })
-  },
-  jump2Agreement(){
-    wx.navigateTo({
-      url: '../individual/agreement',
-    })
-  },
-  jump2AgreementType(){
-    wx.navigateTo({
-      url: '../individual/agreement_type',
-    })
-  },
-  jump2ApartmentLogin(){
-    wx.navigateTo({
-      url: '../individual/apartment_login',
-    })
-  },
-  jump2Management(){
-    wx.navigateTo({
-      url: '../individual/management',
-    })
-  },
-  jump2QueryResult(){
-    wx.navigateTo({
-      url: '../individual/query_result',
-    })
-  },
-  jump2Edit(){
-    wx.navigateTo({
-      url: '../individual/edit',
-    })
-  },
+
   onLoad() {
     if (app.globalData.userInfo) {
       this.setData({
@@ -123,7 +62,8 @@ Page({
         }
       })
     }
-    this.jump2AgreementType()
+    object.jump2Login()
+    // console.log(getApp().globalData.investigation)
   },
   getUserInfo(e) {
     console.log(e)

@@ -1,16 +1,15 @@
-const object= require("../../utils/util")
-var app = getApp()
-// pages/individual/login.js
+const { HttpRequst } = require("../../utils/util")
+
+// pages/individual/register.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    volunteer_account_login:"志愿者账号登录",
-    apartment_account_login:"单位账号登录",
-    user_random_login:"游客登录",
-    register:"注册"
+    telephone:"手机",
+    password:"密码",
+    submit:"提交"
   },
 
   /**
@@ -67,16 +66,10 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  to_register:function(){
-    wx.navigateTo({
-      url: '../individual/register',
-    })
-  },
-
-  ap_login:function(){
-    object.jump2ApartmentLogin()
   }
 })
 
+
+function sign_up(){
+  HttpRequst(true,"/api/user/register",)
+}

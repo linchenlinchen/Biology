@@ -2,19 +2,20 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/individual/investigation",
     "pages/individual/commit",
-    "pages/individual/my_program",
     "pages/individual/square",
     "pages/individual/contents",
     "pages/individual/login",
-    "pages/individual/volunteer_login",
-    "pages/individual/agreement",
-    "pages/individual/agreement_type",
     "pages/individual/apartment_login",
     "pages/individual/management",
     "pages/individual/query_result",
-    "pages/individual/edit"
+    "pages/individual/edit",
+    "pages/individual/register",
+    "pages/volunteer/investigation",
+    "pages/volunteer/my_program",
+    "pages/volunteer/volunteer_login",
+    "pages/volunteer/agreement",
+    "pages/volunteer/agreement_type"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,19 @@
+/* pages/individual/register.wxss */
+#box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 900rpx;
+}
+#form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500rpx;
+  height: 400rpx;
+  border: gray solid 1rpx;
+}
+input{
+  line-height: 100rpx;
+  height: 100rpx;
+}

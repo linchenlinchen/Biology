@@ -1,0 +1,12 @@
+<!--pages/individual/register.wxml-->
+<view id="box">
+  <view id="form">
+    <label>
+      <text>{{telephone}}</text>
+      <input placeholder="手机号" id="account"/>
+      <text>{{password}}</text>
+      <input password="true" placeholder="密码" id="pw"/>
+      <button bindtap="sign_up">{{submit}}</button>
+    </label>
+  </view>
+</view>
