@@ -1,5 +1,8 @@
 // pages/individual/apartment_login.js
 Page({
+  login:function(event){
+
+ },
 
   /**
    * 页面的初始数据

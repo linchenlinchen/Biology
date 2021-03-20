@@ -1,1 +1,59 @@
 /* pages/individual/apartment_login.wxss */
+.txt1{
+  position: absolute;
+	left: 250rpx;
+	top: 325rpx;
+	color: rgba(0, 0, 0, 1);
+	font-size: 30rpx;
+	line-height: 110%;
+  text-align: center;
+}
+.txt2{
+  color: rgba(255, 255, 255, 1);
+}
+.input1{
+    position: absolute;
+    width: 400rpx;
+    height: 88rpx;
+    left: 200rpx;
+    top: 475rpx;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: rgba(225, 225, 225, 1) solid 4rpx;
+    border-radius: 80rpx;
+    font-size: 33rpx;
+    line-height: 150%;
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+}
+.input2{
+  position: absolute;
+  width: 400rpx;
+  height: 88rpx;
+  left: 200rpx;
+  top: 600rpx;
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: rgba(225, 225, 225, 1) solid 4rpx;
+  border-radius: 80rpx;
+  font-size: 33rpx;
+  line-height: 150%;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+}
+.button{
+  position: absolute;
+  width: 350rpx;
+	height: 88rpx;
+	left: 200rpx;
+	top: 750rpx;
+	color: rgba(0, 0, 0, 1);
+	background-color: rgba(0, 0, 0, 1);
+	box-shadow: rgba(0, 0, 0, 1) solid 4rpx;
+	border-radius: 80rpx;
+	font-size: 33rpx;
+	line-height: 150%;
+	text-align: center;
+}

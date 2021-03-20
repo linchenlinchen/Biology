@@ -1,1 +1,56 @@
 /* pages/individual/management.wxss */
+.content{
+  border-color: rgb(192, 192, 190);
+  border-style: solid;
+  display: flex;
+  flex-direction:column;
+  border-width: 0px 0px 4px 0px;
+  margin: -2px -5px 0px -5px;
+  padding: 10px 10px 10px 10px;
+}
+.btnright{
+  border-radius: 5px;
+  font-size: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 5px 5px 5px 5px;
+  float: right;
+}
+.btnleft{
+display: flex;
+direction:column;
+border-radius: 5px;
+font-size: 10px;
+font-family: 'Courier New', Courier, monospace;
+margin: 5px 5px 5px 5px;
+float:left;
+}
+.txt2{
+  font-size: 35rpx;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+.profile {
+    height: 200rpx;
+    display: flex;
+    flex-flow: row;
+    word-break: break-all;
+    background-color: #1a97d4;
+    padding: 0 10rpx 0 10rpx;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.oval {
+  width: 30px;
+  height: 20px;
+  background: red;
+  border-radius: 30rpx / 15rpx;
+}
+.headright{
+  display: flex;
+  flex-direction: column;
+}
