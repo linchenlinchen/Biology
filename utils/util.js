@@ -31,6 +31,12 @@ function jump2My(){
     url:  path_head+app.globalData.my_program,
   })
 }
+
+function jump2VolunteerPrelogin(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.volunteer_prelogin,
+  })
+}
 function jump2Square(){
   wx.navigateTo({
     url:  path_head+app.globalData.square,
@@ -51,6 +57,12 @@ function jump2VolunteerLogin(){
     url:  path_head+app.globalData.volunteer_login,
   })
 }
+function jump2VolunteerLoginWithPhone(telephone){
+  wx.navigateTo({
+    url:  path_head+app.globalData.volunteer_login+"?telephone="+telephone,
+  })
+}
+
 function jump2Agreement(){
   wx.navigateTo({
     url: path_head+app.globalData.agreement,
@@ -144,11 +156,14 @@ module.exports = {
   jump2Contents,
   jump2QueryResult,
   jump2Edit,
+  jump2VolunteerPrelogin,
   jump2VolunteerLogin,
+  jump2VolunteerLoginWithPhone,
   jump2Management,
   jump2Login,
   jump2Investigate,
   jump2Square,
-  jump2My
+  jump2My,
+  
 }
 

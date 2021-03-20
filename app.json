@@ -13,6 +13,7 @@
     "pages/individual/register",
     "pages/volunteer/investigation",
     "pages/volunteer/my_program",
+    "pages/volunteer/volunteer_prelogin",
     "pages/volunteer/volunteer_login",
     "pages/volunteer/agreement",
     "pages/volunteer/agreement_type"

@@ -1,3 +1,4 @@
+
 const object= require("../../utils/util")
 var app = getApp()
 // pages/individual/login.js
@@ -84,27 +85,17 @@ Page({
   },
 
   getPhoneNumber:function(e){
-
-  }
-
-  getUserInfo:function(e){
-    // Mock.mock("https://biology/api/user/userInfo",
-    // {username:"18621531701"})
-
-    // $.ajax({
-    //   url:"https://biology/api/user/userInfo",
-    //   dataType:"json",
-    //   success:function(data){
-    //     console.log(data)
-    //   }
-    // })
     wx.getSetting({ //获取授权列表
       success: res => {
         if (res.authSetting['scope.userInfo']) { //已经授权
           wx.getUserInfo({ //getUserInfo获得用户信息
             success: res => { //下面这部分大家根据自己的项目自由发挥哈~
-              console.log("part 1:")
-              console.log(res)
+              console.log("part 1:"+toString(res))
+              wx.login({
+                success: function(res) {
+                 console.log('loginCode', res.code)
+                }
+              });
               //this.setData({
               //  avatarUrl: res.userInfo.avatarUrl,
               //  userInfo: res.userInfo,
@@ -124,8 +115,12 @@ Page({
                   success: (res) => {
                     if(res.authSetting['scope.userInfo']) {
                       console.log("设置成功")
-                      console.log("part 3:"+res)
-                      console.log(res)
+                      console.log("part 3:"+tostring(res))
+                      wx.login({
+                        success: function(res) {
+                         console.log('loginCode', res.code)
+                        }
+                      });
                     } else {
                       console.log("设置失败")
                     }
@@ -140,6 +135,71 @@ Page({
         } 
       }
     })
+    object.jump2VolunteerPrelogin()
+  },
+
+  getUserInfo:function(e){
+    // Mock.mock("https://biology/api/user/userInfo",
+    // {username:"18621531701"})
+
+    // $.ajax({
+    //   url:"https://biology/api/user/userInfo",
+    //   dataType:"json",
+    //   success:function(data){
+    //     console.log(data)
+    //   }
+    // })
+    // wx.getSetting({ //获取授权列表
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) { //已经授权
+    //       wx.getUserInfo({ //getUserInfo获得用户信息
+    //         success: res => { //下面这部分大家根据自己的项目自由发挥哈~
+    //           console.log("part 1:"+toString(res))
+    //           wx.login({
+    //             success: function(res) {
+    //              console.log('loginCode', res.code)
+    //             }
+    //           });
+               
+    //           //this.setData({
+    //           //  avatarUrl: res.userInfo.avatarUrl,
+    //           //  userInfo: res.userInfo,
+    //           //})
+    //           //getApp().globalData.userInfo = res.userInfo
+    //         }
+    //       })
+    //     } else{
+    //       wx.showModal({ //显示提示信息用的
+    //         title: '提示',
+    //         confirmText: '去设置',
+    //         cancelText: '取消',
+    //         content: '请授权方便您的使用噢~',
+    //         success: function(res) {
+    //           if (res.confirm) {//用户点击了去设置
+    //            wx.openSetting({
+    //               success: (res) => {
+    //                 if(res.authSetting['scope.userInfo']) {
+    //                   console.log("设置成功")
+    //                   console.log("part 3:"+tostring(res))
+    //                   wx.login({
+    //                     success: function(res) {
+    //                      console.log('loginCode', res.code)
+    //                     }
+    //                   });
+    //                 } else {
+    //                   console.log("设置失败")
+    //                 }
+    //               }
+    //             })
+    //           } else if(res.cancel) { //用户点击了取消
+    //     // 这里大家可以自由发挥怎么劝住用户跪求他们授权/(ㄒoㄒ)/~~
+    //             console.log("用户取消了去设置授权")
+    //           }
+    //         }
+    //       })
+    //     } 
+    //   }
+    // })
     
     
     // //获取用户唯一标识openId

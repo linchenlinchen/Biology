@@ -49,6 +49,7 @@ App({
     register:"pages/individual/register",
     investigation:"pages/volunteer/investigation",
     my_program:"pages/volunteer/my_program",
+    volunteer_prelogin:"pages/volunteer/volunteer_prelogin",
     volunteer_login:"pages/volunteer/volunteer_login",
     agreement:"pages/volunteer/agreement",
     agreement_type:"pages/volunteer/agreement_type",
