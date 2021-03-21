@@ -1,5 +1,6 @@
 var app = getApp()
 var path_head = "../../"
+var baseUrl = "https://shengwu"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -95,13 +96,7 @@ function jump2Edit(){
 }
 
 
-function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask, callBack) {
-  if (loading == true) {
-    wx.showToast({
-      title: '数据加载中',
-      icon: 'loading'
-    })
-  }
+function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, doFail,doComplete) {
   var paramSession = [{},
     {
       'content-type': 'application/json',
@@ -119,6 +114,7 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
       'Cookie': 'JSESSIONID=' + sessionId
     }
   ]
+  console.log(baseUrl + url)
     wx.request({
       url: baseUrl + url,
       data: params,
@@ -126,22 +122,13 @@ function HttpRequst(loading, url, sessionChoose, sessionId, params, method, ask,
       header: paramSession[sessionChoose],
       method: method,
       success: function(res) {
-        console.log(res);
-        console.log(res.data.statusCode);
-        if (loading == true) {
-          wx.hideToast(); 
-        }
-        if (res.data.needLogin == true) {
-          wxLogin2(loading, callBack);//在此做自己的wx.login
-        }
-        if (res.data.needLogin != true) {
-          callBack(res.data);
-        }
+        doSuccess(res)
       },
-      complete: function() {
-        if (loading == true) {
-          wx.hideToast(); 
-        }
+      fail:function(res){
+        doFail(res)
+      },
+      complete: function(res) {
+        doComplete(res)
       }
     })
 }

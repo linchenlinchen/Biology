@@ -1,29 +1,41 @@
 <!--pages/individual/my_program.wxml-->
-<view class="container">
-<text class="txt1">用户名</text>
-<button class="but2" size="mini">更改信息</button>
-<button class="but3"size="mini">退出账号</button>
-<view class="containerdiv1">
-  <text class="txt2">正在进行的问卷</text>
-</view>
-<view wx:for="{{programamu}}">
-  <text class="list">{{item.number}}--
-  {{item.message1}}
-  {{item.message2}}
-  </text>
-  <button size="mini"class="but1"type="primary">修改同意类型</button>
+
+  <view class="info">
+    <view class="portrait">
+      <image src="{{src}}"></image>
+    </view>
+    <view class="account">
+      <view id="username_vu">
+        <text id="username">{{username}}</text>
+      </view>
+      <view id="bt_vu">
+        <button id="change_bt" size="mini">{{changeInfo}}</button>
+        <button id="out_bt"size="mini">{{signOut}}</button>
+      </view>
+    </view>
+  </view>
+  <view class="pj_list">
+    <text class="pj_txt">{{ongoing}}</text>
+  </view>
+  <view wx:for="{{ongoingList}}">
+    <text class="list">
+      {{item.projectName}}
+      {{item.joinTime}}
+      {{item.releaseTime}}
+    </text>
+    <button size="mini"class="but1"type="primary">{{changeAgree}}</button>
+      <view class="home-header-line"></view>
+  </view>
+  <view class="pj_list">
+    <text class="pj_txt">{{finished}}</text>
+  </view>
+  <view wx:for="{{finishedList}}">
+    <text class="list">
+      {{item.projectName}}
+      {{item.joinTime}} 
+      {{item.releaseTime}}
+    </text>
     <view class="home-header-line"></view>
-</view>
-<view class="containerdiv1">
-  <text class="txt2">已经完成的问卷</text>
-</view>
-<view wx:for="{{programamu}}">
-  <text class="list">{{item.number}}--
-{{item.message1}} 
-{{item.message2}}
-  </text>
-  <button size="mini"class="but1"type="primary">修改同意类型</button>
-    <view class="home-header-line"></view>
-</view>
-<text class="txt2">无更多问卷显示</text>
-</view>
+  </view>
+  <text class="pj_txt">无更多问卷显示</text>
+
