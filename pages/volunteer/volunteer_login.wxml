@@ -1,7 +1,7 @@
 <!--pages/individual/apartment_login.wxml-->
 <view>
   <text class="txt1">志愿者用户登录</text>
-  <input class="input1" placeholder="用户名" value="{{username}}"></input>
-  <input class="input2" placeholder="密码" value="{{password}}"></input>
+  <input class="input1" placeholder="用户名" value="{{username}}" bindinput="inputUser"></input>
+  <input class="input2" placeholder="密码" value="{{password}}" bindinput="inputPassword"></input>
   <button class="button" bindtap="login"><text class='txt2'>{{login}}</text></button>
 </view>

@@ -9,7 +9,7 @@
         <text id="username">{{username}}</text>
       </view>
       <view id="bt_vu">
-        <button id="change_bt" size="mini">{{changeInfo}}</button>
+        <button id="change_bt" size="mini" bindtap="goLock">{{changeInfo}}</button>
         <button id="out_bt"size="mini">{{signOut}}</button>
       </view>
     </view>

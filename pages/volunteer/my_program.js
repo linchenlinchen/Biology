@@ -1,4 +1,5 @@
 // pages/individual/my_program.js
+var object = require("../../utils/util")
 Page({
 
   /**
@@ -88,5 +89,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  goLock:function(){
+    object.jump2Lock()
   }
 })

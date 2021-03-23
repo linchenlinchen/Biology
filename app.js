@@ -53,6 +53,7 @@ App({
     volunteer_login:"pages/volunteer/volunteer_login",
     agreement:"pages/volunteer/agreement",
     agreement_type:"pages/volunteer/agreement_type",
+    lock:"pages/volunteer/lock",
     json:""
   },
   setGlobalData: function(data) {

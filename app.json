@@ -16,7 +16,8 @@
     "pages/volunteer/volunteer_prelogin",
     "pages/volunteer/volunteer_login",
     "pages/volunteer/agreement",
-    "pages/volunteer/agreement_type"
+    "pages/volunteer/agreement_type",
+    "pages/volunteer/lock"
   ],
   "window": {
     "backgroundTextStyle": "light",

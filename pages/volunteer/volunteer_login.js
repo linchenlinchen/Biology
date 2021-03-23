@@ -1,4 +1,4 @@
-const { jump2My } = require("../../utils/util")
+const { jump2My, HttpRequst } = require("../../utils/util")
 
 // pages/individual/apartment_login.js
 Page({
@@ -69,75 +69,69 @@ Page({
   onShareAppMessage: function () {
 
   },
+  inputUser:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      username:e.detail.value
+    })
+  },
+  inputPassword:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      password:e.detail.value
+    })
+  },
 
   /**
    * 登录按钮
    * @param {*} event 
    */
   login:function(event){
-    console.log("111")
-    wx.request({
-      url: 'https://shwngwu/api/user/userLogin',
-      data: {
-        "username":this.data.username,
-        "password":this.data.password
-      },
-      dataType: "json",
-      enableCache: true,
-      enableHttp2: true,
-      enableQuic: true,
-      header: {
-        "content-type":"application/json; charset=utf-8"
-      },
-      method: "POST",
-      responseType: "json",
-      timeout: 0,
-      success: (result) => {
-        console.log(result)
-        if(result.statusCode==0){
-          console.log("result.data.cookies[0].username",(result.data.cookies[0].username))
-          console.log("result.data.cookies[0].image",(result.data.cookies[0].image))
-          wx.setStorageSync('cookieKey',result.data.cookies[0]);
-          wx.request({
-            url: 'https://shengwu/api/user/userProjects',
-            data: {
-              "username":this.data.username
-            },
-            dataType: "json",
-            enableCache: true,
-            enableHttp2: true,
-            enableQuic: true,
-            header: {
-              "content-type":"application/json; charset=utf-8"
-            },
-            method: "POST",
-            responseType: "json",
-            timeout: 0,
-            success: (result) => {
-              console.log("result.data.ongoingList",(result.data.ongoingList))
-              console.log("result.data.finishedList",(result.data.finishedList))
-              wx.setStorageSync('ongoingProjects', result.data.ongoingList)
-              wx.setStorageSync('finishedProjects', result.data.finishedList)
-            },
-            fail: (res) => {},
-            complete: (res) => {},
-          })
-          
-          // if (result && result.header && result.header['Set-Cookie']) {
-          //   console.log("32",result.header['cookie'])
-          //   wx.setStorageSync('cookieKey', res.header['cookie']);   //保存Cookie到Storage
-          // }
-        }
-      },
-      fail: (res) => {
-        console.log("error")
-        console.log(res)
-      },
-      complete: (res) => {
-        if(res.statusCode==0){
-          jump2My()
-        }
-      },
+    HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST",this.doSuccessLogin,this.doFailLogin,this.doCompleteLogin)
+  },
+
+  doSuccessLogin(result){
+    console.log("RESULT",result)
+    if(result.statusCode==0){
+      console.log("result.data.cookies[0].username",(result.data.cookies[0].username))
+      console.log("result.data.cookies[0].image",(result.data.cookies[0].image))
+      wx.setStorageSync('cookieKey',result.data.cookies[0]);
+      wx.setStorageSync('username', result.data.username)
+      wx.setStorageSync('password', result.data.password)
+      HttpRequst('/api/user/userProjects',1,'',{"username":this.data.username},"POST",this.doSuccessMyList,this.doFailMyList,this.doCompleteMyList)
+    }else if(result.statusCode==1){
+      wx.showToast({
+        title: '用户名或密码不正确！',
+      })
+    }else{
+      wx.showToast({
+        title: '登录出错！',
+      })
+    }
+  },
+  doFailLogin(result){
+    wx.showToast({
+      title: '登录失败！',
     })
   },
+  doCompleteLogin(result){
+    if(result.statusCode==0){
+      jump2My()
+    }
+  },
+  doSuccessMyList(result){
+    console.log("result.data.ongoingList",(result.data.ongoingList))
+    console.log("result.data.finishedList",(result.data.finishedList))
+    wx.setStorageSync('ongoingProjects', result.data.ongoingList)
+    wx.setStorageSync('finishedProjects', result.data.finishedList)
+  },
+  doFailMyList(result){
+    wx.showToast({
+      title: '获取问卷列表失败',
+    })
+  },
+  doCompleteMyList(result){
+    console.log ('获取问卷列表完成(不一定成功！)');
+  }
+
 })

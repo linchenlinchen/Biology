@@ -1,22 +1,41 @@
 var app = getApp()
 var path_head = "../../"
 var baseUrl = "https://shengwu"
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+// const formatTime = date => {
+//   const year = date.getFullYear()
+//   const month = date.getMonth() + 1
+//   const day = date.getDate()
+//   const hour = date.getHours()
+//   const minute = date.getMinutes()
+//   const second = date.getSeconds()
 
-  return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
+//   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
+// }
+
+// const formatNumber = n => {
+//   n = n.toString()
+//   return n[1] ? n : `0${n}`
+// }
+function formatTime(date) {
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
+
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
-const formatNumber = n => {
+function formatNumber(n) {
   n = n.toString()
-  return n[1] ? n : `0${n}`
+  return n[1] ? n : '0' + n
 }
-
+function toThousands(num) {
+    return (num || "").replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+}
 function jump2Investigate(){
   wx.navigateTo({
     url: path_head+app.globalData.investigation,
@@ -36,6 +55,11 @@ function jump2My(){
 function jump2VolunteerPrelogin(){
   wx.navigateTo({
     url:  path_head+app.globalData.volunteer_prelogin,
+  })
+}
+function jump2Lock(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.lock,
   })
 }
 function jump2Square(){
@@ -115,6 +139,7 @@ function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, d
     }
   ]
   console.log(baseUrl + url)
+  new Promise((resolve,reject)=>{
     wx.request({
       url: baseUrl + url,
       data: params,
@@ -122,7 +147,9 @@ function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, d
       header: paramSession[sessionChoose],
       method: method,
       success: function(res) {
+        // resolve(res)
         doSuccess(res)
+        
       },
       fail:function(res){
         doFail(res)
@@ -131,6 +158,8 @@ function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, d
         doComplete(res)
       }
     })
+  })
+    
 }
 
 module.exports = {
@@ -143,6 +172,7 @@ module.exports = {
   jump2Contents,
   jump2QueryResult,
   jump2Edit,
+  jump2Lock,
   jump2VolunteerPrelogin,
   jump2VolunteerLogin,
   jump2VolunteerLoginWithPhone,
@@ -151,6 +181,6 @@ module.exports = {
   jump2Investigate,
   jump2Square,
   jump2My,
-  
+  toThousands:toThousands
 }
 
