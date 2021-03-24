@@ -17,6 +17,6 @@
      <p>{{other}}: {{item.other}}</p>
   </view>
   <view>
-    <button class="button"><p>返回问卷管理页</p></button>
+    <button class="button" bindtap="backManage"><p>返回问卷管理页</p></button>
   </view>
 </view>

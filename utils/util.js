@@ -109,6 +109,12 @@ function jump2QueryResult(){
     url:  path_head+app.globalData.query_result,
   })
 }
+
+function jump2QueryResultWithId(projectId){
+  wx.navigateTo({
+    url:  path_head+app.globalData.query_result+"?projectId="+projectId,
+  })
+}
 function jump2Edit(){
   wx.navigateTo({
     url:  path_head+app.globalData.edit,
@@ -189,6 +195,7 @@ module.exports = {
   jump2Commit,
   jump2Contents,
   jump2QueryResult,
+  jump2QueryResultWithId,
   jump2Edit,
   jump2Lock,
   jump2VolunteerPrelogin,

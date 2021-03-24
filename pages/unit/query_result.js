@@ -1,4 +1,5 @@
 // pages/individual/query_result.js
+const object= require("../../utils/util")
 Page({
 
   /**
@@ -11,40 +12,7 @@ Page({
     record:"电子医疗记录",
     brain:"脑影像资料",
     other:"剩余样本与样本中提取的其他数据",
-    result:[
-      {
-        username:"13812233333",
-        recognition:"一揽子同意",
-        shape:"一揽子同意",
-        record:"偶尔征求同意",
-        brain:"一揽子同意",
-        other:"偶尔征求同意"
-      },
-      {
-        username:"178208817",
-        recognition:"一揽子同意",
-        shape:"一揽子同意",
-        record:"偶尔征求同意",
-        brain:"一揽子同意",
-        other:"偶尔征求同意"
-      },
-      {
-      username:"182389833333",
-        recognition:"一揽子同意",
-        shape:"一揽子同意",
-        record:"偶尔征求同意",
-        brain:"一揽子同意",
-        other:"偶尔征求同意"
-      },
-      {
-        username:"12988332917",
-        recognition:"一揽子同意",
-        shape:"一揽子同意",
-        record:"偶尔征求同意",
-        brain:"一揽子同意",
-        other:"偶尔征求同意"
-      },
-    ],
+    result:[],
 
   },
 
@@ -52,7 +20,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    let that = this
+    object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":options.projectId},"GET").then(function(res){
+      console.log(res)
+      console.log(res.data.list)
+      if(res.statusCode == 0){
+        that.setData({
+          result:res.data.list
+        })
+      }
+    })
   },
 
   /**
@@ -102,5 +80,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  backManage:function(){
+    object.backLastPage()
   }
 })
