@@ -5,22 +5,44 @@ Page({
    * 页面的初始数据
    */
   data: {
+    username:"志愿者手机号",
+    recognition :"面部、声纹、掌纹、指纹、基因序列等生物识别数据",
+    shape:"形态特征数据",
+    record:"电子医疗记录",
+    brain:"脑影像资料",
+    other:"剩余样本与样本中提取的其他数据",
     result:[
       {
-        name:"志愿者手机号",
-        content:"13812233333"
+        username:"13812233333",
+        recognition:"一揽子同意",
+        shape:"一揽子同意",
+        record:"偶尔征求同意",
+        brain:"一揽子同意",
+        other:"偶尔征求同意"
       },
       {
-        name:"指纹",
-        content:"一揽子同意"
+        username:"178208817",
+        recognition:"一揽子同意",
+        shape:"一揽子同意",
+        record:"偶尔征求同意",
+        brain:"一揽子同意",
+        other:"偶尔征求同意"
       },
       {
-        name:"人脸识别",
-        content:"一揽子同意"
+      username:"182389833333",
+        recognition:"一揽子同意",
+        shape:"一揽子同意",
+        record:"偶尔征求同意",
+        brain:"一揽子同意",
+        other:"偶尔征求同意"
       },
       {
-        name:"血型",
-        content:"偶尔征求同意"
+        username:"12988332917",
+        recognition:"一揽子同意",
+        shape:"一揽子同意",
+        record:"偶尔征求同意",
+        brain:"一揽子同意",
+        other:"偶尔征求同意"
       },
     ],
 

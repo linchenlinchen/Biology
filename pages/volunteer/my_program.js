@@ -108,5 +108,8 @@ Page({
     wx.removeStorageSync('username')
     wx.removeStorageSync('password')
     object.backLastPage()
+    wx.showToast({
+      title: '已退出登录',
+    })
   }
 })

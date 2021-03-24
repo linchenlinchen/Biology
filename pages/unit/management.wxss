@@ -59,3 +59,9 @@ float:left;
 #out_bt{
   width: 200rpx;
 }
+.bt_vu{
+  width: 400rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

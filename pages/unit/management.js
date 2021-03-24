@@ -1,11 +1,14 @@
 // pages/individual/management.js
 const app = getApp()
+const { jump2QueryResult, jump2Square } = require("../../utils/util")
+var object = require("../../utils/util")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    square:"项目广场",
     signOut:"退出登录",
     unitname:"单位账户名称",
     published:"已发布",
@@ -86,5 +89,24 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  signOut:function(){
+    wx.removeStorageSync('userInfo')
+    wx.removeStorageSync('publishedProjects')
+    wx.removeStorageSync('draftProjects')
+    wx.removeStorageSync('unitname')
+    wx.removeStorageSync('password')
+    object.backLastPage()
+    wx.showToast({
+      title: '已退出登录',
+    })
+  },
+  queryResult:function(e){
+    console.log(e.currentTarget)
+    console.log(e.currentTarget.id)
+    object.jump2QueryResult()
+  },
+  goSquare:function(){
+    object.jump2Square()
   }
 })
