@@ -115,9 +115,9 @@ function jump2QueryResultWithId(projectId){
     url:  path_head+app.globalData.query_result+"?projectId="+projectId,
   })
 }
-function jump2Edit(){
+function jump2Edit(projectId){
   wx.navigateTo({
-    url:  path_head+app.globalData.edit,
+    url:  path_head+app.globalData.edit+"?projectId="+projectId,
   })
 }
 function backLastPage(){

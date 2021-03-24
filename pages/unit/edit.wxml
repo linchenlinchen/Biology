@@ -2,16 +2,24 @@
 <view>
   <view class="content">
     <view><p>项目名称: </p></view>
-    <view><input type="text"></input></view>
+    <view><input type="text" bindinput="inputName" value="{{projectName}}"></input></view>
   </view>
   <view class="content">
     <view><p>项目目的: </p></view>
-    <view><input type="text"></input></view>
+    <view><input type="text" bindinput="inputGoal" value="{{projectGoal}}"></input></view>
   </view>
   <view class="content">
     <view><p>时间周期: </p></view>
-    <view><input type="text"></input></view>
+    <view><input type="text" bindinput="inputDuration" value="{{projectDuration}}"></input></view>
   </view>
+  <!-- <view class="content">
+    <view><p>数据字段: </p></view>
+    <view><input type="text">{{dataType}}</input></view>
+  </view>
+  <view class="content">
+    <view><p>同意字段: </p></view>
+    <view><input type="text">{{agreeType}}</input></view>
+  </view> -->
   <view class="content">
     <view class="input"> 
       <input type="text" class="name_input" placeholder="请输入数据字段名"></input>
@@ -34,6 +42,6 @@
     </view>
     
   </view>
-  <button class="btn">保存至草稿箱</button>
-  <button class="btn">直接发布</button>
+  <button class="btn" bindtap="saveDraft">保存至草稿箱</button>
+  <button class="btn" bindtap="publish">直接发布</button>
 </view>

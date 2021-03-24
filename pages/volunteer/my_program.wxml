@@ -12,6 +12,7 @@
         <button id="change_bt" size="mini" bindtap="goLock">{{changeInfo}}</button>
         <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
       </view>
+
     </view>
   </view>
   <view class="pj_list">

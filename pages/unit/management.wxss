@@ -65,3 +65,16 @@ float:left;
   flex-direction: row;
   justify-content: space-around;
 }
+
+#newProject{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  display: flex;
+  left:80%;
+  top: 20%;
+  background-color: black;
+  color: white;
+  line-height: 70rpx;
+  text-align: center;
+}

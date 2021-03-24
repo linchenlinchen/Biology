@@ -23,7 +23,7 @@ Page({
     console.log(options)
     let that = this
     object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":options.projectId},"GET").then(function(res){
-      console.log(res)
+      console.log("res",res)
       console.log(res.data.list)
       if(res.statusCode == 0){
         that.setData({
