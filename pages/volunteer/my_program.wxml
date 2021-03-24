@@ -6,11 +6,11 @@
     </view>
     <view class="account">
       <view id="username_vu">
-        <text id="username">{{username}}</text>
+        <text id="username">{{nickname}} : {{username}}</text>
       </view>
       <view id="bt_vu">
         <button id="change_bt" size="mini" bindtap="goLock">{{changeInfo}}</button>
-        <button id="out_bt"size="mini">{{signOut}}</button>
+        <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
       </view>
     </view>
   </view>

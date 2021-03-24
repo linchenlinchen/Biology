@@ -1,0 +1,40 @@
+<!--pages/individual/management.wxml-->
+<view>
+  <view class="profile">
+   <view wx:if="{{hasUserInfo}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    </view>
+    <view class="headright">
+    <view><text class="txt1">{{unitname}}</text></view>
+    <view class="oval"><button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button></view>
+    </view>
+  </view>
+   <view class="content"> <text class="txt2">{{published}}</text></view>
+   <!-- <view wx:for="{{ongoingList}}">
+    <text class="list">
+      {{item.projectName}}
+      {{item.joinTime}}
+      {{item.releaseTime}}
+    </text>
+    <button size="mini"class="but1"type="primary">{{changeAgree}}</button>
+      <view class="home-header-line"></view>
+  </view> -->
+  <view class="content" wx:for="{{publishedList}}">
+    <view>
+      <text class='txt2'>{{item.projectName}} | projectId:{{item.projectId}}的问卷</text>
+    </view>
+    <view>
+      <button class="btnleft" type="primary">{{seeResult}}</button>
+      <button class="btnleft">{{derive}}</button>
+      <button class="btnright">{{modify}}</button>
+    </view>
+  </view>
+  <view class="content"><text class="txt2">{{draft}}</text> <text>\r\n</text></view>
+  <view class="content" wx:for="{{publishedList}}">
+    <view>
+      <text class="txt2">{{item.projectName}} | projectId:{{item.projectId}}的问卷</text>
+    </view>
+    <view><button class="btnright">{{modify}}</button></view>
+  </view>
+</view>
+

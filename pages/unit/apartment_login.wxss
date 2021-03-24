@@ -1,7 +1,7 @@
 /* pages/individual/apartment_login.wxss */
 .txt1{
   position: absolute;
-	left: 250rpx;
+	left: 300rpx;
 	top: 325rpx;
 	color: rgba(0, 0, 0, 1);
 	font-size: 30rpx;
@@ -26,6 +26,7 @@
     text-align: center;
     border-color: black;
     border-style: solid;
+    color: black;
 }
 .input2{
   position: absolute;
@@ -42,18 +43,19 @@
   text-align: center;
   border-color: black;
   border-style: solid;
+  color: black;
 }
 .button{
   position: absolute;
   width: 350rpx;
-	height: 88rpx;
-	left: 200rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+	left: 225rpx;
 	top: 750rpx;
 	color: rgba(0, 0, 0, 1);
 	background-color: rgba(0, 0, 0, 1);
 	box-shadow: rgba(0, 0, 0, 1) solid 4rpx;
 	border-radius: 80rpx;
 	font-size: 33rpx;
-	line-height: 150%;
 	text-align: center;
 }

@@ -1,21 +1,6 @@
 var app = getApp()
 var path_head = "../../"
 var baseUrl = "https://shengwu"
-// const formatTime = date => {
-//   const year = date.getFullYear()
-//   const month = date.getMonth() + 1
-//   const day = date.getDate()
-//   const hour = date.getHours()
-//   const minute = date.getMinutes()
-//   const second = date.getSeconds()
-
-//   return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
-// }
-
-// const formatNumber = n => {
-//   n = n.toString()
-//   return n[1] ? n : `0${n}`
-// }
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -24,7 +9,6 @@ function formatTime(date) {
   var hour = date.getHours()
   var minute = date.getMinutes()
   var second = date.getSeconds()
-
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
@@ -46,8 +30,14 @@ function jump2Commit(){
     url:  path_head+app.globalData.commit,
   })
 }
+function direct2My(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.my_program,
+  })
+}
+
 function jump2My(){
-  wx.navigateTo({
+  wx.redirectTo({
     url:  path_head+app.globalData.my_program,
   })
 }
@@ -103,9 +93,15 @@ function jump2ApartmentLogin(){
     url:  path_head+app.globalData.apartment_login,
   })
 }
+
+function direct2Management(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.management,
+  })
+}
 function jump2Management(){
   wx.navigateTo({
-    url:  path_head+app.globalData.managemnet,
+    url:  path_head+app.globalData.management,
   })
 }
 function jump2QueryResult(){
@@ -118,9 +114,29 @@ function jump2Edit(){
     url:  path_head+app.globalData.edit,
   })
 }
+function backLastPage(){
+  var pages = getCurrentPages(); // 当前页面
+  var beforePage = pages[pages.length - 2]; // 前一个页面
+  wx.navigateBack({
+      success: function() {
+          beforePage.onLoad(); // 执行前一个页面的onLoad方法
+      }
+  });
+}
 
 
-function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, doFail,doComplete) {
+function returnFirstPage(){
+  var pages = getCurrentPages(); // 当前页面
+
+  var beforePage = pages[pages.length-2]; // 前一个页面
+  wx.navigateBack({
+    success: function() {
+      beforePage.onLoad(); // 执行前一个页面的onLoad方法
+    }
+  });
+}
+
+function HttpRequst( url, sessionChoose, sessionId, params, method) {
   var paramSession = [{},
     {
       'content-type': 'application/json',
@@ -139,7 +155,7 @@ function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, d
     }
   ]
   console.log(baseUrl + url)
-  new Promise((resolve,reject)=>{
+  return new Promise((resolve,reject)=>{
     wx.request({
       url: baseUrl + url,
       data: params,
@@ -147,15 +163,17 @@ function HttpRequst( url, sessionChoose, sessionId, params, method, doSuccess, d
       header: paramSession[sessionChoose],
       method: method,
       success: function(res) {
-        // resolve(res)
-        doSuccess(res)
-        
+        console.log("url:"+url+" 请求成功！")
+        resolve(res)
+
       },
       fail:function(res){
-        doFail(res)
+        console.log("url:"+url+" 请求失败！")
+        // doFail(res)
+        reject(res)
       },
       complete: function(res) {
-        doComplete(res)
+        console.log("url:"+url+" 请求完成！")
       }
     })
   })
@@ -181,6 +199,10 @@ module.exports = {
   jump2Investigate,
   jump2Square,
   jump2My,
-  toThousands:toThousands
+  direct2Management,
+  direct2My,
+  toThousands:toThousands,
+  backLastPage,
+  returnFirstPage
 }
 

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: { 
+    nickname:"昵称",
     username:"用户名",
     changeInfo:"更改信息",
     signOut:"退出账号",
@@ -22,21 +23,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let cookie = wx.getStorageSync('cookieKey');//取出Cookie
+    // let cookie = wx.getStorageSync('cookieKey');//取出Cookie
     let ongoingList = wx.getStorageSync('ongoingProjects')
     let finishedList = wx.getStorageSync('finishedProjects')
+    let username = wx.getStorageSync('username')
+    let password = wx.getStorageSync('password')
+    let userInfo = wx.getStorageSync('userInfo')
     let header = { 'Content-Type': 'application/x-www-form-urlencoded'};
-    if (cookie) {
-        header.Cookie = cookie;
-    }
-    console.log(cookie)
-    console.log("cookie username",cookie.username)
-    console.log("cookie image",cookie.image)
+    // if (cookie) {
+    //     header.Cookie = cookie;
+    // }
+    console.log(userInfo)
+    // console.log("cookie username",cookie.username)
+    // console.log("cookie image",cookie.image)
     console.log("ongoingList",ongoingList)
     console.log("finishedList",finishedList)
+    console.log("src",userInfo.avatarUrl)
     this.setData({
-      username:cookie.username,
-      src:cookie.image,
+      nickname:userInfo.nickName,
+      username:username,
+      src:userInfo.avatarUrl,
       ongoingList:ongoingList,
       finishedList:finishedList
     })
@@ -93,5 +99,14 @@ Page({
 
   goLock:function(){
     object.jump2Lock()
+  },
+
+  signOut:function(){
+    wx.removeStorageSync('userInfo')
+    wx.removeStorageSync('ongoingProjects')
+    wx.removeStorageSync('finishedProjects')
+    wx.removeStorageSync('username')
+    wx.removeStorageSync('password')
+    object.backLastPage()
   }
 })

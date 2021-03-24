@@ -8,17 +8,15 @@ Page({
      titleColor:""
   },
   onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
-
-    wxlocker.lock.init();
-    this.initState();
-
-    
+    wxlocker.lock.init(this);
+    this.initState()
   },
   onReady:function(){
     
   },
   onShow:function(){
+    // 页面初始化 options为页面跳转所带来的参数
+    
     
     // 页面显示
   },
@@ -32,6 +30,7 @@ Page({
   },
   //设置提示语与重置按钮
   initState:function(){
+    console.log("initState")
     var resetHidden = wxlocker.lock.resetHidden;
     var title = wxlocker.lock.title;
     var titleColor = wxlocker.lock.titleColor;
@@ -50,9 +49,9 @@ Page({
     console.log("move:",e)
   },
   touchE:function(e){//touchend事件绑定
-    wxlocker.lock.bindtouchend(e,this.lockSucc);
+    wxlocker.lock.bindtouchend(e);
 
-    this.initState();
+    // this.initState();
   },
 
   lockSucc:function(){//解锁成功的回调函数

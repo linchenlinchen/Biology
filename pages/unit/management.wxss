@@ -7,6 +7,7 @@
   border-width: 0px 0px 4px 0px;
   margin: -2px -5px 0px -5px;
   padding: 10px 10px 10px 10px;
+  
 }
 .btnright{
   border-radius: 5px;
@@ -34,7 +35,7 @@ float:left;
     display: flex;
     flex-flow: row;
     word-break: break-all;
-    background-color: #1a97d4;
+    background:linear-gradient(#1a97d4,#0671b4);
     padding: 0 10rpx 0 10rpx;
 }
 
@@ -53,4 +54,8 @@ float:left;
 .headright{
   display: flex;
   flex-direction: column;
+}
+
+#out_bt{
+  width: 200rpx;
 }

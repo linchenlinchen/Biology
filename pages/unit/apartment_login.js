@@ -1,12 +1,15 @@
-const { jump2My, HttpRequst, direct2My } = require("../../utils/util")
-
 // pages/individual/apartment_login.js
+let {HttpRequst, jump2Management, direct2Management} = require("../../utils/util")
 Page({
+  login:function(event){
+
+ },
+
   /**
    * 页面的初始数据
    */
   data: {
-    username:"",
+    unitname:"",
     password:"",
     login:"登录"
   },
@@ -15,10 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      username:options.telephone
-    })
-    console.log("username",this.data.username)
+
   },
 
   /**
@@ -31,7 +31,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (options) {
+  onShow: function () {
 
   },
 
@@ -69,10 +69,11 @@ Page({
   onShareAppMessage: function () {
 
   },
-  inputUser:function(e){
+
+  inputUnit:function(e){
     console.log(e.detail.value)
     this.setData({
-      username:e.detail.value
+      unitname:e.detail.value
     })
   },
   inputPassword:function(e){
@@ -88,45 +89,41 @@ Page({
    */
   login:function(event){
     let that = this
-    HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
-      switch(res.statusCode){
+    HttpRequst('/api/unit/companyLogin',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(result){
+      switch(result.statusCode){
         case 0:
-          that.doSuccessLogin(res);
-          
+          that.doSuccessLogin(result)
           break;
         default:
           wx.showToast({
-            title: '用户名或密码不正确！',
+            title: '企业名或密码不正确！',
           })
       }
     })
   },
 
+  
   doSuccessLogin(result){
     console.log("RESULT",result)
-    // console.log("result.data.cookies[0].username",(result.data.cookies[0].username))
+    // console.log("result.data.cookies[0].unitname",(result.data.cookies[0].unitname))
     // console.log("result.data.cookies[0].image",(result.data.cookies[0].image))
     wx.setStorageSync('cookieKey',result.data.cookies[0]);
-    wx.setStorageSync('username', this.data.username)
+    wx.setStorageSync('unitname', this.data.unitname)
     wx.setStorageSync('password', this.data.password)
-    // console.log("that",that)
-    // console.log("this",this)
     let that = this
-    HttpRequst('/api/user/userProjects',1,'',{"username":this.data.username},"GET").then(function(result){
+    HttpRequst('/api/unit/unitProjects',1,'',{"unit":this.data.unitname},"GET").then(function(result){
       console.log("that new ",that)
       console.log("this new",this)
       that.doSuccessMyList(result)
     })
-    
   },
 
   doSuccessMyList(result){
     console.log("this is ",this)
-    console.log("result.data.ongoingList",(result.data.ongoingList))
-    console.log("result.data.finishedList",(result.data.finishedList))
-    wx.setStorageSync('ongoingProjects', result.data.ongoingList)
-    wx.setStorageSync('finishedProjects', result.data.finishedList)
-    direct2My()
+    console.log("result.data.publishedList",(result.data.publishedList))
+    console.log("result.data.draftList",(result.data.draftList))
+    wx.setStorageSync('publishedProjects', result.data.publishedList)
+    wx.setStorageSync('draftProjects', result.data.draftList)
+    direct2Management()
   },
-
 })

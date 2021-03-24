@@ -6,6 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    signOut:"退出登录",
+    unitname:"单位账户名称",
+    published:"已发布",
+    seeResult:"查看结果",
+    derive:"导出结果",
+    modify:"修改内容",
+    draft:"草稿箱",
     userInfo: {},
     hasUserInfo: false,
     inputValue:"",
@@ -14,9 +21,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    let publishedList = wx.getStorageSync('publishedProjects')
+    let draftList = wx.getStorageSync('draftProjects')
+    let unitname = wx.getStorageSync('unitname')
+    let password = wx.getStorageSync('password')
+    let userInfo = wx.getStorageSync('userInfo')
+    let header = { 'Content-Type': 'application/x-www-form-urlencoded'};
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        userInfo: userInfo,
+        password:password,
+        unitname:unitname,
+        draftList:draftList,
+        publishedList:publishedList,
         hasUserInfo: true
       })
     }

@@ -1,7 +1,0 @@
-<!--pages/individual/apartment_login.wxml-->
-<view>
-  <text class="txt1">单位用户登录</text>
-  <input class="input1" placeholder="用户名" bindinput="userNameInput"></input>
-  <input class="input2" placeholder="密码" bindinput="passWdInput"></input>
-  <button class="button" bindtap="login"><text class='txt2'>登录</text></button>
-</view>
