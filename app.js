@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    isUnit:false,
     baseUrl:"https://shengwu",
     index:"pages/index/index",
     logs:"pages/logs/logs",

@@ -31,14 +31,15 @@
       
     </view>
   </view>
-  <view wx:for="{{projects}}" wx:for-item="item" class="container">
+  <view wx:for="{{projects}}" wx:for-item="item" class="container" bindtap="seeProject" id="{{item.projectId}}">
     <view><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
     <view class="content">
-      <title>{{item.title}}</title>
-      <p>项目发布时间： {{item.time}}</p>
-      <p>项目简介： {{item.background}}</p>
+      <title>{{item.projectName}}</title>
+      <p>{{publishedTime}}： {{item.time}}</p>
+      <p>{{description}}： {{item.background}}</p>
     </view>
     <view class="block"></view>
+    <view class="dt">进入详情 ▎▋▉ ██████▶</view>
   </view>
   <view class="tail">
     <button>只显示未参加项目</button>

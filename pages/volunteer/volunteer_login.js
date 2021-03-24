@@ -126,6 +126,7 @@ Page({
     console.log("result.data.finishedList",(result.data.finishedList))
     wx.setStorageSync('ongoingProjects', result.data.ongoingList)
     wx.setStorageSync('finishedProjects', result.data.finishedList)
+    getApp().globalData.isUnit = false
     direct2My()
   },
 

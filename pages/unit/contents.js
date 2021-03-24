@@ -1,4 +1,5 @@
 // pages/individual/contents.js
+const object= require("../../utils/util")
 Page({
 
   /**
@@ -6,16 +7,13 @@ Page({
    */
   
   data: {
-    imgUrls: [
-      '../../images/1.png',
-      '../../images/1.png',
-      '../../images/1.png'
-    ],
+    projectInfo:{},
     indicatorDots: true,
     autoplay: true,
     circular: true,
     interval: 5000,
-    duration: 1000
+    duration: 1000,
+    hidden:false
   },
   
   changeIndicatorDots: function(e) {
@@ -42,7 +40,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options.projectId)
+    let that = this
+    object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
+        that.setData({
+          projectInfo:result.data,
+          hidden:getApp().globalData.isUnit
+        })
+    })
   },
 
   /**

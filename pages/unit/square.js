@@ -1,36 +1,17 @@
 // pages/individual/square.js
 const app = getApp()
+const { jump2Contents } = require("../../utils/util");
+var object = require("../../utils/util")
+var startX, endX;
+var moveFlag = true;// 判断执行滑动事件
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    projects:[
-      {
-      picture:"../../images/1.png",
-      title:"表型组-泰州序列",
-      time:"2000.2.2",
-      background:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-     },
-     {
-      picture:"../../images/1.png",
-      title:"表型组-泰州序列",
-      time:"2000.2.2",
-      background:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-     },
-     {
-      picture:"../../images/1.png",
-      title:"表型组-泰州序列",
-      time:"2000.2.2",
-      background:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-     },
-     {
-      picture:"../../images/1.png",
-      title:"表型组-泰州序列",
-      time:"2000.2.2",
-      background:"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-     },
-    ],
+    publishedTime:"项目发布时间",
+    discription:"项目简介",
+    projects:[],
     focus:false,  //控制是否显示带取消按钮的搜索框
     inputValue:"",
     userInfo: {},
@@ -53,6 +34,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    let that = this
+    object.HttpRequst("/api/allProjects",1,'',{},'GET').then(function(result){
+      that.setData({
+        projects:result.data.projects
+      })
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -108,5 +95,44 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  touchStart: function (e) {
+    startX = e.touches[0].pageX; // 获取触摸时的原点
+    moveFlag = true;
+  },
+  // 触摸移动事件
+  touchMove: function (e) {
+    endX = e.touches[0].pageX; // 获取触摸时的原点
+    if (moveFlag) {
+      if (endX - startX > 50) {
+        console.log("move right");
+        e.touches[0].pageX = startX
+        moveFlag = false;
+      }
+      if (startX - endX > 50) {
+        console.log("move left");
+        this.move2left();
+        moveFlag = false;
+      }
+    }
+
+  },
+  // 触摸结束事件
+  touchEnd: function (e) {
+    moveFlag = true; // 回复滑动事件
+    
+  },
+
+  move2left() {
+    var that = this;
+    
+    that.setData({
+      content: "move2left"
+    });
+  },
+
+  seeProject:function(e){
+    jump2Contents(e.currentTarget.id)
   }
 })

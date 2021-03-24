@@ -57,9 +57,9 @@ function jump2Square(){
     url:  path_head+app.globalData.square,
   })
 }
-function jump2Contents(){
+function jump2Contents(pid){
   wx.navigateTo({
-    url:  path_head+app.globalData.contents,
+    url:  path_head+app.globalData.contents+"?projectId="+pid,
   })
 }
 function jump2Login(){

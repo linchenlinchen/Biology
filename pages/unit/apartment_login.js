@@ -124,6 +124,8 @@ Page({
     console.log("result.data.draftList",(result.data.draftList))
     wx.setStorageSync('publishedProjects', result.data.publishedList)
     wx.setStorageSync('draftProjects', result.data.draftList)
+    getApp().globalData.isUnit=true
     direct2Management()
+
   },
 })
