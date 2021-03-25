@@ -13,5 +13,5 @@
     <text>一旦最终同意，我们将采集您的手机号\n</text>
     <text>以便在需要再次征求您的同意时联系您</text>
   </view>
-  <button id="exit">退出</button>
+  <button id="exit" bindtap="back">退出</button>
 </view>

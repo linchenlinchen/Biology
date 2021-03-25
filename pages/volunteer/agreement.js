@@ -67,5 +67,8 @@ Page({
 
   continue:function(){
       object.jump2AgreementType()
+  },
+  back:function(){
+    object.backLastPage()
   }
 })
