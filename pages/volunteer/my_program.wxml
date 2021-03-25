@@ -10,6 +10,7 @@
       </view>
       <view id="bt_vu">
         <button id="change_bt" size="mini" bindtap="goLock">{{changeInfo}}</button>
+        <button id="square_bt" size="mini" bindtap="goSquare">{{square}}</button>
         <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
       </view>
 

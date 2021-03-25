@@ -105,5 +105,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  goInvestigate:function(){
+    object.jump2Agreement()
   }
 })

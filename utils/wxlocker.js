@@ -417,9 +417,9 @@
                 that.touchFlag = false;
                 console.log("path:",that.lastPoint)
                 that.storePass(that.lastPoint);
-                while(!finishStorePass){
-                    console.log("!finishStorePass")
-                }
+                // while(!finishStorePass){
+                //     console.log("!finishStorePass")
+                // }
     
                 that.reset();
         

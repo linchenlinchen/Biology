@@ -1,9 +1,22 @@
 /* pages/individual/investigation.wxss */
+
+.whole-body{
+  display: flex;
+  flex-direction: column;
+}
 .horizontal {
   display: flex;
   /*row 横向  column 列表  */
   flex-direction: row;
-  height: 510rpx;
+
+}
+
+.view_hide{
+  display: none;
+}
+
+.view_show{
+  display: block;
 }
 
 .btn-area {
@@ -71,7 +84,7 @@
   border-radius: 100rpx;
   padding: 10rpx;
   /*文字居中*/
-  font-size: 60%;
+  font-size: 15rpx;
   text-align: center;
   display: flex;
   justify-content: left;
@@ -117,3 +130,11 @@
    border-radius: 500rpx;
    background-color: #1a97d4;
  }
+
+ .view_hide{
+  display: none;
+}
+
+.view_show{
+  display: flex;
+}

@@ -1,5 +1,6 @@
 <!--pages/individual/investigation.wxml-->
 <!-- <text>pages/individual/investigation.wxml</text> -->
+<view class="whole-body">
 <view class="horizontal">
   <view class="btn-area">
     <view id="biology" url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">面部、声纹、掌纹、指纹、基因序列等生物识别数据</view>
@@ -23,7 +24,7 @@
 </view>
 
 
-<view id="tips">
+<view id="tips" wx:if="{{isShow}}" bindtap="hide">
   <view>
   <label>
     <text class="item">"总是征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
@@ -32,7 +33,7 @@
     <text class="item">"偶尔征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
   </label>
   <label>
-    <text class="item">"一揽子同意（接收消息）"：</text><text class="meaning">每次使用前都向您询问</text>
+    <text class="item" >"一揽子同意（接收消息）"：</text><text class="meaning">每次使用前都向您询问</text>
   </label>
   <label>
     <text class="item">"一揽子同意（不再打扰）"：</text><text class="meaning">每次使用前都向您询问</text>
@@ -51,3 +52,5 @@
 <view>
   <button bindtap="submit">确认并提交</button>
 </view>
+</view>
+

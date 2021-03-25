@@ -13,7 +13,8 @@ Page({
       {name: 'bucket_refuse', value: '一揽子同意（不再打扰）'},
       {name: 'disagree_save', value: '不同意（保留数据）'},
       {name: 'disagree_delete', value: '不同意（删除数据）'},
-    ]
+    ],
+    isShow:true
   },
 
   /**
@@ -77,6 +78,12 @@ Page({
   },
 
   radioChange:function(){
-
+    
+  },
+  hide:function(){
+    console.log("hidden")
+    this.setData({
+      isShow: false
+    })
   }
 })

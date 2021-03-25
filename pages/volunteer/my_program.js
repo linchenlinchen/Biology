@@ -9,6 +9,7 @@ Page({
     nickname:"昵称",
     username:"用户名",
     changeInfo:"更改信息",
+    square:"项目广场",
     signOut:"退出账号",
     ongoing:"正在进行的问卷",
     finished:"已完成的问卷",
@@ -99,6 +100,10 @@ Page({
 
   goLock:function(){
     object.jump2Lock()
+  },
+
+  goSquare:function(){
+    object.jump2Square()
   },
 
   signOut:function(){
