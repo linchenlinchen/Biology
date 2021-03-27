@@ -1,5 +1,5 @@
 <!--pages/individual/my_program.wxml-->
-
+<view class="bodyView">
   <view class="info">
     <view class="portrait">
       <image src="{{src}}"></image>
@@ -9,9 +9,9 @@
         <text id="username">{{nickname}} : {{username}}</text>
       </view>
       <view id="bt_vu">
-        <button id="change_bt" size="mini" bindtap="goLock">{{changeInfo}}</button>
-        <button id="square_bt" size="mini" bindtap="goSquare">{{square}}</button>
-        <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
+        <button id="setting" size="mini" bindtap="show" plain="true"><image mode="center" src="../../images/setting.png"></image></button>
+        <!-- <button id="square_bt" size="mini" bindtap="goSquare">{{square}}</button>
+        <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button> -->
       </view>
 
     </view>
@@ -40,4 +40,17 @@
     <view class="home-header-line"></view>
   </view>
   <text class="pj_txt">无更多问卷显示</text>
+</view>
+<!-- 以下是侧边栏 -->
+<view class="cehuaDa" wx:if="{{isShowSideslip}}">
+  <view class="sideslipMenuItemlist">
+    <block wx:for="{{sideslipMenuArr}}">
+      <view class="sideslipMenuItem" id="{{index}}" catchtap="itemClick">
+        {{item}}
+      </view>
+    </block>
+  </view>
+  <view class="sideslipMenu" catchtap="offSideslipMen">
+  </view>
+</view>
 

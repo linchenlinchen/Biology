@@ -5,10 +5,14 @@ Page({
   data:{
      title:'请设置手势密码',
      resetHidden:false,
-     titleColor:""
+     titleColor:"",
+     changeGesture:false,
+     changePassword:false,
+     forgetGesture:false,
+
   },
   onLoad:function(options){
-    wxlocker.lock.init(this);
+    wxlocker.lock.init(this,options);
     this.initState()
   },
   onReady:function(){

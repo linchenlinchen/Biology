@@ -47,9 +47,9 @@ function jump2VolunteerPrelogin(){
     url:  path_head+app.globalData.volunteer_prelogin,
   })
 }
-function jump2Lock(){
+function jump2Lock(changeGesture,changePassword,forgetGesture){
   wx.navigateTo({
-    url:  path_head+app.globalData.lock,
+    url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
   })
 }
 function jump2Square(){
@@ -57,6 +57,19 @@ function jump2Square(){
     url:  path_head+app.globalData.square,
   })
 }
+
+function jump2changePassword(username){
+  wx.navigateTo({
+    url:  path_head+app.globalData.changePassword+"?username="+username,
+  })
+}
+
+function jump2newPassword(username){
+  wx.redirectTo({
+    url:  path_head+app.globalData.newPassword+"?username="+username,
+  })
+}
+
 function jump2Contents(pid){
   wx.navigateTo({
     url:  path_head+app.globalData.contents+"?projectId="+pid,
@@ -206,6 +219,8 @@ module.exports = {
   jump2Investigate,
   jump2Square,
   jump2My,
+  jump2changePassword,
+  jump2newPassword,
   direct2Management,
   direct2My,
   toThousands:toThousands,

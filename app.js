@@ -55,6 +55,8 @@ App({
     agreement:"pages/volunteer/agreement",
     agreement_type:"pages/volunteer/agreement_type",
     lock:"pages/volunteer/lock",
+    changePassword:"pages/volunteer/changePassword",
+    newPassword:"pages/volunteer/newPassword",
     json:""
   },
   setGlobalData: function(data) {

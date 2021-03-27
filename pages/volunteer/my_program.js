@@ -8,15 +8,27 @@ Page({
   data: { 
     nickname:"昵称",
     username:"用户名",
-    changeInfo:"更改信息",
+
+    changeInfo:"",
+    changeGesture:'修改手势密码',
+    changePassword: '修改账户密码', 
+    forgetGesture:'忘记手势密码',
     square:"项目广场",
     signOut:"退出账号",
+
     ongoing:"正在进行的问卷",
     finished:"已完成的问卷",
     changeAgree:"修改同意类型",
     ongoingList:[],
     finishedList:[],
     src:"../../images/1.png",
+    isShowSideslip: false,
+    sideslipMenuArr: [
+      '修改手势密码', 
+      '修改账户密码', 
+      '忘记手势密码',
+      "项目广场",
+      "退出账号",]
     // programamu:[{number:'项目1',message1:'加入项目时间',message2:'项目发布时间'},{number:'项目2',message1:'加入项目时间',message2:'项目发布时间'},{number:'项目3',message1:'加入项目时间',message2:'项目发布时间'}]
   },
 
@@ -98,8 +110,12 @@ Page({
 
   },
 
-  goLock:function(){
-    object.jump2Lock()
+  changeLock:function(){
+    object.jump2Lock(true,false,false)
+  },
+
+  changePassword:function(){
+    object.jump2changePassword(this.data.username)
   },
 
   goSquare:function(){
@@ -116,5 +132,41 @@ Page({
     wx.showToast({
       title: '已退出登录',
     })
+  },
+
+// 以下为侧边栏
+  show: function() {
+    this.setData({
+      isShowSideslip: true
+    })
+  },
+
+  offSideslipMen: function(){
+    this.setData({
+      isShowSideslip: false
+    })
   }
+  ,
+  itemClick: function(e) {
+    let functionList = [this.changeLock,this.changePassword,,this.goSquare,this.signOut]
+    var tapId = e.currentTarget.id;
+    var index = this;
+    for (var i = 0; i < index.data.sideslipMenuArr.length;i++){
+      if (tapId == i){
+        (functionList[i])()
+        // wx.showToast({
+        //   title: index.data.sideslipMenuArr[i],
+        //   icon: 'none',
+        //   image: '',
+        //   duration: 1000,
+        //   mask: true,
+        //   success: function(res) {},
+        //   fail: function(res) {},
+        //   complete: function(res) {},
+        // })
+      }
+    }
+  }
+
+
 })

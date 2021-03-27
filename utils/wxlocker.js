@@ -12,7 +12,7 @@
         let hasGesture = false //是否在服务器上设置过手势了
         let hasRelease = false //在hasGesture的情况下，是否解开了锁准备设置
         let needConsistency = false //是否是设置密码已经完成第一次，此次需要一致性
-        let finishStorePass = false //是否结束存储密码
+        let options = {}
         var wxlocker = function(obj){
             this.chooseType =  3; // 3*3的圆点格子
         };
@@ -58,54 +58,57 @@
 
 
         // 核心函数
-        wxlocker.prototype.storePass = function(psw,lk) {// touchend结束之后对密码和状态的处理
+        wxlocker.prototype.storePass = function(options) {// touchend结束之后对密码和状态的处理
                 console.log('storePass')
                 let that = this
                 object.HttpRequst('/api/user/hasSignature',1,'',{"username":username,"password":password},"GET").then(function(res){
-                    that.doSuccessStorePass(res)
+                    that.doSuccessStorePass(res,options)
                 })
         }
-        wxlocker.prototype.doSuccessStorePass = function(res){
-            this.doSuccessHasGesture(res)
-            if ((hasGesture && hasRelease && needConsistency) || (!hasGesture && needConsistency)) {
-                if (that.checkPass(psw, lastPass)) {//两次密码一致,fp表示上一次的绘制手势
-                    // 设置手势密码
-                    that = this
-                    object.HttpRequst("/api/user/signature",1,'',{"username":username,"password":password,"gesture":psw},'POST').then(function(res){
-                        that.doSuccessSetLock(res)
+        wxlocker.prototype.doSuccessStorePass = function(res,options){
+            if(options.changeGesture){
+                this.doSuccessHasGesture(res)
+                if ((hasGesture && hasRelease && needConsistency) || (!hasGesture && needConsistency)) {
+                    if (that.checkPass(psw, lastPass)) {//两次密码一致,fp表示上一次的绘制手势
+                        // 设置手势密码
+                        that = this
+                        object.HttpRequst("/api/user/signature",1,'',{"username":username,"password":password,"gesture":psw},'POST').then(function(res){
+                            that.doSuccessSetLock(res)
+                            that.reset()
+                            that.lastPoint=[]
+                            object.jump2Agreement()
+                        })
+                    } else {
                         that.reset()
+                        that.setType("两次绘制不一致，重新绘制","error",'#e64340')
                         that.lastPoint=[]
-                        object.jump2Agreement()
+                        needConsistency = false
+                        lock.initState()
+                    }
+                } else if (hasGesture && !hasRelease) {
+                    object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
+                        that.doSuccessReleaseLock(res)
+                        that.reset()
+                        that.setType("请输入手势密码","succ",'#09bb07')
+                        that.lastPoint=[]
+                        hasRelease = true
+                        object.jump2
                     })
                 } else {
-                    that.reset()
-                    that.setType("两次绘制不一致，重新绘制","error",'#e64340')
-                    that.lastPoint=[]
-                    needConsistency = false
-                    lock.initState()
-                }
-            } else if (hasGesture && !hasRelease) {
-                object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
-                    that.doSuccessReleaseLock(res)
-                    that.reset()
-                    that.setType("请输入手势密码","succ",'#09bb07')
-                    that.lastPoint=[]
-                    hasRelease = true
-                })
-            } else {
-                if(that.lastPoint.length<4){
-                    that.reset()
-                    that.setType("密码过于简单，请至少连接4个点","error",'#e64340')
-                    lock.initState()
-                    that.lastPoint=[]
-                }else{//hasGesture && hasRelease && !needConsistency || !hasGesture && !needConsistency
-                    that.reset()
-                    needConsistency = true
-                    that.setType("再次输入","succ",'#09bb07')
-                    lock.initState()
-                    that.lastPoint=[]
-                }
+                    if(that.lastPoint.length<4){
+                        that.reset()
+                        that.setType("密码过于简单，请至少连接4个点","error",'#e64340')
+                        lock.initState()
+                        that.lastPoint=[]
+                    }else{//hasGesture && hasRelease && !needConsistency || !hasGesture && !needConsistency
+                        that.reset()
+                        needConsistency = true
+                        that.setType("再次输入","succ",'#09bb07')
+                        lock.initState()
+                        that.lastPoint=[]
+                    }
 
+                }
             }
         }
         // wxlocker.prototype.doFailStorePass = function(res){
@@ -219,7 +222,7 @@
                 that.touchFlag = false;
                 lastPass = psw
                 psw = that.getGestureArray(that.lastPoint)
-                that.storePass(that.lastPoint,lock);
+                that.storePass(options);
             }
         }
 
@@ -253,14 +256,21 @@
 
 
         // 基础函数
-        wxlocker.prototype.init = function(page) {//初始化锁盘
+        wxlocker.prototype.init = function(page,options) {//初始化锁盘
             console.log(page)
             console.log("init")
+            this.options = options
             this.pswObj = {}
-            this.title="init"
             this.lastPoint = [];//记录手指经过的圆圈
-            this.makeState(page);
-            this.touchFlag = false;
+            if(options.changeGesture){
+                this.title="请绘制原手势密码"
+                this.makeState(page);
+                this.touchFlag = false;
+            }else if(options.changePassword){
+                this.title="请绘制手势密码验证"
+
+            }
+            
             this.ctx = wx.createContext();//创建画布
             this.createCircle();//画圆圈
         }
