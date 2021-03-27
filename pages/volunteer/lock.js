@@ -12,7 +12,12 @@ Page({
 
   },
   onLoad:function(options){
-    wxlocker.lock.init(this,options);
+    this.setData({
+      changeGesture:options.changeGesture,
+     changePassword:options.changePassword,
+     forgetGesture:options.forgetGesture
+    })
+    wxlocker.lock.init(this);
     this.initState()
   },
   onReady:function(){
@@ -50,7 +55,7 @@ Page({
   },
   touchM:function(e){//touchmove事件绑定
     wxlocker.lock.bindtouchmove(e);
-    console.log("move:",e)
+    // console.log("move:",e)
   },
   touchE:function(e){//touchend事件绑定
     wxlocker.lock.bindtouchend(e);

@@ -5,28 +5,25 @@
         let username = wx.getStorageSync('username')
         let password = wx.getStorageSync('password')
         let lock;
-        let oLock;
         let psw;
         let lastPass;
         let that = this
         let hasGesture = false //是否在服务器上设置过手势了
         let hasRelease = false //在hasGesture的情况下，是否解开了锁准备设置
         let needConsistency = false //是否是设置密码已经完成第一次，此次需要一致性
-        let options = {}
+        // let options = {}
         var wxlocker = function(obj){
             this.chooseType =  3; // 3*3的圆点格子
         };
 
         
-        wxlocker.prototype.makeState = function(page) {
+        wxlocker.prototype.makeState = function() {
             console.log("makeState")
-            console.log(page)
+            // console.log(lock)
+            // this.lock = lock
             that = this
             object.HttpRequst('/api/user/hasSignature',1,'',{"username":username,"password":password},"GET").then(function(res){
-                console.log("page:",page)
                 that.doSuccessMakeState(res)
-                lock = page
-                console.log("lock:",lock)
             })
         }
 
@@ -41,34 +38,36 @@
         wxlocker.prototype.doSuccessMakeState = function(res){
             console.log("doSuccessMakeState")
             that.doSuccessHasGesture(res)
-            console.log(res)
+            // console.log(res)
             console.log("now hasGesture is x",hasGesture)
             console.log("now hasRelease is x",hasRelease)
             console.log("now needConsistency is x",needConsistency)
             if (hasGesture && !hasRelease) {
                 that.setType("请解锁","succ",'#09bb07')
-                that.initState()
+                lock.initState()
             }  
             else {
                 that.setType("请设置手势密码","succ",'#09bb07')
-                that.initState()
+                lock.initState()
             }
         }
 
 
 
         // 核心函数
-        wxlocker.prototype.storePass = function(options) {// touchend结束之后对密码和状态的处理
+        wxlocker.prototype.storePass = function() {// touchend结束之后对密码和状态的处理
                 console.log('storePass')
                 let that = this
                 object.HttpRequst('/api/user/hasSignature',1,'',{"username":username,"password":password},"GET").then(function(res){
-                    that.doSuccessStorePass(res,options)
+                    that.doSuccessStorePass(res)
                 })
         }
-        wxlocker.prototype.doSuccessStorePass = function(res,options){
-            if(options.changeGesture){
+        wxlocker.prototype.doSuccessStorePass = function(res){
+            console.log("doSuccessStorePass lock:",lock)
+            if(lock.data.changeGesture){
                 this.doSuccessHasGesture(res)
                 if ((hasGesture && hasRelease && needConsistency) || (!hasGesture && needConsistency)) {
+                    console.log("enter 1")
                     if (that.checkPass(psw, lastPass)) {//两次密码一致,fp表示上一次的绘制手势
                         // 设置手势密码
                         that = this
@@ -76,7 +75,7 @@
                             that.doSuccessSetLock(res)
                             that.reset()
                             that.lastPoint=[]
-                            object.jump2Agreement()
+                            object.backLastPage()
                         })
                     } else {
                         that.reset()
@@ -86,15 +85,17 @@
                         lock.initState()
                     }
                 } else if (hasGesture && !hasRelease) {
+                    console.log("enter 2")
+                    that = this
                     object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                         that.doSuccessReleaseLock(res)
                         that.reset()
                         that.setType("请输入手势密码","succ",'#09bb07')
                         that.lastPoint=[]
                         hasRelease = true
-                        object.jump2
                     })
                 } else {
+                    console.log("enter 3")
                     if(that.lastPoint.length<4){
                         that.reset()
                         that.setType("密码过于简单，请至少连接4个点","error",'#e64340')
@@ -128,9 +129,9 @@
             }else{
                 hasGesture = false
             }
-            // console.log("now hasGesture is ",hasGesture)
-            // console.log("now hasRelease is ",hasRelease)
-            // console.log("now needConsistency is ",needConsistency)
+            console.log("now hasGesture is ",hasGesture)
+            console.log("now hasRelease is ",hasRelease)
+            console.log("now needConsistency is ",needConsistency)
         }
         wxlocker.prototype.doFailHasGesture = function(res){
             wx.showToast({
@@ -155,7 +156,6 @@
                 that.setBoolean(true,false,false)
                 that.setType("解锁失败,请重试！","error",'#e64340')
             }
-            finishStorePass = true
         }
 
         /**设置手势锁**/
@@ -184,7 +184,7 @@
             if(e.touches.length==1){
                 var self = this;
                 var po = self.getPosition(e);
-                console.log("self.arr",self.arr)
+                // console.log("self.arr",self.arr)
                 for (var i = 0 ; i < self.arr.length ; i++) {
                     //判断手指触摸点是否在圆圈内
                     if (Math.abs(po.x - self.arr[i].x) < self.r && Math.abs(po.y - self.arr[i].y) < self.r) {
@@ -222,7 +222,7 @@
                 that.touchFlag = false;
                 lastPass = psw
                 psw = that.getGestureArray(that.lastPoint)
-                that.storePass(options);
+                that.storePass();
             }
         }
 
@@ -256,17 +256,16 @@
 
 
         // 基础函数
-        wxlocker.prototype.init = function(page,options) {//初始化锁盘
-            console.log(page)
-            console.log("init")
-            this.options = options
-            this.pswObj = {}
+        wxlocker.prototype.init = function(lk) {//初始化锁盘
+            console.log("init lock:",lock)
+            lock = lk
+            // this.pswObj = {}
             this.lastPoint = [];//记录手指经过的圆圈
-            if(options.changeGesture){
+            if(lock.changeGesture){
                 this.title="请绘制原手势密码"
-                this.makeState(page);
+                this.makeState();
                 this.touchFlag = false;
-            }else if(options.changePassword){
+            }else if(lock.changePassword){
                 this.title="请绘制手势密码验证"
 
             }

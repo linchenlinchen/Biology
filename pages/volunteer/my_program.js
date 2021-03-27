@@ -115,7 +115,8 @@ Page({
   },
 
   changePassword:function(){
-    object.jump2changePassword(this.data.username)
+    object.jump2newPassword(false,true,false)
+    // object.jump2changePassword(this.data.username)
   },
 
   goSquare:function(){
