@@ -88,7 +88,12 @@ Page({
    * @param {*} event 
    */
   login:function(event){
-    if(this.data.newPassword1===this.data.newPassword2){
+    if(this.data.newPassword1<8){
+      wx.showToast({
+        title: '密码太短！',
+      })
+    }
+    else if(this.data.newPassword1===this.data.newPassword2){
       object.HttpRequst('/api/user/newPassword',1,'',{"username":this.data.username,"password":this.data.newPassword1},"POST").then(function(res){
         switch(res.statusCode){
           case 0:

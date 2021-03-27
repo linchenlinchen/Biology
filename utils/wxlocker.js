@@ -23,6 +23,7 @@
             // this.lock = lock
             that = this
             object.HttpRequst('/api/user/hasSignature',1,'',{"username":username,"password":password},"GET").then(function(res){
+                console.log("before doSuccessMakeState")
                 that.doSuccessMakeState(res)
             })
         }
@@ -36,6 +37,7 @@
         // 各个Http请求的处理函数
         /**是否成功明确初始化状态**/
         wxlocker.prototype.doSuccessMakeState = function(res){
+            console.log("aing doSuccessMakeState")
             console.log("doSuccessMakeState")
             that.doSuccessHasGesture(res)
             // console.log(res)
@@ -257,15 +259,15 @@
 
         // 基础函数
         wxlocker.prototype.init = function(lk) {//初始化锁盘
-            console.log("init lock:",lock)
+            console.log("init lock:",lk)
             lock = lk
             // this.pswObj = {}
             this.lastPoint = [];//记录手指经过的圆圈
-            if(lock.changeGesture){
+            if(lock.data.changeGesture){
                 this.title="请绘制原手势密码"
                 this.makeState();
                 this.touchFlag = false;
-            }else if(lock.changePassword){
+            }else if(lock.data.changePassword){
                 this.title="请绘制手势密码验证"
 
             }
