@@ -4,6 +4,9 @@ const { jump2Contents } = require("../../utils/util");
 var object = require("../../utils/util")
 var startX, endX;
 var moveFlag = true;// 判断执行滑动事件
+
+//触屏开始点坐标
+
 Page({
   /**
    * 页面的初始数据
@@ -11,14 +14,29 @@ Page({
   data: {
     publishedTime:"项目发布时间",
     discription:"项目简介",
-    projects:[],
+    projects:[{
+      "ProjectName":"xxx",
+      "RleasedTime":"2017.12.12",
+      "organization":"xxx"
+    }],
     focus:false,  //控制是否显示带取消按钮的搜索框
     inputValue:"",
     userInfo: {},
     hasUserInfo: false,
+    enter:false
+    
+    
+    
 
 
   },
+  
+
+/**
+   * 触屏开始计时和获取坐标
+   */
+  
+
   focusHandler(e){
     this.setData({focus:true});
   },
@@ -35,9 +53,9 @@ Page({
    */
   onLoad: function () {
     let that = this
-    object.HttpRequst("/api/allProjects",1,'',{},'GET').then(function(result){
+    object.HttpRequst("/api/allProjects",1,'',{"method":"hot"},'GET').then(function(result){
       that.setData({
-        projects:result.data.projects
+        //projects:result.data.content
       })
     })
     if (app.globalData.userInfo) {
@@ -98,8 +116,10 @@ Page({
   },
 
   touchStart: function (e) {
+    
     startX = e.touches[0].pageX; // 获取触摸时的原点
     moveFlag = true;
+    this.setData({enter:true})
   },
   // 触摸移动事件
   touchMove: function (e) {
@@ -107,13 +127,15 @@ Page({
     if (moveFlag) {
       if (endX - startX > 50) {
         console.log("move right");
+        
+       
         e.touches[0].pageX = startX
         moveFlag = false;
       }
       if (startX - endX > 50) {
         console.log("move left");
-        this.move2left();
         moveFlag = false;
+         jump2Contents(e.currentTarget.id)
       }
     }
 
@@ -121,7 +143,7 @@ Page({
   // 触摸结束事件
   touchEnd: function (e) {
     moveFlag = true; // 回复滑动事件
-    
+    this.setData({enter:false});
   },
 
   move2left() {

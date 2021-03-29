@@ -78,6 +78,7 @@ Page({
   },
 
   ap_login:function(){
+    
     if(typeof wx.getUserProfile == 'function') {
       //新版getUserProfile代码放置此处，参考上面 一、旧版getUserInfo获取用户信息
       wx.getUserProfile({

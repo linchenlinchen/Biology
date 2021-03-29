@@ -87,6 +87,7 @@ Page({
    * @param {*} event 
    */
   login:function(event){
+    //direct2My()
     let that = this
     HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
       switch(res.statusCode){

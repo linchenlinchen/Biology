@@ -31,18 +31,24 @@
       
     </view>
   </view>
-  <view wx:for="{{projects}}" wx:for-item="item" class="container" bindtap="seeProject" id="{{item.projectId}}">
+  
+  <view wx:for="{{projects}}" wx:for-item="item" class="container" bindtap="seeProject" id="{{item.projectId}}" >
     <view><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
-    <view class="content">
-      <title>{{item.projectName}}</title>
-      <p>{{publishedTime}}： {{item.time}}</p>
-      <p>{{description}}： {{item.background}}</p>
+    <view class="content" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" >
+      <title>{{item.ProjectName}}</title>
+      <p>{{publishedTime}}： {{item.ReleaseTime}}</p>
+      <p>{{description}}： {{item.organization}}</p>
     </view>
-    <view class="block"></view>
-    <view class="dt">进入详情 ▎▋▉ ██████▶</view>
+    <view wx:if="{{enter}}">
+      <view class="right">
+      <view class="dt"><p>进入>>>></p></view></view>
+    </view>
+    
+    
+    
   </view>
   <view class="tail">
-    <button>只显示未参加项目</button>
-    <button>只显示已参加项目</button>
+    <button >按照热度排序</button>
+    <button>按照时间排序</button>
   </view>
 </view>
