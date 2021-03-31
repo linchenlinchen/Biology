@@ -66,7 +66,18 @@
         }
         wxlocker.prototype.doSuccessStorePass = function(res){
             console.log("doSuccessStorePass lock:",lock)
-            if(lock.data.changeGesture){
+            if(lock.data.changePassword){
+                that = this
+                object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
+                    that.doSuccessReleaseLock(res)
+                    that.reset()
+                    that.setType("请输入手势密码","succ",'#09bb07')
+                    that.lastPoint=[]
+                    hasRelease = true
+                })
+            }
+            // 修改手势
+            else if(lock.data.changeGesture){
                 this.doSuccessHasGesture(res)
                 if ((hasGesture && hasRelease && needConsistency) || (!hasGesture && needConsistency)) {
                     console.log("enter 1")
@@ -263,14 +274,14 @@
             lock = lk
             // this.pswObj = {}
             this.lastPoint = [];//记录手指经过的圆圈
-            if(lock.data.changeGesture){
+            // if(lock.data.changeGesture){
                 this.title="请绘制原手势密码"
                 this.makeState();
                 this.touchFlag = false;
-            }else if(lock.data.changePassword){
-                this.title="请绘制手势密码验证"
+            // }else if(lock.data.changePassword){
+                // this.title="请绘制手势密码验证"
 
-            }
+            // }
             
             this.ctx = wx.createContext();//创建画布
             this.createCircle();//画圆圈

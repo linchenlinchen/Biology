@@ -51,13 +51,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    let that = this
-    object.HttpRequst("/api/allProjects",1,'',{"method":"hot"},'GET').then(function(result){
-      that.setData({
-        //projects:result.data.content
-      })
-    })
+  onLoad: function (options) {
+    this.getAllProjects(options.method)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -156,5 +151,25 @@ Page({
 
   seeProject:function(e){
     jump2Contents(e.currentTarget.id)
+  },
+
+  getAllProjects:function(method){
+    if(method == undefined){
+      method = "hot"
+    }
+    let that = this
+    object.HttpRequst("/api/allProjects",1,'',{"method":method},'GET').then(function(result){
+      that.setData({
+        projects:result.data.content
+      })
+    })
+  },
+
+  getAllProjectsByHot:function(){
+    this.getAllProjects('hot')
+  },
+
+  getAllProjectsByTime:function(){
+    this.getAllProjects('time')
   }
 })

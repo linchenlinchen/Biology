@@ -14,8 +14,8 @@ Page({
   onLoad:function(options){
     this.setData({
       changeGesture:options.changeGesture,
-     changePassword:options.changePassword,
-     forgetGesture:options.forgetGesture
+      changePassword:options.changePassword,
+      forgetGesture:options.forgetGesture
     })
     wxlocker.lock.init(this);
     this.initState()

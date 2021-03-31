@@ -48,7 +48,7 @@
     
   </view>
   <view class="tail">
-    <button >按照热度排序</button>
-    <button>按照时间排序</button>
+    <button bindtap="getAllProjectsByHot">按照热度排序</button>
+    <button bindtap="getAllProjectsByTime">按照时间排序</button>
   </view>
 </view>
