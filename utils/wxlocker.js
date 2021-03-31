@@ -66,7 +66,13 @@
         }
         wxlocker.prototype.doSuccessStorePass = function(res){
             console.log("doSuccessStorePass lock:",lock)
-            if(lock.data.changePassword){
+            console.log("doSuccessStorePass lock changeGesture:",lock.data.changeGesture,lock.data.changePassword)
+            console.log(lock.data.changePassword==true)
+            console.log(lock.data.changePassword=="true")
+            console.log(lock.data.changeGesture==true)
+            console.log(lock.data.changeGesture=="true")
+            if(lock.data.changePassword=="true"){
+                console.log("into lock.data.changePassword")
                 that = this
                 object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
@@ -81,7 +87,8 @@
                 })
             }
             // 修改手势
-            else if(lock.data.changeGesture){
+            else if(lock.data.changeGesture=="true"){
+                console.log("into lock.data.changeGesture")
                 this.doSuccessHasGesture(res)
                 if ((hasGesture && hasRelease && needConsistency) || (!hasGesture && needConsistency)) {
                     console.log("enter 1")
@@ -141,7 +148,7 @@
 
          /**是否已有手势密码**/
         wxlocker.prototype.doSuccessHasGesture = function(res){
-            if(res.data.hasSignature){
+            if(res.data.hasSignature=="true"){
                 hasGesture = true
             }else{
                 hasGesture = false
