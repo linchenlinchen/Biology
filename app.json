@@ -18,7 +18,8 @@
     "pages/volunteer/agreement_type",
     "pages/volunteer/lock",
     "pages/volunteer/changePassword",
-    "pages/volunteer/newPassword"
+    "pages/volunteer/newPassword",
+    "pages/volunteer/forgetGesture"
   ],
   "window": {
     "backgroundTextStyle": "light",

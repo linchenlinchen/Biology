@@ -57,6 +57,7 @@ App({
     lock:"pages/volunteer/lock",
     changePassword:"pages/volunteer/changePassword",
     newPassword:"pages/volunteer/newPassword",
+    forgetGesture:"pages/volunteer/forgetGesture",
     json:""
   },
   setGlobalData: function(data) {

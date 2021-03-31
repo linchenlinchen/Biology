@@ -58,6 +58,12 @@ function jump2Square(){
   })
 }
 
+function jump2forgetGesture(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.forgetGesture,
+  })
+}
+
 function jump2changePassword(username){
   wx.redirectTo({
     url:  path_head+app.globalData.changePassword+"?username="+username,
@@ -223,6 +229,7 @@ module.exports = {
   jump2newPassword,
   direct2Management,
   direct2My,
+  jump2forgetGesture,
   toThousands:toThousands,
   backLastPage,
   returnFirstPage
