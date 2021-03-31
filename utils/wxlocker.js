@@ -69,11 +69,15 @@
             if(lock.data.changePassword){
                 that = this
                 object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
-                    that.doSuccessReleaseLock(res)
-                    that.reset()
-                    that.setType("请输入手势密码","succ",'#09bb07')
-                    that.lastPoint=[]
-                    hasRelease = true
+                    console.log("res post gesture:",res)
+                    if(res.statusCode == 0){
+                        object.jump2changePassword(username)
+                    }
+                    // that.doSuccessReleaseLock(res)
+                    // that.reset()
+                    // that.setType("请输入手势密码","succ",'#09bb07')
+                    // that.lastPoint=[]
+                    // hasRelease = true
                 })
             }
             // 修改手势

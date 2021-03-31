@@ -88,7 +88,7 @@ Page({
    * @param {*} event 
    */
   login:function(event){
-    if(this.data.newPassword1<8){
+    if(this.data.newPassword1.length<8){
       wx.showToast({
         title: '密码太短！',
       })

@@ -59,7 +59,7 @@ function jump2Square(){
 }
 
 function jump2changePassword(username){
-  wx.navigateTo({
+  wx.redirectTo({
     url:  path_head+app.globalData.changePassword+"?username="+username,
   })
 }
