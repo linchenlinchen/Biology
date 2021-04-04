@@ -24,11 +24,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    let publishedList = wx.getStorageSync('publishedProjects')
-    let draftList = wx.getStorageSync('draftProjects')
-    let unitname = wx.getStorageSync('unitname')
-    let password = wx.getStorageSync('password')
-    let userInfo = wx.getStorageSync('userInfo')
+    let publishedList = app.globalData.publishedProjects
+    let draftList =  app.globalData.draftProjects
+    let unitname =  app.globalData.unitname
+    let password =  app.globalData.password
+    let userInfo =  app.globalData.userInfo
     let header = { 'Content-Type': 'application/x-www-form-urlencoded'};
     if (app.globalData.userInfo) {
       this.setData({
@@ -91,19 +91,18 @@ Page({
 
   },
   signOut:function(){
-    wx.removeStorageSync('userInfo')
-    wx.removeStorageSync('publishedProjects')
-    wx.removeStorageSync('draftProjects')
-    wx.removeStorageSync('unitname')
-    wx.removeStorageSync('password')
+    app.globalData.userInfo = null
+    app.globalData.publishedProjects = null
+    app.globalData.draftProjects = null
+    app.globalData.unitname = null
+    app.globalData.password = null
+
     object.backLastPage()
     wx.showToast({
       title: '已退出登录',
     })
   },
   queryResult:function(e){
-    console.log(e.currentTarget)
-    console.log(e.currentTarget.id)
     object.jump2QueryResultWithId(e.currentTarget.id)
   },
   goSquare:function(){

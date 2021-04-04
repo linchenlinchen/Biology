@@ -1,5 +1,5 @@
 const { jump2My, HttpRequst, direct2My } = require("../../utils/util")
-
+var app = getApp()
 // pages/individual/apartment_login.js
 Page({
   /**
@@ -15,10 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      username:options.telephone
-    })
-    console.log("username",this.data.username)
+
   },
 
   /**
@@ -105,30 +102,22 @@ Page({
 
   doSuccessLogin(result){
     console.log("RESULT",result)
-    // console.log("result.data.cookies[0].username",(result.data.cookies[0].username))
-    // console.log("result.data.cookies[0].image",(result.data.cookies[0].image))
-    wx.setStorageSync('cookieKey',result.data.cookies[0]);
-    wx.setStorageSync('username', this.data.username)
-    wx.setStorageSync('password', this.data.password)
-    // console.log("that",that)
-    // console.log("this",this)
+    app.globalData.username = this.data.username
+    app.globalData.password = this.data.password
     let that = this
     HttpRequst('/api/user/userProjects',1,'',{"username":this.data.username},"GET").then(function(result){
-      console.log("that new ",that)
-      console.log("this new",this)
       that.doSuccessMyList(result)
     })
     
   },
 
   doSuccessMyList(result){
-    console.log("this is ",this)
-    console.log("result.data.ongoingList",(result.data.ongoingList))
-    console.log("result.data.finishedList",(result.data.finishedList))
-    wx.setStorageSync('ongoingProjects', result.data.ongoingList)
-    wx.setStorageSync('finishedProjects', result.data.finishedList)
-    getApp().globalData.isUnit = false
-    direct2My()
+    if(result.statusCode == 0){
+      app.globalData.ongoingProjects = result.data.ongoingList
+      app.globalData.finishedProjects = result.data.finishedList
+      app.globalData.isUnit = false
+      jump2My()
+    }
   },
 
 })

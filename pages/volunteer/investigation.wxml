@@ -3,16 +3,12 @@
 <view class="whole-body">
 <view class="horizontal">
   <view class="btn-area">
-    <view id="biology" url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">面部、声纹、掌纹、指纹、基因序列等生物识别数据</view>
-    <view id="body" url="../../redirect/redirect/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">形态特征数据</view>
-    <view id="medicine" url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">电子医疗记录</view>
-    <view id="brain" url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">脑影像资料</view>
-    <view id="other" url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">剩余样本与样本中提取的其他数据</view>
+    <view  open-type="switchTab" hover-class="other-navigator-hover"  wx:for="{{agreements}}" id="{{item.aid}}" style="border-inline-end:{{'20rpx solid '+colorList[item.aid%5]}}"  bindtap="onClick">{{item.name}}</view>
   </view>
   <view class="page-body">
     <radio-group class="radio-group" bindchange="radioChange">
       <label class="radio" wx:for="{{items}}">
-          <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+          <radio value="{{item.iid}}" checked="{{checkId == item.iid? true : false}}"/>{{item.value}}
       </label>
     </radio-group>
   </view>
@@ -24,9 +20,13 @@
 </view>
 
 
-<view id="tips" wx:if="{{isShow}}" bindtap="hide">
+<view id="tips" wx:if="{{isShow}}"  bindtap="hide">
   <view>
-  <label>
+    <label wx:for="{{items}}">
+    <text class="item">"{{item.value}}"：</text><text class="meaning">{{item.description}}</text>
+  </label>
+  <text>点击屏幕任意位置消失</text>
+  <!-- <label>
     <text class="item">"总是征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
   </label>
   <label>
@@ -44,7 +44,7 @@
   <label>
     <text class="item">"不同意（删除数据）"：</text><text class="meaning">每次使用前都向您询问</text>
   </label>
-  <text>点击屏幕任意位置消失</text>
+  <text>点击屏幕任意位置消失</text> -->
 </view>
 </view>
 

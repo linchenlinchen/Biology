@@ -5,6 +5,12 @@
       <text>{{telephone}}</text>
       <input placeholder="手机号" id="account" value="{{username}}" bindinput="inputValue"/>
     </label>
+    
+    <label>
+      <text>{{password}}</text>
+      <input password="true" placeholder="密码" id="pw" value="{{pw}}"   bindinput="pswValue"/>
+    </label>
+
     <label>
       <text>{{code}}</text>
       <input placeholder="验证码" id="code" value="{{confirmCode}}"  bindinput="codeValue"/>
@@ -12,12 +18,9 @@
     <label>
       <button bindtap="getCode">{{getCodeNumber}}</button>
     </label>
+    
     <label>
-      <text>{{password}}</text>
-      <input password="true" placeholder="密码" id="pw" value="{{pw}}"   bindinput="pswValue"/>
-    </label>
-    <label>
-      <button bindtap="signUp">{{submit}}</button>
+      <button bindtap="check">{{check}}</button>
     </label>
   </view>
 </view>

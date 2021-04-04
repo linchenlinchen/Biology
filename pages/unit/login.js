@@ -85,7 +85,8 @@ Page({
         desc:'应用将获取您微信用户名等信息',
         success: (res) => {
             console.log('获取用户信息成功', res.userInfo)
-            wx.setStorageSync('userInfo', res.userInfo)
+            app.globalData.userInfo = res.userInfo
+            // wx.setStorageSync('userInfo', res.userInfo)
             object.jump2ApartmentLogin()
             //获取用户信息的各类操作
         },
@@ -144,7 +145,8 @@ Page({
         desc:'应用将获取您微信用户名等信息',
         success: (res) => {
             console.log('获取用户信息成功', res.userInfo)
-            wx.setStorageSync('userInfo', res.userInfo)
+            app.globalData.userInfo = res.userInfo
+            // wx.setStorageSync('userInfo', res.userInfo)
             object.jump2VolunteerLogin()
             //获取用户信息的各类操作
         },

@@ -2,13 +2,15 @@
 
 (function(){
         let object = require("../utils/util")
-        let username = wx.getStorageSync('username')
-        let password = wx.getStorageSync('password')
+        let username = getApp().globalData.username
+        let password = getApp().globalData.password
+        let projectId ;
+        let pairs;
+        let code;
         let lock;
         let psw;
         let lastPass;
         let that = this
-        let hasGesture = false //是否在服务器上设置过手势了
         let hasRelease = false //在hasGesture的情况下，是否解开了锁准备设置
         let needConsistency = false //是否是设置密码已经完成第一次，此次需要一致性
         // let options = {}
@@ -19,13 +21,25 @@
         
         wxlocker.prototype.makeState = function() {
             console.log("makeState")
-            // console.log(lock)
-            // this.lock = lock
             that = this
-            object.HttpRequst('/api/user/hasSignature',1,'',{"username":username,"password":password},"GET").then(function(res){
-                console.log("before doSuccessMakeState")
-                that.doSuccessMakeState(res)
-            })
+            hasRelease = false
+            needConsistency = false
+            // 注意这里一定是==“true”
+            if(lock.data.forgetGesture=="true"){
+                console.log("lock.data.forgetGesture")
+                that.setType("请设置手势密码","succ",'#09bb07')
+                lock.initState()
+            }
+            else if (!hasRelease) {
+                console.log("!hasRelease")
+                that.setType("请解锁","succ",'#09bb07')
+                lock.initState()
+            } 
+            else {
+                console.log("else")
+                that.setType("请设置手势密码","succ",'#09bb07')
+                lock.initState()
+            }
         }
 
         
@@ -35,71 +49,82 @@
         }
 
         // 各个Http请求的处理函数
-        /**是否成功明确初始化状态**/
-        wxlocker.prototype.doSuccessMakeState = function(res){
-            console.log("aing doSuccessMakeState")
-            console.log("doSuccessMakeState")
-            that.doSuccessHasGesture(res)
-            // console.log(res)
-            console.log("now hasGesture is x",hasGesture)
-            console.log("now hasRelease is x",hasRelease)
-            console.log("now needConsistency is x",needConsistency)
-            if (hasGesture && !hasRelease) {
-                that.setType("请解锁","succ",'#09bb07')
-                lock.initState()
-            }  
-            else {
-                that.setType("请设置手势密码","succ",'#09bb07')
-                lock.initState()
-            }
-        }
-
-
 
         // 核心函数
         wxlocker.prototype.storePass = function() {// touchend结束之后对密码和状态的处理
-                console.log('storePass')
-                let that = this
-                object.HttpRequst('/api/user/hasSignature',1,'',{"username":username,"password":password},"GET").then(function(res){
-                    that.doSuccessStorePass(res)
-                })
-        }
-        wxlocker.prototype.doSuccessStorePass = function(res){
-            console.log("doSuccessStorePass lock:",lock)
-            console.log("doSuccessStorePass lock changeGesture:",lock.data.changeGesture,lock.data.changePassword)
-            console.log(lock.data.changePassword==true)
-            console.log(lock.data.changePassword=="true")
-            console.log(lock.data.changeGesture==true)
-            console.log(lock.data.changeGesture=="true")
             if(lock.data.changePassword=="true"){
-                console.log("into lock.data.changePassword")
                 that = this
                 object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
                     if(res.statusCode == 0){
                         object.jump2changePassword(username)
+                        wx.showToast({
+                            title: '解锁成功！',
+                        })
                     }
-                    // that.doSuccessReleaseLock(res)
-                    // that.reset()
-                    // that.setType("请输入手势密码","succ",'#09bb07')
-                    // that.lastPoint=[]
-                    // hasRelease = true
                 })
+            }
+            else if(lock.data.forgetGesture=="true"){
+                if(needConsistency && !this.checkPass(psw,lastPass)){
+                    that.reset()
+                    that.setType("两次绘制不一致，重新绘制","error",'#e64340')
+                    that.lastPoint=[]
+                    needConsistency = false
+                    lock.initState()
+                }
+                else if(psw.length<4){
+                    that.reset()
+                    that.setType("密码过于简单，请至少连接4个点，重新绘制","error",'#e64340')
+                    lock.initState()
+                    that.lastPoint=[]
+                }
+                else if(this.checkPass(psw,lastPass) && needConsistency){
+                    that = this
+                    object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"code":code,"gesture":psw},"POST")
+                    .then(function(res){
+                        if(res.statusCode==0){
+                            needConsistency = false
+                            object.backLastPage()
+                            wx.showToast({
+                                title: '修改手势密码成功！',
+                            })
+                            
+                        }else{
+                            wx.showToast({
+                              title: '修改手势密码失败！',
+                            })
+                        }
+                    })
+                }else{
+                    that.reset()
+                    that.setType("再次绘制","succ",'#09bb07')
+                    that.lastPoint=[]
+                    needConsistency = true
+                    lock.initState()
+                }
+                
             }
             // 修改手势
             else if(lock.data.changeGesture=="true"){
-                console.log("into lock.data.changeGesture")
-                this.doSuccessHasGesture(res)
-                if ((hasGesture && hasRelease && needConsistency) || (!hasGesture && needConsistency)) {
+                if (hasRelease && needConsistency) {
                     console.log("enter 1")
-                    if (that.checkPass(psw, lastPass)) {//两次密码一致,fp表示上一次的绘制手势
+                    if (this.checkPass(psw, lastPass)) {//两次密码一致,fp表示上一次的绘制手势
                         // 设置手势密码
                         that = this
                         object.HttpRequst("/api/user/signature",1,'',{"username":username,"password":password,"gesture":psw},'POST').then(function(res){
-                            that.doSuccessSetLock(res)
-                            that.reset()
-                            that.lastPoint=[]
-                            object.backLastPage()
+                            if(res.statusCode==0){
+                                hasRelease = false
+                                needConsistency = false
+                                that.reset()
+                                that.lastPoint=[]
+                                that.setType("密码保存成功", "succ",'#09bb07')
+                                lock.initState()
+                                
+                                object.backLastPage()
+                                wx.showToast({
+                                    title: '重置手势密码成功！',
+                                })
+                            }
                         })
                     } else {
                         that.reset()
@@ -108,15 +133,27 @@
                         needConsistency = false
                         lock.initState()
                     }
-                } else if (hasGesture && !hasRelease) {
+                } else if (!hasRelease) {
                     console.log("enter 2")
                     that = this
                     object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
-                        that.doSuccessReleaseLock(res)
-                        that.reset()
-                        that.setType("请输入手势密码","succ",'#09bb07')
-                        that.lastPoint=[]
-                        hasRelease = true
+                        if(res.statusCode==0){
+                            that.reset()
+                            that.lastPoint=[]
+                            that.setBoolean(true,false)
+                            that.setType("解锁成功,请绘制新手势密码","succ",'#09bb07')
+                            hasRelease = true
+                            lock.initState()
+
+                        }else{
+                            that.reset()
+                            that.lastPoint=[]
+                            that.setBoolean(false,false)
+                            that.setType("解锁失败,请重试！","error",'#e64340')
+                            hasRelease = false
+                            
+                            lock.initState()
+                        }
                     })
                 } else {
                     console.log("enter 3")
@@ -128,63 +165,64 @@
                     }else{//hasGesture && hasRelease && !needConsistency || !hasGesture && !needConsistency
                         that.reset()
                         needConsistency = true
-                        that.setType("再次输入","succ",'#09bb07')
+                        that.setType("再次绘制","succ",'#09bb07')
                         lock.initState()
                         that.lastPoint=[]
                     }
 
                 }
-            }
-        }
-        // wxlocker.prototype.doFailStorePass = function(res){
-        //     wx.showToast({
-        //       title: 'Store pass fail',
-        //     })
-        //     console.log("doFailStorePass")
-        // }
-        // wxlocker.prototype.doCompleteStorePass = function(res){
-        //     console.log("doCompleteStorePass")
-        // }
-
-         /**是否已有手势密码**/
-        wxlocker.prototype.doSuccessHasGesture = function(res){
-            if(res.data.hasSignature=="true"){
-                hasGesture = true
             }else{
-                hasGesture = false
+                that = this
+                object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
+                    console.log("res post gesture:",res)
+                    if(res.statusCode == 0){
+                        object.HttpRequst("/api/user/agreement",1,'',{"username":username,"projectId":projectId,"data":pairs},'PUT').then(function(res){
+                            if(res.statusCode ==0){
+                                object.jump2Commit()
+                                wx.showToast({
+                                    title: '提交成功！',
+                                })
+                            }else{
+                                wx.showToast({
+                                  title: '提交同意失败！',
+                                })
+                            }
+                        })
+                        
+                    }else{
+                        that.reset()
+                        that.setType("验证失败，请再次绘制","error",'#e64340')
+                        lock.initState()
+                        that.lastPoint=[]
+                        wx.showToast({
+                          title: '验证失败，请重试！',
+                        })
+                    }
+                })
             }
-            console.log("now hasGesture is ",hasGesture)
-            console.log("now hasRelease is ",hasRelease)
-            console.log("now needConsistency is ",needConsistency)
         }
-        wxlocker.prototype.doFailHasGesture = function(res){
-            wx.showToast({
-              title: '访问是否已有手势密码出错！',
-            })
-        }
-        wxlocker.prototype.doCompleteHasGesture = function(res){
-            console.log('访问是否已有手势密码结束！')
-        }
+
+
 
         /**解锁来让修改密码**/
         wxlocker.prototype.doSuccessReleaseLock = function(res){
             console.log("doSuccessReleaseLock")
             if(res.statusCode==0){
                 console.log("res",res)
-                that.setBoolean(true,true,false)
+                that.setBoolean(true,false)
                 that.setType("解锁成功,请绘制新手势密码","succ",'#09bb07')
                 that.reset()
                 lock.initState()
             }else{
                 // wx.removeStorageSync('gesture')
-                that.setBoolean(true,false,false)
+                that.setBoolean(false,false)
                 that.setType("解锁失败,请重试！","error",'#e64340')
             }
         }
 
         /**设置手势锁**/
         wxlocker.prototype.doSuccessSetLock = function(){
-            that.setBoolean(true,false,false)
+            that.setBoolean(false,false)
             that.setType("密码保存成功", "succ",'#09bb07')
             lock.initState()
             wx.showToast({
@@ -280,20 +318,16 @@
 
 
         // 基础函数
-        wxlocker.prototype.init = function(lk) {//初始化锁盘
-            console.log("init lock:",lk)
+        wxlocker.prototype.init = function(lk,pid,ps) {//初始化锁盘
             lock = lk
-            // this.pswObj = {}
-            this.lastPoint = [];//记录手指经过的圆圈
-            // if(lock.data.changeGesture){
-                this.title="请绘制原手势密码"
-                this.makeState();
-                this.touchFlag = false;
-            // }else if(lock.data.changePassword){
-                // this.title="请绘制手势密码验证"
+            projectId = pid
+            pairs = ps
 
-            // }
-            
+            this.lastPoint = [];//记录手指经过的圆圈
+            hasRelease = false
+            this.makeState();
+
+            this.touchFlag = false;
             this.ctx = wx.createContext();//创建画布
             this.createCircle();//画圆圈
         }
@@ -409,6 +443,9 @@
 
         }
         wxlocker.prototype.checkPass = function(psw1, psw2) { // 检测密码
+            if (psw1==undefined || psw2 == undefined){
+                return false
+            }
             let len = psw1.length===psw2.length?psw1.length:0
             if(len ==0){
                 return false
@@ -428,8 +465,7 @@
             }
             return result
         }
-        wxlocker.prototype.setBoolean = function(i_hasGesture,i_hasRelease,i_needConsistency){
-            hasGesture = i_hasGesture
+        wxlocker.prototype.setBoolean = function(i_hasRelease,i_needConsistency){
             hasRelease = i_hasRelease
             needConsistency = i_needConsistency
         }

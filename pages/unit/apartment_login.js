@@ -1,5 +1,6 @@
 // pages/individual/apartment_login.js
 let {HttpRequst, jump2Management, direct2Management} = require("../../utils/util")
+var app = getApp()
 Page({
   login:function(event){
 
@@ -105,27 +106,20 @@ Page({
   
   doSuccessLogin(result){
     console.log("RESULT",result)
-    // console.log("result.data.cookies[0].unitname",(result.data.cookies[0].unitname))
-    // console.log("result.data.cookies[0].image",(result.data.cookies[0].image))
-    wx.setStorageSync('cookieKey',result.data.cookies[0]);
-    wx.setStorageSync('unitname', this.data.unitname)
-    wx.setStorageSync('password', this.data.password)
+    app.globalData.unitname = this.data.unitname
+    app.globalData.password = this.data.password
     let that = this
     HttpRequst('/api/unit/unitProjects',1,'',{"unit":this.data.unitname},"GET").then(function(result){
-      console.log("that new ",that)
-      console.log("this new",this)
       that.doSuccessMyList(result)
     })
   },
 
   doSuccessMyList(result){
-    console.log("this is ",this)
-    console.log("result.data.publishedList",(result.data.publishedList))
-    console.log("result.data.draftList",(result.data.draftList))
-    wx.setStorageSync('publishedProjects', result.data.publishedList)
-    wx.setStorageSync('draftProjects', result.data.draftList)
-    getApp().globalData.isUnit=true
-    direct2Management()
-
+    if(result.statusCode == 0){
+      app.globalData.publishedProjects = result.data.publishedList
+      app.globalData.draftProjects = result.data.draftList
+      app.globalData.isUnit=true
+      direct2Management()
+    }
   },
 })

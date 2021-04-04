@@ -108,6 +108,7 @@ Page({
   },
 
   goInvestigate:function(){
-    object.jump2Agreement()
+    console.log("this.data.projectInfo.projectId:",this.data.projectInfo.projectId)
+    object.jump2AgreementWithId(this.data.projectInfo.projectId)
   }
 })

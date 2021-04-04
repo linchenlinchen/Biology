@@ -35,6 +35,13 @@ App({
   },
   globalData: {
     userInfo: null,
+    unitname:null,
+    username:null,
+    password:null,
+    ongoingProjects:null,
+    finishedProjects:null,
+    publishedProjects:null,
+    draftProjects:null,
     isUnit:false,
     baseUrl:"https://shengwu",
     index:"pages/index/index",

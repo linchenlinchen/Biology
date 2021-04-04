@@ -89,8 +89,8 @@ Page({
     object.HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
       switch(res.statusCode){
         case 0:
-          object.jump2newPassword(that.data.username)
           
+          object.jump2newPassword(that.data.username)
           break;
         default:
           wx.showToast({

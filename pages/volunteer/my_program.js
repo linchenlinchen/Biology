@@ -1,5 +1,6 @@
 // pages/individual/my_program.js
 var object = require("../../utils/util")
+var app = getApp()
 Page({
 
   /**
@@ -37,20 +38,12 @@ Page({
    */
   onLoad: function (options) {
     // let cookie = wx.getStorageSync('cookieKey');//取出Cookie
-    let ongoingList = wx.getStorageSync('ongoingProjects')
-    let finishedList = wx.getStorageSync('finishedProjects')
-    let username = wx.getStorageSync('username')
-    let password = wx.getStorageSync('password')
-    let userInfo = wx.getStorageSync('userInfo')
+    let ongoingList = app.globalData.ongoingProjects
+    let finishedList = app.globalData.finishedProjects
+    let username = app.globalData.username
+    let password = app.globalData.password
+    let userInfo = app.globalData.userInfo
     let header = { 'Content-Type': 'application/x-www-form-urlencoded'};
-    // if (cookie) {
-    //     header.Cookie = cookie;
-    // }
-    console.log(userInfo)
-    // console.log("cookie username",cookie.username)
-    // console.log("cookie image",cookie.image)
-    console.log("ongoingList",ongoingList)
-    console.log("finishedList",finishedList)
     console.log("src",userInfo.avatarUrl)
     this.setData({
       nickname:userInfo.nickName,
@@ -86,9 +79,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.showToast({
-      title: '成功退出登录！',
-    })
+    
   },
 
   /**
@@ -112,14 +103,35 @@ Page({
 
   },
 
+
+
+
+// 修改同意类型
+  visit_details:function(e){
+    //获取pid
+
+    console.log("visit_details e:",e.currentTarget.id)
+    let id = e.currentTarget.id
+    object.jump2InvestigateWithId(id)
+    // object.HttpRequst("/api/user/completedAgreements",1,'',{username:this.data.username,projectId:id},"GET").then(function(res){
+    //   object.jump2Investigate(res)
+    // })
+    
+  },
+
+
+
+// 以下为侧边栏
   changeLock:function(){
     object.jump2Lock(true,false,false)
   },
 
   changePassword:function(){
     object.jump2Lock(false,true,false)
-    // object.jump2newPassword(false,true,false)
-    // object.jump2changePassword(this.data.username)
+  },
+
+  forgetGesture:function(){
+    object.jump2forgetGesture()
   },
 
   goSquare:function(){
@@ -127,18 +139,17 @@ Page({
   },
 
   signOut:function(){
-    wx.removeStorageSync('userInfo')
-    wx.removeStorageSync('ongoingProjects')
-    wx.removeStorageSync('finishedProjects')
-    wx.removeStorageSync('username')
-    wx.removeStorageSync('password')
+    app.globalData.userInfo = null
+    app.globalData.ongoingProjects = null
+    app.globalData.ongoingProjects = null
+    app.globalData.username = null
+    app.globalData.password = null
     object.backLastPage()
     wx.showToast({
       title: '已退出登录',
     })
   },
 
-// 以下为侧边栏
   show: function() {
     this.setData({
       isShowSideslip: true
@@ -152,7 +163,7 @@ Page({
   }
   ,
   itemClick: function(e) {
-    let functionList = [this.changeLock,this.changePassword,,this.goSquare,this.signOut]
+    let functionList = [this.changeLock,this.changePassword,this.forgetGesture,this.goSquare,this.signOut]
     var tapId = e.currentTarget.id;
     var index = this;
     for (var i = 0; i < index.data.sideslipMenuArr.length;i++){

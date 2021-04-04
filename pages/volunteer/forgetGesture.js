@@ -1,4 +1,4 @@
-const { HttpRequst, jump2VolunteerLoginWithPhone } = require("../../utils/util")
+const { HttpRequst,direct2Lock, jump2VolunteerLoginWithPhone, jump2Lock } = require("../../utils/util")
 
 // pages/individual/register.js
 Page({
@@ -11,7 +11,7 @@ Page({
     code:"验证码",
     getCodeNumber:"获取验证码",
     password:"密码",
-    submit:"提交",
+    check:"验证",
     username:"",
     confirmCode:"",
     pw:""
@@ -91,11 +91,19 @@ Page({
 
   getCode:function(){
     // url, sessionChoose, sessionId, params, method, doSuccess, doFail
-    HttpRequst('/api/user/code',1,'',{username:this.username},"GET",this.doSuccessOfCode,this.doFailOfCode,this.doCompleteOfCode)
+    let that = this
+    HttpRequst('/api/user/signatureCode',1,'',{username:this.data.username,password:this.data.pw},"GET")
+    .then(function(res){
+      that.doSuccessOfCode(res)
+    })
   },
-  signUp:function(){
-    HttpRequst("/api/user/register",1,'',{username:this.username,code:this.confirmCode,password:this.pw},"POST",this.doSuccessOfSignUp,this.doFailOfSignUp,this.doCompleteOfSignUp)
+  check:function(){
+    let that = this
+    HttpRequst("/api/user/signature",1,'',{username:this.data.username,code:this.data.confirmCode,password:this.data.pw},"POST").then(function(res){
+      that.doSuccessOfCheck(res)
+    })
   },
+
   doSuccessOfCode(result){
     if(result.statusCode==0){
       console.log("验证码发送成功！")
@@ -114,49 +122,22 @@ Page({
       })
     }
   },
-  doFailOfCode(result){
-    console.log("验证码发送失败！")
-    wx.showToast({
-      title: '验证码发送失败！',
-    })
-  },
-  doCompleteOfCode(result){
-    console.log("验证码发送结束！")
-    // wx.showToast({
-    //   title: '验证码发送结束！',
-    // })
-  },
-  doSuccessOfSignUp(result){
+
+  doSuccessOfCheck(result){
     if(result.statusCode==0){
-      console.log("注册成功！")
+      console.log("验证成功！")
       wx.showToast({
-        title: '注册成功！',
+        title: '验证成功！',
       })
-      jump2VolunteerLoginWithPhone(this.data.username)
-    }else if(result.statusCode==1){
-      console.log("该手机号已注册！")
-      wx.showToast({
-        title: '该手机号已注册！',
-      })
+      direct2Lock(false,false,true)
     }else{
-      console.log("注册出错！")
+      console.log("验证不通过！")
       wx.showToast({
-        title: '注册出错！',
+        title: '验证不通过！',
       })
     }
   },
-  doFailOfSignUp(result){
-    console.log("注册失败！")
-    wx.showToast({
-      title: '注册失败！',
-    })
-  },
-  doCompleteOfSignUp(result){
-    console.log("注册结束（不一定成功）！")
-    // wx.showToast({
-    //   title: '注册完成！',
-    // })
-  }
+  
 })
 
 

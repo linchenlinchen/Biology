@@ -21,12 +21,18 @@ function toThousands(num) {
     return (num || "").replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }
 function jump2Investigate(){
-  wx.navigateTo({
+  wx.redirectTo({
     url: path_head+app.globalData.investigation,
   })
 }
-function jump2Commit(){
+
+function jump2InvestigateWithId(pid){
   wx.navigateTo({
+    url: path_head+app.globalData.investigation+"?projectId="+pid,
+  })
+}
+function jump2Commit(){
+  wx.redirectTo({
     url:  path_head+app.globalData.commit,
   })
 }
@@ -37,7 +43,7 @@ function direct2My(){
 }
 
 function jump2My(){
-  wx.redirectTo({
+  wx.navigateTo({
     url:  path_head+app.globalData.my_program,
   })
 }
@@ -52,6 +58,18 @@ function jump2Lock(changeGesture,changePassword,forgetGesture){
     url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
   })
 }
+function jump2LockWithData(changeGesture,changePassword,forgetGesture,pid,pairs){
+  let p = JSON.stringify(pairs)
+  wx.redirectTo({
+    url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture+"projectId="+pid+"pairs="+p,
+  })
+}
+
+function direct2Lock(changeGesture,changePassword,forgetGesture){
+  wx.redirectTo({
+    url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
+  })
+}
 function jump2Square(){
   wx.navigateTo({
     url:  path_head+app.globalData.square,
@@ -59,7 +77,7 @@ function jump2Square(){
 }
 
 function jump2forgetGesture(){
-  wx.redirectTo({
+  wx.navigateTo({
     url:  path_head+app.globalData.forgetGesture,
   })
 }
@@ -73,6 +91,18 @@ function jump2changePassword(username){
 function jump2newPassword(username){
   wx.redirectTo({
     url:  path_head+app.globalData.newPassword+"?username="+username,
+  })
+}
+
+function jump2AgreementWithId(pid){
+  wx.navigateTo({
+    url:  path_head+app.globalData.agreement+"?projectId="+pid,
+  })
+}
+
+function jump2AgreementTypeWithId(pid){
+  wx.navigateTo({
+    url:  path_head+app.globalData.agreement_type+"?projectId="+pid,
   })
 }
 
@@ -209,7 +239,9 @@ module.exports = {
   formatTime,
   HttpRequst,
   jump2Agreement,
+  jump2AgreementWithId,
   jump2AgreementType,
+  jump2AgreementTypeWithId,
   jump2ApartmentLogin,
   jump2Commit,
   jump2Contents,
@@ -217,12 +249,15 @@ module.exports = {
   jump2QueryResultWithId,
   jump2Edit,
   jump2Lock,
+  direct2Lock,
+  jump2LockWithData,
   jump2VolunteerPrelogin,
   jump2VolunteerLogin,
   jump2VolunteerLoginWithPhone,
   jump2Management,
   jump2Login,
   jump2Investigate,
+  jump2InvestigateWithId,
   jump2Square,
   jump2My,
   jump2changePassword,

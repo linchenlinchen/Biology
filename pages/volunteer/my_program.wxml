@@ -19,13 +19,13 @@
   <view class="pj_list">
     <text class="pj_txt">{{ongoing}}</text>
   </view>
-  <view wx:for="{{ongoingList}}">
+  <view wx:for="{{ongoingList}}" wx:for-index='key' >
     <text class="list">
       {{item.projectName}}
       {{item.joinTime}}
       {{item.releaseTime}}
     </text>
-    <button size="mini"class="but1"type="primary">{{changeAgree}}</button>
+    <button size="mini"class="but1"type="primary" id="{{key}}" bindtap="visit_details">{{changeAgree}}</button>
       <view class="home-header-line"></view>
   </view>
   <view class="pj_list">

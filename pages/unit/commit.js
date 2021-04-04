@@ -65,7 +65,7 @@ Page({
 
   },
 
-  to_square:function(){
-      object.jump2Square()
+  back:function(){
+      object.backLastPage()
   }
 })

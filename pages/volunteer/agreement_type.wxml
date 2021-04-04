@@ -8,39 +8,9 @@
   </view>
 
 
-  <view class="note">
-    <text class="abstract">总是征求同意\n</text>
-    <text>在每一次使用数据前，我们都会向您通知使用数据的具体科学目的。\n</text>
-    <text>使用您的数据的具体科研人员身份，并征求同意使用您的数据\n</text>
-    <text>您需要注意，如果您在收到通知后72小时内没有做出任何操作，系统将默认您选择同意。</text>
-  </view>
-  <view class="note">
-    <text class="abstract">偶尔征求同意\n</text>
-    <text>我们将会对使用数据的研究目的进行分类\n</text>
-    <text>在更换研究类型时，向您通知研究类型和科研人员身份类型，并征求同意使用您的数据\n</text>
-    <text>您需要注意，如果您在收到通知后72小时内没有做出任何操作，系统将默认您选择同意。</text>
-  </view>
-  <view class="note">
-    <text class="abstract">一揽子同意（接收消息）\n</text>
-    <text>您默认同意科研人员使用您的数据用于任何可能的科学研究\n</text>
-    <text>研究开展前会经过伦理委员会审查，\n</text>
-    <text>每次开展研究前向您通知使用数据的具体科学目的与研究人员身份。</text>
-  </view>
-  <view class="note">
-    <text class="abstract">一揽子同意（不再打扰）\n</text>
-    <text>您默认同意科研人员使用您的数据用于任何可能的科学研究\n</text>
-    <text>研究开展前会经过伦理委员会审查，\n</text>
-    <text>并不再接收任何通知</text>
-  </view>
-  <view class="note">
-    <text class="abstract">不同意（保留数据）\n</text>
-    <text>您不同意提供的任何数据用于后续可能的任何研究\n</text>
-    <text>但允许我们保留数据</text>
-  </view>
-  <view class="note">
-    <text class="abstract">不同意（删除数据）\n</text>
-    <text>您不同意提供的任何数据用于后续可能的任何研究，并要求删除所有数据\n</text>
-    <text>（注意：正在用于研究的数据，以及依据法律法规需要保留的数据无法被删除）。</text>
+  <view class="note" wx:for="{{agreements}}">
+    <text class="abstract">{{item.name}}\n</text>
+    <text>{{item.description}}</text>
   </view>
   <view class="agree">
     <button id="konw" bindtap="investigate"><text>我已知晓上述同意模式区别</text></button>

@@ -11,7 +11,7 @@ Page({
     code:"验证码",
     getCodeNumber:"获取验证码",
     password:"密码",
-    check:"验证",
+    submit:"提交",
     username:"",
     confirmCode:"",
     pw:""
@@ -91,7 +91,7 @@ Page({
 
   getCode:function(){
     // url, sessionChoose, sessionId, params, method, doSuccess, doFail
-    HttpRequst('/api/user/signatureCode',1,'',{username:this.data.username,password:this.data.pw},"GET").then(function(res){
+    HttpRequst('/api/user/code',1,'',{username:this.data.username},"GET").then(function(res){
       doSuccessOfCode(res)
     })
   },

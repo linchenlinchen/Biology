@@ -98,6 +98,9 @@ Page({
         switch(res.statusCode){
           case 0:
             object.backLastPage()
+            wx.showToast({
+              title: '修改密码成功！',
+            })
             break;
           default:
             wx.showToast({

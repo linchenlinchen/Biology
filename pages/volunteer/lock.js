@@ -9,7 +9,7 @@ Page({
      changeGesture:false,
      changePassword:false,
      forgetGesture:false,
-
+    
   },
   onLoad:function(options){
     this.setData({
@@ -17,7 +17,8 @@ Page({
       changePassword:options.changePassword,
       forgetGesture:options.forgetGesture
     })
-    wxlocker.lock.init(this);
+    console.log("lock.js onload:",this.data)
+    wxlocker.lock.init(this,options.projectId,options.pairs);
     this.initState()
   },
   onReady:function(){
@@ -35,7 +36,7 @@ Page({
 
   onUnload:function(){
     // 页面关闭
-
+    
   },
   //设置提示语与重置按钮
   initState:function(){
