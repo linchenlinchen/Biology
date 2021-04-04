@@ -70,6 +70,12 @@ function direct2Lock(changeGesture,changePassword,forgetGesture){
     url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
   })
 }
+
+function direct2Square(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.square,
+  })
+}
 function jump2Square(){
   wx.navigateTo({
     url:  path_head+app.globalData.square,
@@ -128,12 +134,12 @@ function jump2VolunteerLoginWithPhone(telephone){
 }
 
 function jump2Agreement(){
-  wx.navigateTo({
+  wx.redirectTo({
     url: path_head+app.globalData.agreement,
   })
 }
 function jump2AgreementType(){
-  wx.navigateTo({
+  wx.redirectTo({
     url:  path_head+app.globalData.agreement_type,
   })
 }
@@ -244,6 +250,7 @@ module.exports = {
   jump2AgreementTypeWithId,
   jump2ApartmentLogin,
   jump2Commit,
+  direct2Square,
   jump2Contents,
   jump2QueryResult,
   jump2QueryResultWithId,

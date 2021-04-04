@@ -116,7 +116,7 @@ Page({
       app.globalData.ongoingProjects = result.data.ongoingList
       app.globalData.finishedProjects = result.data.finishedList
       app.globalData.isUnit = false
-      jump2My()
+      direct2My()
     }
   },
 
