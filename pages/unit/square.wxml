@@ -31,7 +31,10 @@
       
     </view>
   </view>
-  
+  <view class="tail">
+    <button bindtap="getAllProjectsByHot">按照热度排序</button>
+    <button bindtap="getAllProjectsByTime">按照时间排序</button>
+  </view>
   <view wx:for="{{projects}}" wx:for-item="item" class="container" bindtap="seeProject" id="{{item.projectId}}" >
     <view><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
     <view class="content" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" >
@@ -47,8 +50,12 @@
     
     
   </view>
+  
+
+  
   <view class="tail">
-    <button bindtap="getAllProjectsByHot">按照热度排序</button>
-    <button bindtap="getAllProjectsByTime">按照时间排序</button>
+    <button bindtap="jump2PrePage">上一页</button>
+    <button bindtap="jump2NextPage">下一页</button>
   </view>
+  
 </view>

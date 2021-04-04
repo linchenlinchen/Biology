@@ -23,7 +23,10 @@ Page({
     inputValue:"",
     userInfo: {},
     hasUserInfo: false,
-    enter:false
+    enter:false,
+    currentpage:"1",
+    number:"10",
+    method:"hot"
     
     
     
@@ -153,23 +156,54 @@ Page({
     jump2Contents(e.currentTarget.id)
   },
 
-  getAllProjects:function(method){
-    if(method == undefined){
-      method = "hot"
+  getAllProjects:function(){
+    if(this.data.method == undefined){
+      this.data.method = "hot"
     }
     let that = this
-    object.HttpRequst("/api/allProjects",1,'',{"method":method},'GET').then(function(result){
+    object.HttpRequst("/api/allProjects",1,'',{"method":this.data.method,"begin":"0","number":this.data.number},'GET').then(function(result){
       that.setData({
-        projects:result.data.content
+        projects:result.data.content,
+        currentpage:"1"
       })
     })
   },
 
   getAllProjectsByHot:function(){
-    this.getAllProjects('hot')
+    this.data.method="hot";
+    this.getAllProjects()
   },
 
   getAllProjectsByTime:function(){
-    this.getAllProjects('time')
+    this.data.method="time";
+    this.getAllProjects()
+  },
+  jump2NextPage:function(){
+    var next=parseInt(this.data.currentpage)+1;
+    var begin=this.data.currentpage*this.data.number;
+    var that=this;
+    console.log(begin);
+    object.HttpRequst("/api/allProjects",1,'',{"method":this.data.method,"begin":begin,"number":this.data.number},'GET').then(function(result){
+      that.setData({
+        projects:result.data.content,
+        currentpage:next
+      })
+    })
+  },
+  jump2PrePage:function(){
+    var next=parseInt(this.data.currentpage)-1;
+    if(this.data.currentpage=="1"){
+      return;
+    }
+
+    var begin=(this.data.currentpage-2)*this.data.number;
+    
+    var that=this;
+    object.HttpRequst("/api/allProjects",1,'',{"method":this.data.method,"begin":begin,"number":this.data.number},'GET').then(function(result){
+      that.setData({
+        projects:result.data.content,
+        currentpage:next
+      })
+    })
   }
 })
