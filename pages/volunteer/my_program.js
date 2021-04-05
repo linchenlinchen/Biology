@@ -30,7 +30,7 @@ Page({
       '修改账户密码', 
       '忘记手势密码',
       "项目广场",
-      "退出账号",]
+      "退出账号","","","","","",]
     // programamu:[{number:'项目1',message1:'加入项目时间',message2:'项目发布时间'},{number:'项目2',message1:'加入项目时间',message2:'项目发布时间'},{number:'项目3',message1:'加入项目时间',message2:'项目发布时间'}]
   },
 
@@ -160,7 +160,7 @@ Page({
   }
   ,
   itemClick: function(e) {
-    let functionList = [this.changeLock,this.changePassword,this.forgetGesture,this.goSquare,this.signOut]
+    let functionList = [this.changeLock,this.changePassword,this.forgetGesture,this.goSquare,this.signOut,,,,,]
     var tapId = e.currentTarget.id;
     var index = this;
     for (var i = 0; i < index.data.sideslipMenuArr.length;i++){

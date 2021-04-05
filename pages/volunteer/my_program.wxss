@@ -148,7 +148,7 @@ page{
 .sideslipMenuItemlist {
   width: 200rpx;
   background-color: #454545;
-  opacity: 1;
+  opacity: 0.8;
   position: absolute;
   right: 0;
   top: 0;
