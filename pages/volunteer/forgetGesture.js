@@ -11,7 +11,7 @@ Page({
     code:"验证码",
     getCodeNumber:"获取验证码",
     password:"密码",
-    check:"验证",
+    check:"去设置新的手势密码",
     username:"",
     confirmCode:"",
     pw:""

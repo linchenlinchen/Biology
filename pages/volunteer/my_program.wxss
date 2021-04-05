@@ -34,7 +34,7 @@ view{
 
 #username_vu{
   width: 200rpx;
-  position: fixed;
+  position: absolute;
 }
 /* .bt_vu{
   width: 100rpx; 
