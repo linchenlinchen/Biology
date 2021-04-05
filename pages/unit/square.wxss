@@ -1,5 +1,6 @@
 /* pages/individual/square.wxss */
 .whole{
+  z-index:1;
   display: flex;
   flex-flow: row;
   justify-content:center;

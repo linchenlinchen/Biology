@@ -24,7 +24,7 @@ Page({
     inputValue:"",
     userInfo: {},
     hasUserInfo: false,
-    enter:false,
+    enter:-1,
     currentpage:"1",
     number:"10",
     method:"hot",
@@ -119,16 +119,15 @@ Page({
     
     startX = e.touches[0].pageX; // 获取触摸时的原点
     moveFlag = true;
-    this.setData({enter:true})
+    this.setData({enter:e.currentTarget.id})
   },
   // 触摸移动事件
   touchMove: function (e) {
+    console.log("e:",e)
     endX = e.touches[0].pageX; // 获取触摸时的原点
     if (moveFlag) {
       if (endX - startX > 50) {
         console.log("move right");
-        
-       
         e.touches[0].pageX = startX
         moveFlag = false;
       }
@@ -143,7 +142,7 @@ Page({
   // 触摸结束事件
   touchEnd: function (e) {
     moveFlag = true; // 回复滑动事件
-    this.setData({enter:false});
+    this.setData({enter:-1});
   },
 
   move2left() {
@@ -154,9 +153,7 @@ Page({
     });
   },
 
-  seeProject:function(e){
-    jump2Contents(e.currentTarget.id)
-  },
+
 
   getAllProjects:function(){
     if(this.data.method == undefined){
