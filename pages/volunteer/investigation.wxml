@@ -8,7 +8,7 @@
   <view class="page-body">
     <radio-group class="radio-group" bindchange="radioChange">
       <label class="radio" wx:for="{{items}}">
-          <radio value="{{item.iid}}" checked="{{checkId == item.iid? true : false}}"/>{{item.value}}
+          <radio value="{{item.iid}}" checked="{{checkId == item.iid? true : false}}" disabled="{{isFinished}}"/>{{item.value}}
       </label>
     </radio-group>
   </view>
@@ -20,37 +20,18 @@
 </view>
 
 
-<view id="tips" wx:if="{{isShow}}"  bindtap="hide">
+<view id="tips" wx:if="{{isShow&&!isFinished}}"  bindtap="hide">
   <view>
     <label wx:for="{{items}}">
     <text class="item">"{{item.value}}"：</text><text class="meaning">{{item.description}}</text>
   </label>
   <text>点击屏幕任意位置消失</text>
-  <!-- <label>
-    <text class="item">"总是征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
-  </label>
-  <label>
-    <text class="item">"偶尔征求同意"：</text><text class="meaning">每次使用前都向您询问</text>
-  </label>
-  <label>
-    <text class="item" >"一揽子同意（接收消息）"：</text><text class="meaning">每次使用前都向您询问</text>
-  </label>
-  <label>
-    <text class="item">"一揽子同意（不再打扰）"：</text><text class="meaning">每次使用前都向您询问</text>
-  </label>
-  <label>
-    <text class="item">"不同意（保留数据）"：</text><text class="meaning">每次使用前都向您询问</text>
-  </label>
-  <label>
-    <text class="item">"不同意（删除数据）"：</text><text class="meaning">每次使用前都向您询问</text>
-  </label>
-  <text>点击屏幕任意位置消失</text> -->
 </view>
 </view>
 
 
 <view>
-  <button bindtap="submit">确认并提交</button>
+  <button bindtap="submit" hidden="{{isFinished}}">确认并提交</button>
 </view>
 </view>
 

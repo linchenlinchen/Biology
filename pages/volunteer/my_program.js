@@ -20,6 +20,7 @@ Page({
     ongoing:"正在进行的问卷",
     finished:"已完成的问卷",
     changeAgree:"修改同意类型",
+    seeAgree:"查看同意类型",
     ongoingList:[],
     finishedList:[],
     src:"../../images/1.png",
@@ -113,10 +114,6 @@ Page({
     console.log("visit_details e:",e.currentTarget.id)
     let id = e.currentTarget.id
     object.jump2InvestigateWithId(id)
-    // object.HttpRequst("/api/user/completedAgreements",1,'',{username:this.data.username,projectId:id},"GET").then(function(res){
-    //   object.jump2Investigate(res)
-    // })
-    
   },
 
 

@@ -13,6 +13,7 @@ Page({
     agreements:[],
     pairs:[],
     isShow:true,
+    isFinished:false,
     colorList:["#fcc877","#a681e6","#acc354","#d6bb99","#f660a3"] 
   },
 
@@ -26,18 +27,15 @@ Page({
       let that = this
       object.HttpRequst("/api/user/completedAgreements",1,'',{username:this.data.username,projectId:pid},"GET").
       then(function(res){
-        console.log("investigate onload res:",res)
-        console.log("res.data:",res.data)
-        
         that.setData({
           projectId:pid,
+          isFinished:(res.data.isFinished=="true"?true:false),
           currentAID:1,
           checkId:res.data.pairs[0].iid,
           items:res.data.items,
           agreements:res.data.agreements,
           pairs:res.data.pairs
         })
-        console.log(that.data)
       })
     }
   },

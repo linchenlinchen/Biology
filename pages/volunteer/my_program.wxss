@@ -65,30 +65,45 @@ button[plain]{
 }
 
 
- .pj_list{
-  height:40rpx;
-  width:750rpx;
-  background-color: dimgrey;
-  font-size: 25rpx  ;
-  font-weight: bold; /*字体加粗*/ /*正常字体*/
-  font-family: "微软雅黑"; /*字体家族，用来设置各种字体，避免误伤不要乱动*/
+.pj_list{
+  height:60rpx;
+  background-color: #e6e6e6;
+  font-size: small  ;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
 }
 
-.pj_txt{
-  font-size: 25rpx;
-  color: burlywood;
-}
 
 .list{
-  height:100rpx;
-  width:750rpx;
-  background-color: gainsboro;
+  height:200rpx;
+  display: flex;
   flex-direction: row;
-  font-size:30rpx;
+  justify-content: space-around;
+  align-items: center;
+  font-size:medium;
 }
-.but1{
-  margin-left: 500rpx;
-  top:-100rpx;
+.txt{
+  height:200rpx;
+  width: 400rpx;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+.agreeBt{
+  height:60rpx;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+.pjName{
+  font: bolder;
+}
+.time{
+  color: #7b7b7b;
+  font-size: small;
 }
 
 

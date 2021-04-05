@@ -19,24 +19,29 @@
   <view class="pj_list">
     <text class="pj_txt">{{ongoing}}</text>
   </view>
-  <view wx:for="{{ongoingList}}" wx:for-index='key' >
-    <text class="list">
-      {{item.projectName}}
-      {{item.joinTime}}
-      {{item.releaseTime}}
-    </text>
-    <button size="mini"class="but1"type="primary" id="{{key}}" bindtap="visit_details">{{changeAgree}}</button>
-      <view class="home-header-line"></view>
+  <view  wx:for="{{ongoingList}}" wx:for-index='key' >
+    <view  class="list">
+      <view class="txt">
+        <text class="pjName">{{item.projectName}}</text>
+        <text class="time">加入项目时间：{{item.joinTime}} </text>
+        <text class="time">项目发布时间：{{item.releaseTime}}</text>
+      </view>
+      <button size="mini" class="agreeBt" type="primary" id="{{key}}" bindtap="visit_details">{{changeAgree}}</button>
+    </view>
+    <view class="home-header-line"></view>
   </view>
   <view class="pj_list">
     <text class="pj_txt">{{finished}}</text>
   </view>
-  <view wx:for="{{finishedList}}">
-    <text class="list">
-      {{item.projectName}}
-      {{item.joinTime}} 
-      {{item.releaseTime}}
-    </text>
+  <view wx:for="{{finishedList}}"  wx:for-index='key'>
+    <view  class="list" id="{{key}}" bindtap="visit_details">
+      <view class="txt">
+        <text class="pjName">{{item.projectName}}</text>
+        <text class="time">加入项目时间：{{item.joinTime}} </text>
+        <text class="time">项目发布时间：{{item.releaseTime}}</text>
+      </view>
+      <button size="mini" class="agreeBt" type="primary" id="{{key}}" bindtap="visit_details">{{seeAgree}}</button>
+    </view>
     <view class="home-header-line"></view>
   </view>
   <text class="pj_txt">无更多问卷显示</text>
