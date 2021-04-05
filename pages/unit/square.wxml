@@ -36,18 +36,23 @@
     <button bindtap="getAllProjectsByTime">按照时间排序</button>
   </view>
   <view wx:for="{{projects}}" wx:for-item="item" class="container" bindtap="seeProject" id="{{item.projectId}}" >
-    <view><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
-    <view class="content" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" >
-      <title>{{item.ProjectName}}</title>
-      <p>{{publishedTime}}： {{item.ReleaseTime}}</p>
-      <p>{{description}}： {{item.organization}}</p>
+    <view class="whole">
+      <view class="main">
+        <view class="left"><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
+        <view class="center">
+          <view class="content" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" >
+            <title>{{item.projectName}}</title>
+            <p>{{publishedTime}}： {{item.releaseTime}}</p>
+            <p>{{description}}： {{item.organization}}</p>
+          </view>
+        </view>
+        <view class="right" style="background:{{background[(item.projectId)%7]}}"></view>
+      </view>
+      <view wx:if="{{enter}}">
+        <view class="over">
+        <view class="dt"><image src="../../images/enter_detail.jpg"></image></view></view>
+      </view>
     </view>
-    <view wx:if="{{enter}}">
-      <view class="right">
-      <view class="dt"><p>进入>>>></p></view></view>
-    </view>
-    
-    
     
   </view>
   

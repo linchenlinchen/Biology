@@ -15,8 +15,9 @@ Page({
     publishedTime:"项目发布时间",
     discription:"项目简介",
     projects:[{
-      "ProjectName":"xxx",
-      "RleasedTime":"2017.12.12",
+      "projectId":1,
+      "projectName":"xxx",
+      "rleasedTime":"2017.12.12",
       "organization":"xxx"
     }],
     focus:false,  //控制是否显示带取消按钮的搜索框
@@ -26,7 +27,8 @@ Page({
     enter:false,
     currentpage:"1",
     number:"10",
-    method:"hot"
+    method:"hot",
+    background:["#fcc877","#a681e6","#acc354","#75cc82","#f063a0","#d6bb99","#f16266"]
     
     
     
