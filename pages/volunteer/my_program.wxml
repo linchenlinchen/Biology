@@ -46,6 +46,14 @@
   </view>
   <text class="pj_txt">无更多问卷显示</text>
 </view>
+
+
+<view class="bottom">
+  
+
+</view>
+
+
 <!-- 以下是侧边栏 -->
 <view class="cehuaDa" wx:if="{{isShowSideslip}}">
   <view class="sideslipMenuItemlist">

@@ -1,15 +1,27 @@
 /* pages/individual/contents.wxss */
 image {
   width: 100%;
-  height: 150%;
+  height: 100%;
 }
-block {
-  width: 100%;
-  height: 150%;
-}
+
 #banner {
-  height: 150%;
+  height: 500rpx;
+  width: 100%;
 }
+
+swiper{
+  height: 500rpx;
+  width: 100%;
+}
+block{
+  height: 500rpx;
+  width: 100%;
+}
+swiper-item{
+  height: 500rpx;
+  width: 100%;
+}
+
 #warm {
   padding: 50rpx;
   display: flex;

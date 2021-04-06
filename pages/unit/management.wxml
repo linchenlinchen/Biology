@@ -5,17 +5,29 @@
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
     </view>
     <view class="headright">
-    <view><text class="txt1">{{unitname}}</text></view>
-    <view id="bt_vu">
-        <button id="change_bt" size="mini" bindtap="goSquare">{{square}}</button>
-        <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
-    </view>
-    <view>
-        <button id="newProject" bindtap="newProject">+</button>
+      <view>
+        <text class="txt1">{{unitname}}</text>
+      </view>
+      <view id="bt_vu">
+          <button id="change_bt" size="mini" bindtap="goSquare">{{square}}</button>
+          <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
       </view>
     </view>
   </view>
-   <view class="content"> <text class="txt2">{{published}}</text></view>
+
+
+  <view class="header">
+    <view class="block">
+      <view class="title">
+        <text class="head">{{published}}</text>
+      </view>
+      <view class="newBt">
+        <button class="newProject" bindtap="newProject">+</button>
+      </view>
+    </view>
+  </view>
+
+
   <view class="content" wx:for="{{publishedList}}" wx:for-item='item'>
     <view>
       <view>
@@ -26,11 +38,18 @@
         <button class="btnleft" id='{{item.projectId}}'>{{derive}}</button>
         <button class="btnright" id='{{item.projectId}}' bindtap="modifyProject">{{modify}}</button>
       </view>
-      
     </view>
   </view>
 
-  <view class="content"><text class="txt2">{{draft}}</text> <text>\r\n</text></view>
+
+  
+  <view class="header">
+    <view class="block">
+      <view class="title">
+        <text class="txt2">{{draft}}</text> 
+      </view>
+    </view>
+  </view>
   <view class="content" wx:for="{{publishedList}}">
     <view>
       <text class="txt2">{{item.projectName}} | projectId:{{item.projectId}}的问卷</text>

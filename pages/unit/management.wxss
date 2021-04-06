@@ -1,4 +1,51 @@
 /* pages/individual/management.wxss */
+.header{
+  width: 100%;
+  height: 40rpx;
+  padding: 5rpx 10rpx 5rpx 10rpx;
+  border: 1px solid rgb(192, 192, 190);
+  display: block;
+  font-size: 30rpx;
+  font-weight: bolder;
+}
+.block{
+  width: 100%;
+  height: 40rpx;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title{
+  width: 300rpx;
+  height: 40rpx;
+  display: block
+}
+
+/* 不知道这里为什么在width和height等高情况下它会越出视野 */
+.newBt{
+  width: 100rpx;
+  height: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* 不知道为什么这里width是height一半的时候才是圆形，因为radius是50%？ */
+/* 原来是因为button组件默认有一定的padding样式啊啊啊！fuck */
+.newProject{
+  border-radius:50%;
+  padding: 0;
+  background-color: black;
+  color: white;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
+
 .content{
   border-color: rgb(192, 192, 190);
   border-style: solid;
@@ -7,8 +54,11 @@
   border-width: 0px 0px 4px 0px;
   margin: -2px -5px 0px -5px;
   padding: 10px 10px 10px 10px;
-  
+
 }
+
+
+
 .btnright{
   border-radius: 5px;
   font-size: 10px;
@@ -17,19 +67,15 @@
   float: right;
 }
 .btnleft{
-display: flex;
-direction:column;
-border-radius: 5px;
-font-size: 10px;
-font-family: 'Courier New', Courier, monospace;
-margin: 5px 5px 5px 5px;
-float:left;
-}
-.txt2{
-  font-size: 35rpx;
+  display: flex;
+  direction:column;
+  border-radius: 5px;
+  font-size: 10px;
   font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+  margin: 5px 5px 5px 5px;
+  float:left;
 }
+
 .profile {
     height: 200rpx;
     display: flex;
@@ -64,17 +110,4 @@ float:left;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-#newProject{
-  width: 70rpx;
-  height: 70rpx;
-  border-radius: 50%;
-  display: flex;
-  left:80%;
-  top: 20%;
-  background-color: black;
-  color: white;
-  line-height: 70rpx;
-  text-align: center;
 }
