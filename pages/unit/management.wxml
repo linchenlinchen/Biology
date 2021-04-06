@@ -52,9 +52,13 @@
   </view>
   <view class="content" wx:for="{{publishedList}}">
     <view>
-      <text class="txt2">{{item.projectName}} | projectId:{{item.projectId}}的问卷</text>
+      <text class="txt2"> ·{{item.projectName}} 的问卷</text>
     </view>
     <view><button class="btnright" bindtap="modifyProject">{{modify}}</button></view>
+  </view>
+
+  <view>
+    <text>已无更多内容</text>
   </view>
 </view>
 

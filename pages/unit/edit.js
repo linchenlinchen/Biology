@@ -11,8 +11,14 @@ Page({
     projectName:"",
     projectGoal:"",
     projectDuration:"",
-  
-    
+    projectItems:[],
+    agreeItems:[],
+    dataNumber:0,
+    agreeNumber:0,
+    tempDataName:"",
+    tempDataDesc:"",
+    tempagreeName:"",
+    tempagreeDesc:""
   },
 
   /**
@@ -30,7 +36,10 @@ Page({
           projectName:result.data.projectName,
           projectGoal:result.data.projectGoal,
           projectDuration:result.data.projectDuration,
-
+          projectItems:result.data.projectItems,
+          agreeItems:result.data.agreeItems,
+          dataNumber:result.data.projectItems.length,
+          agreeNumber:result.data.agreeItems.length
         })
       })
     }
@@ -61,13 +70,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.setData({
-      my:'my',
-      projectId:null,
-      projectName:"",
-      projectGoal:"",
-      projectDuration:"",
-    })
   },
 
   /**
@@ -96,6 +98,8 @@ Page({
       "projectName":this.data.projectName,
       "projectGoal":this.data.projectGoal,
       "projectDuration":this.data.projectDuration,
+      "projectItems":this.data.projectItems,
+      "agreeItems":this.data.agreeItems,
       "isPublished":false
     },'POST').then(function(result){
       if(result.statusCode == 0){
@@ -116,6 +120,8 @@ Page({
       "projectName":this.data.projectName,
       "projectGoal":this.data.projectGoal,
       "projectDuration":this.data.projectDuration,
+      "projectItems":this.data.projectItems,
+      "agreeItems":this.data.agreeItems,
       "isPublished":true
     },'POST').then(function(result){
       if(result.statusCode == 0){
@@ -146,5 +152,102 @@ Page({
   inputDuration:function(e){
     this.data.projectDuration=e.detail.value
     console.log(this.data)
+  },
+  inputDataName:function(e){
+    console.log("e.currentTarget.itemId",e.currentTarget.id)
+    if(e.currentTarget.id<=this.data.dataNumber){
+      this.data.projectItems[e.currentTarget.id].name = e.detail.value
+    }else{
+      this.data.tempDataName = e.detail.value
+    }
+  },
+  inputDataDescription:function(e){
+    console.log("e.currentTarget.itemId",e.currentTarget.id)
+    if(e.currentTarget.id<=this.data.dataNumber){
+      this.data.projectItems[e.currentTarget.id].description = e.detail.value
+    }else{
+      this.data.tempDataDesc = e.detail.value
+    }
+  },
+  inputAgreeName:function(e){
+    console.log("e.currentTarget.itemId",e.currentTarget.id)
+    if(e.currentTarget.id<=this.data.agreeNumber){
+      this.data.agreeItems[e.currentTarget.id].value = e.detail.value
+    }else{
+      this.data.tempagreeName = e.detail.value
+    }
+  },
+  inputAgreeDescription:function(e){
+    console.log("e.currentTarget.itemId",e.currentTarget.id)
+    if(e.currentTarget.id<=this.data.agreeNumber){
+      this.data.agreeItems[e.currentTarget.id].description = e.detail.value
+    }else{
+      this.data.tempagreeDesc = e.detail.value
+    }
+    console.log( this.data.agreeItems[e.currentTarget.id].description)
+  },
+  addData:function(e){
+    if(tempDataName.length>0 && tempDataDesc.length>0){
+      let tmp = this.data.projectItems
+      tmp.push({"aid":parseInt(e.currentTarget.id),"name":this.data.tempDataName,"description":this.data.tempDataDesc})
+      this.setData({
+        projectItems:tmp,
+        dataNumber:this.data.dataNumber+1,
+        tempDataName:"",
+        tempDataDesc:""
+      })
+      console.log("data:",this.data)
+    }else{
+      wx.showToast({
+        title: '请填写完整信息！',
+      })
+    }
+  },
+  addAgree:function(e){
+    if(tempagreeName.length>0 && tempagreeDesc.length>0){
+      let tmp = this.data.agreeItems
+      tmp.push({"iid":parseInt(e.currentTarget.id),"name":"","value":this.data.tempagreeName,"description":this.data.tempagreeDesc})
+      this.setData({
+        agreeItems:tmp,
+        agreeNumber:this.data.agreeNumber+1,
+        tempagreeName:"",
+        tempagreeDesc:""
+      })
+      console.log("data:",this.data)
+    }else{
+      wx.showToast({
+        title: '请填写完整信息！',
+      })
+    }
+  },
+  deleteData:function(e){
+    let currentId = e.currentTarget.id
+    let tmp = this.data.projectItems
+    tmp.splice(currentId-1,1)
+    let i = 0
+    console.log("tmp:",tmp)
+    for(;i<tmp.length;i++){
+      tmp[i].aid=i+1
+    }
+    this.setData({
+      projectItems:tmp,
+      dataNumber:this.data.dataNumber-1
+    })
+    console.log("data:",this.data)
+  },
+  deleteAgree:function(e){
+    let currentId = e.currentTarget.id
+    let tmp = this.data.agreeItems
+    tmp.splice(currentId-1,1)
+    let i = 0
+    console.log("tmp:",tmp)
+    for(;i<tmp.length;i++){
+      tmp[i].iid=i+1
+    }
+    this.setData({
+      agreeItems:tmp,
+      agreeNumber:this.data.agreeNumber-1
+    })
+    console.log("data:",this.data)
   }
 })

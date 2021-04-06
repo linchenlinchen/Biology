@@ -46,6 +46,7 @@
   text-align: center;
 }
 
+
 .content{
   border-color: rgb(192, 192, 190);
   border-style: solid;
