@@ -3,16 +3,59 @@
 view{
   margin: 0 auto;
 }
-.info{
-  height: 250rpx;
+
+.profile{
+  height: 200rpx;
+  display: flex;
+  flex-flow: row;
+  word-break: break-all;
+  background:linear-gradient(#1a97d4,#0671b4);
+  padding: 0 10rpx 0 10rpx;
+  justify-content: space-around;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.headright{
+  display: flex;
+  flex-direction: column;
+  width: 500rpx;
+  height: 200rpx;
+  color: white;
+}
+.uname_vu{
+  width: 500rpx;
+  height: 100rpx;
+  font-size: larger;
+  font-weight: bolder;
+  word-break: break-all;
+}
+.uname{
+  width: 500rpx;
+  height: 100rpx;
+}
+
+
+.bt_vu{
+  width: 500rpx;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  background:linear-gradient(#1a97d4,#0671b4);
 }
-.portrait{
-  width: 250rpx;
+
+.bt_vu button{
+  width: 200rpx;
+  border: 3rpx solid white;
+  color: white;
+}
+
+/* .portrait{
+  width: 150rpx;
+  height: 250rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -24,45 +67,34 @@ view{
   border: 1px,solid,black;
   border-radius: 75rpx;
   overflow:hidden;
-}
-.account{
-  width: 400rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-#username_vu{
-  width: 200rpx;
-  position: absolute;
-}
-/* .bt_vu{
-  width: 100rpx; 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 } */
-.bt_vu .setting{
-  width: 200rpx;
-  margin: auto;
-  /* background-size: 10rpx 10rpx; */
-  background-repeat:no-repeat;
-  border:none;
+.account{
+  width: 500rpx;
+  height: 250rpx;
+  display: block;
+  /* flex-direction: row;
+  justify-content: space-around; */
 }
 
-button[plain]{
-  border:0;
-  /* width: 50px; */
-  /* height: 30px; */
+
+.account_in{
+  width: 500rpx;
+  height: 250rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#username_vu{
+  width: 400rpx;
+  height: 150rpx;
+  padding: 50rpx 0 50rpx 0;
+  display: block;
+  /* position: absolute; */
 }
 
-.setting image{
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  border: none;
-}
+
+
+
 
 
 .pj_list{
@@ -112,7 +144,10 @@ button[plain]{
   width: 100%;
   height: 2rpx;
 }
-
+.pj_txt{
+  height: 130rpx;
+  line-height: 130rpx;
+}
 
 page{
   width:100%;
@@ -167,3 +202,51 @@ page{
 }
 
 
+.bar{
+  position: fixed;
+  bottom: 0;
+  height: 130rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  font-size: x-small;
+}
+.attend{
+  height: 130rpx;
+  width: 50%;
+  display: block;
+}
+.attend_flex{
+  height: 130rpx;
+  width: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.attend_flex image{
+  height: 60rpx;
+  width: 60rpx;
+}
+.square{
+  height: 130rpx;
+  width: 50%;
+  display: block;
+}
+.square_flex{
+  height: 130rpx;
+  width: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.square_flex image{
+  height: 60rpx;
+  width: 60rpx;
+}

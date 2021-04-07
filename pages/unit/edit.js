@@ -93,6 +93,7 @@ Page({
 
   },
   saveDraft:function(){
+    let that = this
     object.HttpRequst("/api/unit/projectDraft",1,'',{
       "projectId":this.data.projectId,
       "projectName":this.data.projectName,
@@ -114,6 +115,7 @@ Page({
       }
     })
   },
+
   publish:function(){
     object.HttpRequst("/api/unit/projectPublish",1,'',{
       "projectId":this.data.projectId,

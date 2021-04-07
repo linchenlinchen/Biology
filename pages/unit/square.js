@@ -28,8 +28,8 @@ Page({
     currentpage:"1",
     number:"10",
     method:"hot",
-    background:["#fcc877","#a681e6","#acc354","#75cc82","#f063a0","#d6bb99","#f16266"]
-    
+    background:["#fcc877","#a681e6","#acc354","#75cc82","#f063a0","#d6bb99","#f16266"],
+  
     
     
 
@@ -113,6 +113,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  back:function(){
+    object.backLastPage()
   },
 
   touchStart: function (e) {
@@ -204,5 +207,7 @@ Page({
         currentpage:next
       })
     })
-  }
+  },
+  
+
 })

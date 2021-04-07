@@ -1,20 +1,33 @@
 <!--pages/individual/my_program.wxml-->
 <view class="bodyView">
-  <view class="info">
-    <view class="portrait">
+  <view class="profile">
+
+    <view>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    </view>
+    <view class="headright">
+      <view class="uname_vu">
+        <text class="uname"> {{username}}</text>
+      </view>
+      <view class="bt_vu">
+        <button size="mini" plain="true" bindtap="show">{{changeData}}</button>
+        <button size="mini" plain="true" bindtap="signOut">{{signOut}}</button>
+      </view>
+    </view>
+
+    <!-- <view class="portrait">
       <image src="{{src}}"></image>
     </view>
     <view class="account">
-      <view id="username_vu">
-        <text id="username">{{nickname}} : {{username}}</text>
+      <view class="account_in">
+        <view id="username_vu">
+          <text id="username">{{nickname}} : {{username}}</text>
+        </view>
+        <view id="bt_vu">
+          <button id="setting" size="mini" bindtap="show" plain="true"><image mode="center" src="../../images/setting.png"></image></button>
+        </view>
       </view>
-      <view id="bt_vu">
-        <button id="setting" size="mini" bindtap="show" plain="true"><image mode="center" src="../../images/setting.png"></image></button>
-        <!-- <button id="square_bt" size="mini" bindtap="goSquare">{{square}}</button>
-        <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button> -->
-      </view>
-
-    </view>
+    </view> -->
   </view>
   <view class="pj_list">
     <text class="pj_txt">{{ongoing}}</text>
@@ -48,9 +61,20 @@
 </view>
 
 
-<view class="bottom">
-  
 
+<view class="bar">
+  <view class="attend">
+    <view class="attend_flex">
+      <image src="../../images/favorite_green.png"></image>
+      <text>我的问卷</text>
+    </view>
+  </view>
+  <view class="square">
+    <view class="square_flex" bindtap="goSquare">
+      <image src="../../images/square.png"></image>
+      <text>项目广场</text>
+    </view>
+  </view>
 </view>
 
 

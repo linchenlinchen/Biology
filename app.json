@@ -1,11 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/unit/login",
     "pages/logs/logs",
     "pages/unit/commit",
     "pages/unit/square",
     "pages/unit/contents",
-    "pages/unit/login",
     "pages/unit/apartment_login",
     "pages/unit/management",
     "pages/unit/query_result",
@@ -22,10 +21,10 @@
     "pages/volunteer/forgetGesture"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#1a97d4",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "生物知情小程序",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json"
 }

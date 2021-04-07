@@ -9,6 +9,7 @@ Page({
    */
   data: {
     square:"项目广场",
+    changeData:"更改信息",
     signOut:"退出登录",
     unitname:"单位账户名称",
     published:"已发布",
@@ -19,11 +20,21 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     inputValue:"",
+
+
+    isShowSideslip: false,
+    sideslipMenuArr: [
+      '修改账户密码', 
+      '忘记手势密码',"","","","","","","",""]
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.load()
+  },
+  load:function(){
     let publishedList = app.globalData.publishedProjects
     let draftList =  app.globalData.draftProjects
     let unitname =  app.globalData.unitname
@@ -109,10 +120,14 @@ Page({
     object.jump2Square()
   },
   newProject:function(){
+
     object.jump2Edit(null)
   },
   modifyProject:function(e){
     console.log(e.currentTarget.id)
     object.jump2Edit(e.currentTarget.id)
+  },
+  changeData:function(){
+    object.jump2changePassword(app.globalData.username)
   }
 })

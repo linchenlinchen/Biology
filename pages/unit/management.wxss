@@ -1,4 +1,20 @@
 /* pages/individual/management.wxss */
+.bodyView{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.profile {
+  height: 200rpx;
+  display: flex;
+  flex-flow: row;
+  word-break: break-all;
+  background:linear-gradient(#1a97d4,#0671b4);
+  padding: 0 10rpx 0 10rpx;
+  justify-content: space-around;
+}
+
 .header{
   width: 100%;
   height: 40rpx;
@@ -77,14 +93,6 @@
   float:left;
 }
 
-.profile {
-    height: 200rpx;
-    display: flex;
-    flex-flow: row;
-    word-break: break-all;
-    background:linear-gradient(#1a97d4,#0671b4);
-    padding: 0 10rpx 0 10rpx;
-}
 
 .userinfo-avatar {
   width: 128rpx;
@@ -101,14 +109,92 @@
 .headright{
   display: flex;
   flex-direction: column;
+  width: 500rpx;
+  height: 200rpx;
+  color: white;
+}
+.uname_vu{
+  width: 500rpx;
+  height: 100rpx;
+  font-size: larger;
+  font-weight: bolder;
+  word-break: break-all;
+}
+.uname{
+  width: 500rpx;
+  height: 100rpx;
 }
 
-#out_bt{
-  width: 200rpx;
-}
+
 .bt_vu{
-  width: 400rpx;
+  width: 500rpx;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+
+.bt_vu button{
+  width: 200rpx;
+  border: 3rpx solid white;
+  color: white;
+}
+
+.none{
+  height: 130rpx;
+  line-height: 130rpx;
+}
+
+
+/* 下方固定的栏 */
+.bar{
+  position: fixed;
+  bottom: 0;
+  height: 130rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  font-size: x-small;
+}
+.attend{
+  height: 130rpx;
+  width: 50%;
+  display: block;
+}
+.attend_flex{
+  height: 130rpx;
+  width: 150rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.attend_flex image{
+  height: 60rpx;
+  width: 60rpx;
+}
+.square{
+  height: 130rpx;
+  width: 50%;
+  display: block;
+}
+.square_flex{
+  height: 130rpx;
+  width: 150rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.square_flex image{
+  height: 60rpx;
+  width: 60rpx;
+}
+

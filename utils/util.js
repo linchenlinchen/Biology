@@ -176,8 +176,12 @@ function jump2Edit(projectId){
   })
 }
 function backLastPage(){
-  var pages = getCurrentPages(); // 当前页面
+    // 1.获取页面栈(返回一个数组,包含了所有曾经去过的页面)
+  var pages = getCurrentPages(); //可以log看看是什么(里面什么都有--)
+    // 2. 拿到上一页(数组长度-2就是上一页)
   var beforePage = pages[pages.length - 2]; // 前一个页面
+    // 3. 执行上一页 onLoad 函数(刷新数据)
+      // 假设请求后端数据并渲染页面的函数是: load()
   wx.navigateBack({
       success: function() {
           beforePage.onLoad(); // 执行前一个页面的onLoad方法
@@ -186,14 +190,10 @@ function backLastPage(){
 }
 
 
-function returnFirstPage(){
-  var pages = getCurrentPages(); // 当前页面
 
-  var beforePage = pages[pages.length-2]; // 前一个页面
-  wx.navigateBack({
-    success: function() {
-      beforePage.onLoad(); // 执行前一个页面的onLoad方法
-    }
+function returnFirstPage(){
+  wx.reLaunch({
+    url: path_head+app.globalData.login,
   });
 }
 

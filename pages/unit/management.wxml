@@ -1,16 +1,16 @@
 <!--pages/individual/management.wxml-->
-<view>
+<view class="bodyView">
   <view class="profile">
    <view wx:if="{{hasUserInfo}}">
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
     </view>
     <view class="headright">
-      <view>
-        <text class="txt1">{{unitname}}</text>
+      <view class="uname_vu">
+        <text class="uname"> {{unitname}}</text>
       </view>
-      <view id="bt_vu">
-          <button id="change_bt" size="mini" bindtap="goSquare">{{square}}</button>
-          <button id="out_bt"size="mini" bindtap="signOut">{{signOut}}</button>
+      <view class="bt_vu">
+        <button size="mini" plain="true" bindtap="changeData">{{changeData}}</button>
+        <button size="mini" plain="true" bindtap="signOut">{{signOut}}</button>
       </view>
     </view>
   </view>
@@ -31,7 +31,7 @@
   <view class="content" wx:for="{{publishedList}}" wx:for-item='item'>
     <view>
       <view>
-        <text class='txt2'>{{item.projectName}} | projectId:{{item.projectId}}的问卷</text>
+        <text class='txt2'>{{item.projectName}} 的问卷</text>
       </view>
       <view>
         <button class="btnleft" type="primary" bindtap="queryResult" id="{{item.projectId}}">{{seeResult}}</button>
@@ -58,7 +58,25 @@
   </view>
 
   <view>
-    <text>已无更多内容</text>
+    <text class="none">已无更多内容</text>
   </view>
 </view>
+
+<view class="bar">
+  <view class="attend">
+    <view class="attend_flex">
+      <image src="../../images/favorite_green.png"></image>
+      <text>我的问卷</text>
+    </view>
+  </view>
+  <view class="square">
+    <view class="square_flex" bindtap="goSquare">
+      <image src="../../images/square.png"></image>
+      <text>项目广场</text>
+    </view>
+  </view>
+</view>
+
+
+
 

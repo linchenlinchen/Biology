@@ -1,5 +1,5 @@
 const object = require("../../utils/util")
-
+var app = getApp()
 // pages/individual/apartment_login.js
 Page({
   /**
@@ -94,12 +94,15 @@ Page({
       })
     }
     else if(this.data.newPassword1===this.data.newPassword2){
+      let that = this
       object.HttpRequst('/api/user/newPassword',1,'',{"username":this.data.username,"password":this.data.newPassword1},"POST").then(function(res){
         switch(res.statusCode){
           case 0:
-            object.backLastPage()
+            app.globalData.password = that.data.newPassword1
+            // object.backLastPage()
+            object.returnFirstPage()
             wx.showToast({
-              title: '修改密码成功！',
+              title: '修改密码成功！请重新登录！',
             })
             break;
           default:
