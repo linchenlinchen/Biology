@@ -1,7 +1,0 @@
-<!--pages/individual/apartment_login.wxml-->
-<view>
-  <text class="txt1">单位用户登录</text>
-  <input class="input1" placeholder="企业名" value="{{unitname}}" bindinput="inputUnit"></input>
-  <input class="input2" placeholder="密码" password="true" value="{{password}}" bindinput="inputPassword"></input>
-  <button class="button" bindtap="login"><text class='txt2'>{{login}}</text></button>
-</view>

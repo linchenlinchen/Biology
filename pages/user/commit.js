@@ -1,28 +1,19 @@
-// pages/individual/agreement_type.js
+// pages/individual/commit.js
 var object = require("../../utils/util")
-var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    projectId:"",
-    agreements:[]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    object.HttpRequst("/api/user/completedAgreements",1,'',{"username":app.globalData.username,"projectId":this.data.projectId},"GET").then(function(res){
-      console.log("rrrrrrrrrrrrrrrrrrrr:",res)
-      that.setData({
-        projectId:options.projectId,
-        agreements:res.data.agreements
-      })
-    })
+
   },
 
   /**
@@ -73,7 +64,8 @@ Page({
   onShareAppMessage: function () {
 
   },
-  investigate:function(){
-      object.jump2InvestigateWithId(this.data.projectId)
+
+  back:function(){
+      object.backLastPage()
   }
 })

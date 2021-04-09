@@ -56,7 +56,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getAllProjects(options.method)
+    if(options==undefined || options.method!="time"){
+      this.getAllProjects("hot")
+    }else{
+      this.getAllProjects("time")
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -136,7 +140,7 @@ Page({
       if (startX - endX > 50) {
         console.log("move left");
         moveFlag = false;
-        object.jump2UnitIntroduction(e.currentTarget.id)
+        object.jump2UserIntroduction(e.currentTarget.id)
       }
     }
 

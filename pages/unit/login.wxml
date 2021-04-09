@@ -1,13 +1,7 @@
-<!--pages/individual/login.wxml-->
+<!--pages/individual/apartment_login.wxml-->
 <view>
-  <view class="wrapper">
-    <button class="box" id='v_login' bindtap="vo_login"><text>{{volunteer_account_login}}</text></button>
-    <button class="box" id="a_login" bindtap="ap_login"><text>{{apartment_account_login}}</text></button>
-    <button class="box" id="u_login" bindtap=""><text>{{user_random_login}}</text></button>
-    <button class="box" id="reg" bindtap="to_register"><text>{{register}}</text></button>
-  </view>
-
+  <text class="txt1">单位用户登录</text>
+  <input class="input1" placeholder="企业名" value="{{unitname}}" bindinput="inputUnit"></input>
+  <input class="input2" placeholder="密码" password="true" value="{{password}}" bindinput="inputPassword"></input>
+  <button class="button" bindtap="login"><text class='txt2'>{{login}}</text></button>
 </view>
-
-
-

@@ -114,26 +114,26 @@ Page({
 
     console.log("visit_details e:",e.currentTarget.id)
     let id = e.currentTarget.id
-    object.jump2InvestigateWithId(id)
+    object.jump2UserInvestigateWithId(id)
   },
 
 
 
 // 以下为侧边栏
   changeLock:function(){
-    object.jump2Lock(true,false,false)
+    object.jump2UserLock(true,false,false)
   },
 
   changePassword:function(){
-    object.jump2Lock(false,true,false)
+    object.jump2UserLock(false,true,false)
   },
 
   forgetGesture:function(){
-    object.jump2forgetGesture()
+    object.jump2UserForgetLock()
   },
 
   goSquare:function(){
-    object.jump2Square()
+    object.jump2UserSquare()
   },
 
   signOut:function(){

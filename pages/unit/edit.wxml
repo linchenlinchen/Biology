@@ -15,8 +15,8 @@
   
   <view class="content">
     <view class="input"> 
-      <input type="text" class="name_input" id="{{dataNumber+1}}" placeholder="请输入数据字段名"   bindinput="inputDataName" ></input>
-      <input type="text" class="content_input" id="{{dataNumber+1}}" placeholder="点击输入数据字段简介"  bindinput="inputDataDescription" ></input>
+      <input type="text" class="name_input" id="{{dataNumber+1}}" placeholder="请输入数据字段名"   bindinput="inputDataName" value="{{tempDataName}}"></input>
+      <input type="text" class="content_input" id="{{dataNumber+1}}" placeholder="点击输入数据字段简介"  bindinput="inputDataDescription" value="{{tempDataDesc}}"></input>
     </view>
     <view>
       <button class="circle" bindtap="addData"  id="{{dataNumber+1}}">增加数据类型字段</button>
@@ -38,8 +38,8 @@
 
   <view class="content">
     <view class="input"> 
-      <input type="text" class="name_input" id="{{agreeNumber+1}}" placeholder="请输入同意类型字段名"  bindinput="inputAgreeName"></input>
-      <input type="text" class="content_input" id="{{agreeNumber+1}}" placeholder="点击输入同意类型字段简介"  bindinput="inputAgreeDescription"></input>
+      <input type="text" class="name_input" id="{{agreeNumber+1}}" placeholder="请输入同意类型字段名"  bindinput="inputAgreeName" value="{{tempagreeName}}"></input>
+      <input type="text" class="content_input" id="{{agreeNumber+1}}" placeholder="点击输入同意类型字段简介"  bindinput="inputAgreeDescription" value="{{tempagreeDesc}}"></input>
     </view>
     <view>
       <button class="circle" bindtap="addAgree" id="{{agreeNumber+1}}">增加同意类型字段</button>

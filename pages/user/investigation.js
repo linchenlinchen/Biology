@@ -90,7 +90,7 @@ Page({
   },
 
   submit:function(){
-      object.jump2LockWithData(false,false,false,this.data.projectId,this.data.pairs)
+      object.direct2UserLockWithData(false,false,false,this.data.projectId,this.data.pairs)
   },
   onClick:function(e){
     console.log("onClick:",e)

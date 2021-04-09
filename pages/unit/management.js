@@ -1,6 +1,5 @@
 // pages/individual/management.js
 const app = getApp()
-const { jump2QueryResult, jump2Square, HttpRequst, jump2Edit } = require("../../utils/util")
 var object = require("../../utils/util")
 Page({
 
@@ -114,20 +113,20 @@ Page({
     })
   },
   queryResult:function(e){
-    object.jump2QueryResultWithId(e.currentTarget.id)
+    object.jump2UnitQueryResultWithId(e.currentTarget.id)
   },
   goSquare:function(){
-    object.jump2Square()
+    object.jump2UnitSquare()
   },
   newProject:function(){
 
-    object.jump2Edit(null)
+    object.jump2UnitEdit(null)
   },
   modifyProject:function(e){
     console.log(e.currentTarget.id)
-    object.jump2Edit(e.currentTarget.id)
+    object.jump2UnitEdit(e.currentTarget.id)
   },
   changeData:function(){
-    object.jump2changePassword(app.globalData.username)
+    object.direct2UnitChangePassword(app.globalData.unitname)
   }
 })

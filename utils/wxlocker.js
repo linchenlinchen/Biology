@@ -57,7 +57,7 @@
                 object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
                     if(res.statusCode == 0){
-                        object.jump2changePassword(username)
+                        object.direct2UserChangePassword(username)
                         wx.showToast({
                             title: '解锁成功！',
                         })
@@ -178,7 +178,7 @@
                     if(res.statusCode == 0){
                         object.HttpRequst("/api/user/agreement",1,'',{"username":username,"projectId":projectId,"data":pairs},'PUT').then(function(res){
                             if(res.statusCode ==0){
-                                object.jump2Commit()
+                                object.direct2UserCommit()
                                 wx.showToast({
                                     title: '提交成功！',
                                 })
@@ -228,7 +228,7 @@
             wx.showToast({
               title: '设置手势密码成功！',
             })
-            object.jump2My()
+            object.jump2UserMyProgram()
         }
 
 

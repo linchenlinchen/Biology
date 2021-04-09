@@ -1,16 +1,12 @@
-// pages/individual/apartment_login.js
-let {HttpRequst, jump2Management, direct2Management} = require("../../utils/util")
+let object = require("../../utils/util")
 var app = getApp()
+// pages/individual/apartment_login.js
 Page({
-  login:function(event){
-
- },
-
   /**
    * 页面的初始数据
    */
   data: {
-    unitname:"",
+    username:"",
     password:"",
     login:"登录"
   },
@@ -32,7 +28,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function (options) {
 
   },
 
@@ -70,11 +66,10 @@ Page({
   onShareAppMessage: function () {
 
   },
-
-  inputUnit:function(e){
+  inputUser:function(e){
     console.log(e.detail.value)
     this.setData({
-      unitname:e.detail.value
+      username:e.detail.value
     })
   },
   inputPassword:function(e){
@@ -90,36 +85,38 @@ Page({
    */
   login:function(event){
     let that = this
-    HttpRequst('/api/unit/companyLogin',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(result){
-      switch(result.statusCode){
+    object.HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
+      switch(res.statusCode){
         case 0:
-          that.doSuccessLogin(result)
+          that.doSuccessLogin(res);
+          
           break;
         default:
           wx.showToast({
-            title: '企业名或密码不正确！',
+            title: '用户名或密码不正确！',
           })
       }
     })
   },
 
-  
   doSuccessLogin(result){
     console.log("RESULT",result)
-    app.globalData.unitname = this.data.unitname
+    app.globalData.username = this.data.username
     app.globalData.password = this.data.password
     let that = this
-    HttpRequst('/api/unit/unitProjects',1,'',{"unit":this.data.unitname},"GET").then(function(result){
+    object.HttpRequst('/api/user/userProjects',1,'',{"username":this.data.username},"GET").then(function(result){
       that.doSuccessMyList(result)
     })
+    
   },
 
   doSuccessMyList(result){
     if(result.statusCode == 0){
-      app.globalData.publishedProjects = result.data.publishedList
-      app.globalData.draftProjects = result.data.draftList
-      app.globalData.isUnit=true
-      direct2Management()
+      app.globalData.ongoingProjects = result.data.ongoingList
+      app.globalData.finishedProjects = result.data.finishedList
+      app.globalData.isUnit = false
+      object.direct2UserMyProgram()
     }
   },
+
 })

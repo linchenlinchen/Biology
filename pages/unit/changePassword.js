@@ -86,11 +86,11 @@ Page({
    */
   login:function(event){
     let that = this
-    object.HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
+    object.HttpRequst('/api/unit/companyLogin',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(res){
       switch(res.statusCode){
         case 0:
           
-          object.jump2newPassword(that.data.username)
+          object.direct2UnitNewPassword(that.data.unitname)
           break;
         default:
           wx.showToast({

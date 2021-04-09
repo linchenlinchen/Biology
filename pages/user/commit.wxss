@@ -1,0 +1,9 @@
+/* pages/individual/commit.wxss */
+.container {
+  background-color: #eee;
+  height:50vh;
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}

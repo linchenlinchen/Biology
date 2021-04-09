@@ -20,161 +20,216 @@ function formatNumber(n) {
 function toThousands(num) {
     return (num || "").replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }
-function jump2Investigate(){
-  wx.redirectTo({
-    url: path_head+app.globalData.investigation,
-  })
-}
 
-function jump2InvestigateWithId(pid){
-  wx.navigateTo({
-    url: path_head+app.globalData.investigation+"?projectId="+pid,
-  })
-}
-function jump2Commit(){
-  wx.redirectTo({
-    url:  path_head+app.globalData.commit,
-  })
-}
-function direct2My(){
-  wx.redirectTo({
-    url:  path_head+app.globalData.my_program,
-  })
-}
-
-function jump2My(){
-  wx.navigateTo({
-    url:  path_head+app.globalData.my_program,
-  })
-}
-
-function jump2VolunteerPrelogin(){
-  wx.navigateTo({
-    url:  path_head+app.globalData.volunteer_prelogin,
-  })
-}
-function jump2Lock(changeGesture,changePassword,forgetGesture){
-  wx.navigateTo({
-    url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
-  })
-}
-function jump2LockWithData(changeGesture,changePassword,forgetGesture,pid,pairs){
-  let p = JSON.stringify(pairs)
-  wx.redirectTo({
-    url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture+"projectId="+pid+"pairs="+p,
-  })
-}
-
-function direct2Lock(changeGesture,changePassword,forgetGesture){
-  wx.redirectTo({
-    url:  path_head+app.globalData.lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
-  })
-}
-
-function direct2Square(){
-  wx.redirectTo({
-    url:  path_head+app.globalData.square,
-  })
-}
-function jump2Square(){
-  wx.navigateTo({
-    url:  path_head+app.globalData.square,
-  })
-}
-
-function jump2forgetGesture(){
-  wx.navigateTo({
-    url:  path_head+app.globalData.forgetGesture,
-  })
-}
-
-function jump2changePassword(username){
-  wx.redirectTo({
-    url:  path_head+app.globalData.changePassword+"?username="+username,
-  })
-}
-
-function jump2newPassword(username){
-  wx.redirectTo({
-    url:  path_head+app.globalData.newPassword+"?username="+username,
-  })
-}
-
-function jump2AgreementWithId(pid){
-  wx.navigateTo({
-    url:  path_head+app.globalData.agreement+"?projectId="+pid,
-  })
-}
-
-function jump2AgreementTypeWithId(pid){
-  wx.navigateTo({
-    url:  path_head+app.globalData.agreement_type+"?projectId="+pid,
-  })
-}
-
-function jump2Contents(pid){
-  wx.navigateTo({
-    url:  path_head+app.globalData.contents+"?projectId="+pid,
-  })
-}
+// public
 function jump2Login(){
   wx.navigateTo({
     url:  path_head+app.globalData.login,
   })
 }
-function jump2VolunteerLogin(){
+
+
+// unit
+function jump2UnitLogin(){
   wx.navigateTo({
-    url:  path_head+app.globalData.volunteer_login,
-  })
-}
-function jump2VolunteerLoginWithPhone(telephone){
-  wx.navigateTo({
-    url:  path_head+app.globalData.volunteer_login+"?telephone="+telephone,
+    url:  path_head+app.globalData.unit_login,
   })
 }
 
-function jump2Agreement(){
+
+function direct2UnitManagement(){
   wx.redirectTo({
-    url: path_head+app.globalData.agreement,
+    url:  path_head+app.globalData.unit_management,
   })
 }
-function jump2AgreementType(){
-  wx.redirectTo({
-    url:  path_head+app.globalData.agreement_type,
-  })
-}
-function jump2ApartmentLogin(){
+function jump2UnitManagement(){
   wx.navigateTo({
-    url:  path_head+app.globalData.apartment_login,
+    url:  path_head+app.globalData.unit_management,
   })
 }
 
-function direct2Management(){
-  wx.redirectTo({
-    url:  path_head+app.globalData.management,
-  })
-}
-function jump2Management(){
+function jump2UnitEdit(projectId){
   wx.navigateTo({
-    url:  path_head+app.globalData.management,
-  })
-}
-function jump2QueryResult(){
-  wx.navigateTo({
-    url:  path_head+app.globalData.query_result,
+    url:  path_head+app.globalData.unit_edit+"?projectId="+projectId,
   })
 }
 
-function jump2QueryResultWithId(projectId){
-  wx.navigateTo({
-    url:  path_head+app.globalData.query_result+"?projectId="+projectId,
+function direct2UnitSquare(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.unit_square,
   })
 }
-function jump2Edit(projectId){
+function jump2UnitSquare(){
   wx.navigateTo({
-    url:  path_head+app.globalData.edit+"?projectId="+projectId,
+    url:  path_head+app.globalData.unit_square,
   })
 }
+
+function jump2UnitIntroduction(pid){
+  wx.navigateTo({
+    url:  path_head+app.globalData.unit_introduction+"?projectId="+pid,
+  })
+}
+
+function jump2UnitQueryResult(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.unit_result,
+  })
+}
+
+function jump2UnitQueryResultWithId(projectId){
+  wx.navigateTo({
+    url:  path_head+app.globalData.unit_result+"?projectId="+projectId,
+  })
+}
+
+function direct2UnitCommit(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.unit_commit,
+  })
+}
+
+function direct2UnitChangePassword(unitname){
+  wx.redirectTo({
+    url:  path_head+app.globalData.unit_changePassword+"?unitname="+unitname,
+  })
+}
+
+
+
+function direct2UnitNewPassword(unitname){
+  wx.redirectTo({
+    url:  path_head+app.globalData.unit_newPassword+"?unitname="+unitname,
+  })
+}
+
+// user
+function jump2UserLogin(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_login,
+  })
+}
+function jump2UserLoginWithPhone(telephone){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_login+"?telephone="+telephone,
+  })
+}
+function direct2UserMyProgram(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_my_program,
+  })
+}
+
+function jump2UserMyProgram(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_my_program,
+  })
+}
+
+function direct2UserInvestigate(){
+  wx.redirectTo({
+    url: path_head+app.globalData.user_investigation,
+  })
+}
+
+
+
+function jump2UserInvestigateWithId(pid){
+  wx.navigateTo({
+    url: path_head+app.globalData.user_investigation+"?projectId="+pid,
+  })
+}
+function direct2UserInvestigateWithId(pid){
+  wx.redirectTo({
+    url: path_head+app.globalData.user_investigation+"?projectId="+pid,
+  })
+}
+
+function direct2UserSquare(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_square,
+  })
+}
+function jump2UserSquare(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_square,
+  })
+}
+
+function jump2UserSquareWithMethod(method){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_square+"?method="+method,
+  })
+}
+
+function jump2UserIntroduction(pid){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_introduction+"?projectId="+pid,
+  })
+}
+
+
+function direct2UserAgreementWithId(pid){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_agreement+"?projectId="+pid,
+  })
+}
+
+function direct2UserAgreementTypeWithId(pid){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_agreement_type+"?projectId="+pid,
+  })
+}
+
+function direct2UserCommit(){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_commit,
+  })
+}
+
+function jump2UserLock(changeGesture,changePassword,forgetGesture){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
+  })
+}
+function direct2UserLockWithData(changeGesture,changePassword,forgetGesture,pid,pairs){
+  let p = JSON.stringify(pairs)
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture+"projectId="+pid+"pairs="+p,
+  })
+}
+
+function direct2UserLock(changeGesture,changePassword,forgetGesture){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture,
+  })
+}
+
+function direct2UserChangePassword(username){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_changePassword+"?username="+username,
+  })
+}
+function direct2UserNewPassword(username){
+  wx.redirectTo({
+    url:  path_head+app.globalData.user_newPassword+"?username="+username,
+  })
+}
+
+
+function jump2UserForgetLock(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_forgetLock,
+  })
+}
+
+
+
+
+
+
+
+
 function backLastPage(){
     // 1.获取页面栈(返回一个数组,包含了所有曾经去过的页面)
   var pages = getCurrentPages(); //可以log看看是什么(里面什么都有--)
@@ -188,8 +243,6 @@ function backLastPage(){
       }
   });
 }
-
-
 
 function returnFirstPage(){
   wx.reLaunch({
@@ -244,36 +297,44 @@ function HttpRequst( url, sessionChoose, sessionId, params, method) {
 module.exports = {
   formatTime,
   HttpRequst,
-  jump2Agreement,
-  jump2AgreementWithId,
-  jump2AgreementType,
-  jump2AgreementTypeWithId,
-  jump2ApartmentLogin,
-  jump2Commit,
-  direct2Square,
-  jump2Contents,
-  jump2QueryResult,
-  jump2QueryResultWithId,
-  jump2Edit,
-  jump2Lock,
-  direct2Lock,
-  jump2LockWithData,
-  jump2VolunteerPrelogin,
-  jump2VolunteerLogin,
-  jump2VolunteerLoginWithPhone,
-  jump2Management,
-  jump2Login,
-  jump2Investigate,
-  jump2InvestigateWithId,
-  jump2Square,
-  jump2My,
-  jump2changePassword,
-  jump2newPassword,
-  direct2Management,
-  direct2My,
-  jump2forgetGesture,
   toThousands:toThousands,
   backLastPage,
-  returnFirstPage
+  returnFirstPage,
+// unit
+  jump2Login,
+  jump2UnitLogin,
+  direct2UnitManagement,
+  jump2UnitManagement,
+  jump2UnitEdit,
+  direct2UnitSquare,
+  jump2UnitSquare,
+  jump2UnitIntroduction,
+  jump2UnitQueryResult,
+  jump2UnitQueryResultWithId,
+  direct2UnitCommit,
+  direct2UnitChangePassword,
+  direct2UnitNewPassword,
+
+// user
+  jump2UserLogin,
+  jump2UserLoginWithPhone,
+  direct2UserMyProgram,
+  jump2UserMyProgram,
+  direct2UserInvestigate,
+  jump2UserInvestigateWithId,
+  direct2UserInvestigateWithId,
+  direct2UserSquare,
+  jump2UserSquare,
+  jump2UserSquareWithMethod,
+  jump2UserIntroduction,
+  direct2UserAgreementWithId,
+  direct2UserAgreementTypeWithId,
+  direct2UserCommit,
+  jump2UserLock,
+  direct2UserLockWithData,
+  direct2UserLock,
+  direct2UserChangePassword,
+  direct2UserNewPassword,
+  jump2UserForgetLock
 }
 

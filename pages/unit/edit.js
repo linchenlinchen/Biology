@@ -186,19 +186,23 @@ Page({
     }else{
       this.data.tempagreeDesc = e.detail.value
     }
-    console.log( this.data.agreeItems[e.currentTarget.id].description)
+    // console.log( this.data.agreeItems[e.currentTarget.id].description)
   },
   addData:function(e){
-    if(tempDataName.length>0 && tempDataDesc.length>0){
+    if(this.data.tempDataName.length>0 && this.data.tempDataDesc.length>0){
       let tmp = this.data.projectItems
       tmp.push({"aid":parseInt(e.currentTarget.id),"name":this.data.tempDataName,"description":this.data.tempDataDesc})
+      wx.showToast({
+        title: '添加字段：'+this.data.tempDataName,
+      })
       this.setData({
         projectItems:tmp,
         dataNumber:this.data.dataNumber+1,
         tempDataName:"",
         tempDataDesc:""
       })
-      console.log("data:",this.data)
+      // console.log("data:",this.data)
+      
     }else{
       wx.showToast({
         title: '请填写完整信息！',
@@ -206,16 +210,19 @@ Page({
     }
   },
   addAgree:function(e){
-    if(tempagreeName.length>0 && tempagreeDesc.length>0){
+    if(this.data.tempagreeName.length>0 && this.data.tempagreeDesc.length>0){
       let tmp = this.data.agreeItems
       tmp.push({"iid":parseInt(e.currentTarget.id),"name":"","value":this.data.tempagreeName,"description":this.data.tempagreeDesc})
+      wx.showToast({
+        title: '添加字段：'+this.data.tempagreeName,
+      })
       this.setData({
         agreeItems:tmp,
         agreeNumber:this.data.agreeNumber+1,
         tempagreeName:"",
         tempagreeDesc:""
       })
-      console.log("data:",this.data)
+      // console.log("data:",this.data)
     }else{
       wx.showToast({
         title: '请填写完整信息！',
@@ -235,6 +242,9 @@ Page({
       projectItems:tmp,
       dataNumber:this.data.dataNumber-1
     })
+    wx.showToast({
+      title: '删除成功',
+    })
     console.log("data:",this.data)
   },
   deleteAgree:function(e){
@@ -249,6 +259,9 @@ Page({
     this.setData({
       agreeItems:tmp,
       agreeNumber:this.data.agreeNumber-1
+    })
+    wx.showToast({
+      title: '删除成功',
     })
     console.log("data:",this.data)
   }

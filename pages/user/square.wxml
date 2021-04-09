@@ -1,0 +1,67 @@
+<!--pages/individual/square.wxml-->
+
+<view class="top">
+  <view wx:if="{{hasUserInfo}}">
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+  </view>
+    <!-- 一般情况下的搜索框显示 -->
+    <view wx:if="{{!focus}}" class='search'>    
+      <input type='text' placeholder='搜索' placeholder-class="center"         confirm-type='search' bindfocus="focusHandler" style="background-image: url(../../images/search_background.png)"></input>
+    </view>
+    <view wx:if="{{!focus}}" class='search'>    
+      <image class="search_image" src='../../images/search.png'></image>
+    </view>
+    <!-- 获得焦点时的搜索框，多一个取消按钮 -->
+    <view wx:if="{{focus}}" class='search'>
+      <input type='text' placeholder='搜索' confirm-type='search' value="{{inputValue}}"  bindinput='query' style="background-image: url(../../images/search_background.png)"></input>
+      
+    </view>
+    <view wx:if="{{focus}}" class='search'>
+      <image class="search_image" src='../../images/cancel.jpeg' bindtap='cancelHandler'></image>
+    </view>
+  <view>
+      <image class="message" src='../../images/message.png'></image>
+  </view>
+</view>
+<view class="tail">
+  <button bindtap="getAllProjectsByHot">按照热度排序</button>
+  <button bindtap="getAllProjectsByTime">按照时间排序</button>
+</view>
+<view wx:for="{{projects}}" wx:for-item="item" class="container"  >
+  <view class="whole" id="{{item.projectId}}"  bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"  >
+    <view class="main">
+      <view class="left"><image style="demoing" mode="scaleToFill" src="{{item.picture}}"></image></view>
+      <view class="center">
+        <view class="content">
+          <title>{{item.projectName}}</title>
+          <p>{{publishedTime}}： {{item.releaseTime}}</p>
+          <p>{{description}}： {{item.organization}}</p>
+        </view>
+      </view>
+      <view class="right" style="background:{{background[(item.projectId)%7]}}"></view>
+    </view>
+    <view wx:if="{{enter==item.projectId}}">
+      <view class="over">
+      <view class="dt"><image src="../../images/enter_detail.jpg"></image></view></view>
+    </view>
+  </view>
+</view>
+<view class="tail">
+  <button bindtap="jump2PrePage">上一页</button>
+  <button bindtap="jump2NextPage">下一页</button>
+</view>
+<view><text class="none">没有更多内容</text></view>
+<view class="bar">
+  <view class="attend">
+    <view class="attend_flex" bindtap="back">
+      <image src="../../images/favorite.png"></image>
+      <text>我的问卷</text>
+    </view>
+  </view>
+  <view class="square">
+    <view class="square_flex" >
+      <image src="../../images/square_green.png"></image>
+      <text>项目广场</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+<view id="banner">
+  <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+    <block wx:for="{{projectInfo.imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="100%" height="100%"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view id="warm">
+  <text>如果您授权</text>
+  <text>您提供的生物样本与数据长期存储</text>
+  <text>用于未来目的不确定的研究</text>
+</view>
+<view id="introduce">
+  <text id="introduce_title">项目简介：</text>
+  <text>{{projectInfo.description}}</text>
+</view>
+<view>
+  <button hidden="{{hidden}}" bindtap="goInvestigate">进入问卷填写</button>
+</view>
+<!-- <button bindtap="changeIndicatorDots"> indicator-dots </button>
+<button bindtap="changeAutoplay"> autoplay </button>
+<slider bindchange="intervalChange" show-value min="500" max="2000"/> interval
+<slider bindchange="durationChange" show-value min="1000" max="10000"/> duration -->

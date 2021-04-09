@@ -109,6 +109,6 @@ Page({
 
   goInvestigate:function(){
     console.log("this.data.projectInfo.projectId:",this.data.projectInfo.projectId)
-    object.jump2AgreementWithId(this.data.projectInfo.projectId)
+    object.direct2UserAgreementWithId(this.data.projectInfo.projectId)
   }
 })
