@@ -92,12 +92,12 @@ Page({
   getCode:function(){
     // url, sessionChoose, sessionId, params, method, doSuccess, doFail
     let that = this
-    HttpRequst('/api/user/code',1,'',{username:this.data.username},"GET").then(function(res){
+    HttpRequst('/api/user/code',1,'',{"username":this.data.username},"GET").then(function(res){
       that.doSuccessOfCode(res)
     })
   },
   check:function(){
-    HttpRequst("/api/user/register",1,'',{username:this.data.username,code:this.data.confirmCode,password:this.data.pw},"POST").then(function(res){
+    HttpRequst("/api/user/register",1,'',{"username":this.data.username,"code":this.data.confirmCode,"password":this.data.pw},"POST").then(function(res){
       doSuccessOfSignUp(res)
     })
   },

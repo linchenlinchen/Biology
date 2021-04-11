@@ -25,7 +25,7 @@ Page({
     console.log("investigate onload pid:",pid)
     if(pid!=undefined && pid!=null){
       let that = this
-      object.HttpRequst("/api/user/completedAgreements",1,'',{username:this.data.username,projectId:pid},"GET").
+      object.HttpRequst("/api/user/agreements",1,'',{"username":this.data.username,"projectId":pid},"GET").
       then(function(res){
         that.setData({
           projectId:pid,

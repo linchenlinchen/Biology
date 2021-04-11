@@ -13,7 +13,7 @@
     </view>
     <!-- 获得焦点时的搜索框，多一个取消按钮 -->
     <view wx:if="{{focus}}" class='search'>
-      <input type='text' placeholder='搜索' confirm-type='search' value="{{inputValue}}"  bindinput='query' style="background-image: url(../../images/search_background.png)"></input>
+      <input type='text' placeholder='搜索' confirm-type='search' value="{{inputValue}}"  bindconfirm="query" style="background-image: url(../../images/search_background.png)"></input>
       
     </view>
     <view wx:if="{{focus}}" class='search'>

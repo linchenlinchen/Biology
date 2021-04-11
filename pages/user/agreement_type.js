@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    object.HttpRequst("/api/user/completedAgreements",1,'',{"username":app.globalData.username,"projectId":this.data.projectId},"GET").then(function(res){
+    object.HttpRequst("/api/user/agreements",1,'',{"username":app.globalData.username,"projectId":this.data.projectId},"GET").then(function(res){
       console.log("rrrrrrrrrrrrrrrrrrrr:",res)
       that.setData({
         projectId:options.projectId,

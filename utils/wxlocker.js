@@ -2,8 +2,7 @@
 
 (function(){
         let object = require("../utils/util")
-        let username = getApp().globalData.username
-        let password = getApp().globalData.password
+        var app = getApp()
         let projectId ;
         let pairs;
         let code;
@@ -52,14 +51,21 @@
 
         // 核心函数
         wxlocker.prototype.storePass = function() {// touchend结束之后对密码和状态的处理
+            let username = app.globalData.username
+            let password = app.globalData.password
             if(lock.data.changePassword=="true"){
                 that = this
-                object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
+                
+                object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
                     if(res.statusCode == 0){
                         object.direct2UserChangePassword(username)
                         wx.showToast({
                             title: '解锁成功！',
+                        })
+                    }else{
+                        wx.showToast({
+                          title: '解锁出错！',
                         })
                     }
                 })
@@ -80,7 +86,7 @@
                 }
                 else if(this.checkPass(psw,lastPass) && needConsistency){
                     that = this
-                    object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"code":code,"gesture":psw},"POST")
+                    object.HttpRequst('/api/user/forgetSignature',1,'',{"username":username,"password":password,"code":code,"gesture":psw},"PUT")
                     .then(function(res){
                         if(res.statusCode==0){
                             needConsistency = false
@@ -111,7 +117,7 @@
                     if (this.checkPass(psw, lastPass)) {//两次密码一致,fp表示上一次的绘制手势
                         // 设置手势密码
                         that = this
-                        object.HttpRequst("/api/user/signature",1,'',{"username":username,"password":password,"gesture":psw},'POST').then(function(res){
+                        object.HttpRequst("/api/user/signature",1,'',{"username":username,"password":password,"gesture":psw},'PUT').then(function(res){
                             if(res.statusCode==0){
                                 hasRelease = false
                                 needConsistency = false
@@ -136,7 +142,7 @@
                 } else if (!hasRelease) {
                     console.log("enter 2")
                     that = this
-                    object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
+                    object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                         if(res.statusCode==0){
                             that.reset()
                             that.lastPoint=[]
@@ -173,10 +179,10 @@
                 }
             }else{
                 that = this
-                object.HttpRequst('/api/user/uncheckedSignature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
+                object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
                     if(res.statusCode == 0){
-                        object.HttpRequst("/api/user/agreement",1,'',{"username":username,"projectId":projectId,"data":pairs},'PUT').then(function(res){
+                        object.HttpRequst("/api/user/agreements",1,'',{"username":username,"projectId":projectId,"data":pairs},'PUT').then(function(res){
                             if(res.statusCode ==0){
                                 object.direct2UserCommit()
                                 wx.showToast({
@@ -332,7 +338,6 @@
             this.createCircle();//画圆圈
         }
         wxlocker.prototype.drawCle = function(x, y) { // 初始化解锁密码面板
-            // obejct.HttpRequst
             this.ctx.setStrokeStyle('#10AEFF');
             this.ctx.setLineWidth(1);
             this.ctx.beginPath();
@@ -496,7 +501,6 @@
 
         // module
         module.exports = {
-            // HttpRequst,
             lock:new wxlocker(),
             
         }

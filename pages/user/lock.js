@@ -1,6 +1,5 @@
 // pages/main/index.js
 var wxlocker = require("../../utils/wxlocker");
-const {HttpRequst} = require("../../utils/util")
 Page({
   data:{
      title:'请设置手势密码',

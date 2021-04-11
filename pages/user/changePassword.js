@@ -86,10 +86,9 @@ Page({
    */
   login:function(event){
     let that = this
-    object.HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
+    object.HttpRequst('/api/user/login',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
       switch(res.statusCode){
         case 0:
-          
           object.direct2UserNewPassword(that.data.username)
           break;
         default:

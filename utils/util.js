@@ -36,6 +36,11 @@ function jump2UnitLogin(){
   })
 }
 
+function jump2UnitForgetPassword(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.unit_forgetPassword,
+  })
+}
 
 function direct2UnitManagement(){
   wx.redirectTo({
@@ -107,6 +112,12 @@ function direct2UnitNewPassword(unitname){
 function jump2UserLogin(){
   wx.navigateTo({
     url:  path_head+app.globalData.user_login,
+  })
+}
+
+function jump2UserForgetPassword(){
+  wx.navigateTo({
+    url:  path_head+app.globalData.user_forgetPassword,
   })
 }
 function jump2UserLoginWithPhone(telephone){
@@ -303,6 +314,7 @@ module.exports = {
 // unit
   jump2Login,
   jump2UnitLogin,
+  jump2UnitForgetPassword,
   direct2UnitManagement,
   jump2UnitManagement,
   jump2UnitEdit,
@@ -317,6 +329,7 @@ module.exports = {
 
 // user
   jump2UserLogin,
+  jump2UserForgetPassword,
   jump2UserLoginWithPhone,
   direct2UserMyProgram,
   jump2UserMyProgram,

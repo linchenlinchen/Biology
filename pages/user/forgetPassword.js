@@ -1,11 +1,20 @@
-// pages/user/forgetPassword.js
+let object = require("../../utils/util")
+
+// pages/individual/register.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    telephone:"手机",
+    code:"验证码",
+    getCodeNumber:"获取验证码",
+    password:"密码",
+    check:"去设置新的手势密码",
+    username:"",
+    confirmCode:"",
+    pw:""
   },
 
   /**
@@ -62,5 +71,73 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  inputValue:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      username:e.detail.value
+    })
+  },
+  codeValue:function(e){
+    this.setData({
+      confirmCode:e.detail.value
+    })
+  },
+  pswValue:function(e){
+    this.setData({
+      pw:e.detail.value
+    })
+  },
+
+  getCode:function(){
+    // url, sessionChoose, sessionId, params, method, doSuccess, doFail
+    let that = this
+    object.HttpRequst('/api/user/forgetCode',1,'',{"username":this.data.username},"GET")
+    .then(function(res){
+      that.doSuccessOfCode(res)
+    })
+  },
+  check:function(){
+    let that = this
+    object.HttpRequst("/api/user/forgetCode",1,'',{"username":this.data.username,"code":this.data.confirmCode},"POST").then(function(res){
+      that.doSuccessOfCheck(res)
+    })
+  },
+
+  doSuccessOfCode(result){
+    if(result.statusCode==0){
+      console.log("验证码发送成功！")
+      wx.showToast({
+        title: '验证码发送成功！',
+      })
+    }else if(result.statusCode==1){
+      console.log("该手机号已注册！")
+      wx.showToast({
+        title: '该手机号已注册！',
+      })
+    }else{
+      console.log("获取验证码出错！")
+      wx.showToast({
+        title: '获取验证码出错！',
+      })
+    }
+  },
+
+  doSuccessOfCheck(result){
+    if(result.statusCode==0){
+      console.log("验证成功！")
+      wx.showToast({
+        title: '验证成功！',
+      })
+      object.direct2UserNewPassword(this.data.username)
+    }else{
+      console.log("验证不通过！")
+      wx.showToast({
+        title: '验证不通过！',
+      })
+    }
+  },
+  
 })
+
+

@@ -85,7 +85,7 @@ Page({
    */
   login:function(event){
     let that = this
-    object.HttpRequst('/api/user/userLogin',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
+    object.HttpRequst('/api/user/login',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
       switch(res.statusCode){
         case 0:
           that.doSuccessLogin(res);
@@ -103,8 +103,9 @@ Page({
     console.log("RESULT",result)
     app.globalData.username = this.data.username
     app.globalData.password = this.data.password
+    console.log("app.globalData.username",app.globalData.username)
     let that = this
-    object.HttpRequst('/api/user/userProjects',1,'',{"username":this.data.username},"GET").then(function(result){
+    object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":1,"finishpage":1},"GET").then(function(result){
       that.doSuccessMyList(result)
     })
     
@@ -113,10 +114,16 @@ Page({
   doSuccessMyList(result){
     if(result.statusCode == 0){
       app.globalData.ongoingProjects = result.data.ongoingList
+      app.globalData.onPages = result.data.onPages
       app.globalData.finishedProjects = result.data.finishedList
+      app.globalData.finishPages = result.data.finishPages
       app.globalData.isUnit = false
       object.direct2UserMyProgram()
     }
   },
+
+  goForget(){
+    object.jump2UserForgetPassword()
+  }
 
 })

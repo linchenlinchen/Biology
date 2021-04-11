@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username:"",
+    unitname:"",
     password:"",
     confirm:"确认"
   },
@@ -16,9 +16,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      username:options.username
+      unitname:options.unitname
     })
-    console.log("username",this.data.username)
+    console.log("unitname",this.data.unitname)
   },
 
   /**
@@ -86,10 +86,9 @@ Page({
    */
   login:function(event){
     let that = this
-    object.HttpRequst('/api/unit/companyLogin',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(res){
+    object.HttpRequst('/api/unit/login',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(res){
       switch(res.statusCode){
         case 0:
-          
           object.direct2UnitNewPassword(that.data.unitname)
           break;
         default:

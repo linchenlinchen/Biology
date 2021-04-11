@@ -1,7 +1,11 @@
 <!--pages/individual/commit.wxml-->
+<view class="whole">
 <view class='container'>
-<icon class='icon-img' type='success'></icon>
-<text>提交成功</text>
-<text>所提交内容已经成功存储</text>
-<button type="primary" bindtap="back">返回前一页面</button>
+  <view class="body">
+  <icon class='icon-img' type='success' size="200"></icon>
+  <text class="success">提交成功!</text>
+  <text class="thanks">提交内容已经成功存储\n感谢您对生物科研的支持</text>
+  <button type="primary" bindtap="back">返回前一页面</button>
+  </view>
+</view>
 </view>

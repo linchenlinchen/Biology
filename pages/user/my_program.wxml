@@ -31,6 +31,14 @@
   </view>
   <view class="pj_list">
     <text class="pj_txt">{{ongoing}}</text>
+    <view class="page_change">
+      <view>
+        <text bindtap="last_on">{{last}}</text>
+      </view>
+      <view>
+        <text bindtap="next_on">{{next}}</text>
+      </view>
+    </view>
   </view>
   <view  wx:for="{{ongoingList}}" wx:for-index='key' >
     <view  class="list">
@@ -45,6 +53,14 @@
   </view>
   <view class="pj_list">
     <text class="pj_txt">{{finished}}</text>
+    <view class="page_change">
+      <view>
+        <text bindtap="last_finish">{{last}}</text>
+      </view>
+      <view>
+        <text bindtap="next_finish">{{next}}</text>
+      </view>
+    </view>
   </view>
   <view wx:for="{{finishedList}}"  wx:for-index='key'>
     <view  class="list" id="{{key}}" bindtap="visit_details">

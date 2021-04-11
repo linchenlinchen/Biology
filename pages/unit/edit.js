@@ -95,6 +95,7 @@ Page({
   saveDraft:function(){
     let that = this
     object.HttpRequst("/api/unit/projectDraft",1,'',{
+      "unitname":getApp().globalData.unitname,
       "projectId":this.data.projectId,
       "projectName":this.data.projectName,
       "projectGoal":this.data.projectGoal,
@@ -118,6 +119,7 @@ Page({
 
   publish:function(){
     object.HttpRequst("/api/unit/projectPublish",1,'',{
+      "unitname":getApp().globalData.unitname,
       "projectId":this.data.projectId,
       "projectName":this.data.projectName,
       "projectGoal":this.data.projectGoal,

@@ -90,7 +90,7 @@ Page({
    */
   login:function(event){
     let that = this
-    object.HttpRequst('/api/unit/companyLogin',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(result){
+    object.HttpRequst('/api/unit/login',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(result){
       switch(result.statusCode){
         case 0:
           that.doSuccessLogin(result)
@@ -109,7 +109,7 @@ Page({
     app.globalData.unitname = this.data.unitname
     app.globalData.password = this.data.password
     let that = this
-    object.HttpRequst('/api/unit/unitProjects',1,'',{"unit":this.data.unitname},"GET").then(function(result){
+    object.HttpRequst('/api/unit/projects',1,'',{"unitname":this.data.unitname},"GET").then(function(result){
       that.doSuccessMyList(result)
     })
   },
@@ -122,4 +122,8 @@ Page({
       object.direct2UnitManagement()
     }
   },
+
+  goForget(){
+    object.jump2UnitForgetPassword()
+  }
 })

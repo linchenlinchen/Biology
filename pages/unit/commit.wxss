@@ -1,9 +1,47 @@
 /* pages/individual/commit.wxss */
-.container {
-  background-color: #eee;
-  height:50vh;
+page{
+  width: 100%;
+  height: 100%;
+}
+.whole{
 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  
+  width:600rpx;
+  height: 100%;
   display:flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+.body{
+  width:600rpx;
+  height: 700rpx;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon-image{
+  width: 300rpx;
+  height: 300rpx;
+  size: 300rpx;
+}
+
+.success{
+  font-size:xx-large;
+  font-weight: bold;
+}
+
+.thanks{
+  color: #808080;
+  font-size:large;
+  font-weight: normal;
 }

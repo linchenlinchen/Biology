@@ -1,20 +1,15 @@
 <!--pages/individual/query_result.wxml-->
 <view>
   <view>
-    <input type='text' placeholder='按照手机号搜索志愿者' class="search"></input>
+    <input type='text' placeholder='按照手机号搜索志愿者' class="search" bindconfirm="search"></input>
   </view>
-  <view wx:for="{{result}}" wx:for-item="item" class="content">
-     <p>{{username}}: {{item.username}}</p>
+  <view wx:for="{{result.info}}" wx:for-item="it" class="content">
+     <p>{{username}}: {{it.username}}</p>
      <view class="line"></view>
-     <p>{{recognition}}: {{item.recognition}}</p>
-     <view class="line"></view>
-     <p>{{shape}}: {{item.shape}}</p>
-     <view class="line"></view>
-     <p>{{record}}: {{item.record}}</p>
-     <view class="line"></view>
-     <p>{{brain}}: {{item.brain}}</p>
-     <view class="line"></view>
-     <p>{{other}}: {{item.other}}</p>
+     <view wx:for="{{it.pairs}}" wx:for-item="item">
+      <p>{{result.projectItems[item.aid-1].name}}: {{result.agreeItems[item.iid-1].value}}</p>
+      <view class="line"></view>
+    </view>
   </view>
   <view>
     <button class="button" bindtap="backManage"><p>返回问卷管理页</p></button>

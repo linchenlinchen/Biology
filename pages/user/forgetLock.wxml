@@ -1,18 +1,16 @@
 <!--pages/individual/register.wxml-->
-<view id="box">
-  <view id="form">
+<view class="bodyBlock">
+    <view class="body">
+      <view class="bodyFlex">
     <label>
-      <text>{{telephone}}</text>
       <input placeholder="手机号" id="account" value="{{username}}" bindinput="inputValue"/>
     </label>
     
     <label>
-      <text>{{password}}</text>
       <input password="true" placeholder="密码" id="pw" value="{{pw}}"   bindinput="pswValue"/>
     </label>
 
     <label>
-      <text>{{code}}</text>
       <input placeholder="验证码" id="code" value="{{confirmCode}}"  bindinput="codeValue"/>
     </label>
     <label>
@@ -22,5 +20,6 @@
     <label>
       <button bindtap="check">{{check}}</button>
     </label>
+  </view>
   </view>
 </view>

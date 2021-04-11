@@ -42,7 +42,7 @@ Page({
   onLoad: function (options) {
     console.log(options.projectId)
     let that = this
-    object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
+    object.HttpRequst("/api/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
         that.setData({
           projectInfo:result.data,
           hidden:getApp().globalData.isUnit

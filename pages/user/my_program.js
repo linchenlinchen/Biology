@@ -18,6 +18,12 @@ Page({
     square:"项目广场",
     signOut:"退出账号",
 
+    current_on:1,
+    current_finish:1,
+
+    last:"<   ",
+    next:"    >",
+
     ongoing:"正在进行的问卷",
     finished:"已完成的问卷",
     changeAgree:"修改同意类型",
@@ -142,6 +148,8 @@ Page({
     app.globalData.ongoingProjects = null
     app.globalData.username = null
     app.globalData.password = null
+    app.globalData.onPages = null
+    app.globalData.finishPages = null
     object.backLastPage()
     wx.showToast({
       title: '已退出登录',
@@ -179,7 +187,93 @@ Page({
         // })
       }
     }
+  },
+
+  last_on:function(){
+    if(this.data.current_on>1){
+      let that = this
+      object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on-1,"finishpage":this.data.current_finish},"GET").then(function(result){
+        if(result.statusCode == 0){
+          that.setData({
+            ongoingList:result.data.ongoingList,
+            current_on:that.data.current_on-1
+          })
+        }else{
+          wx.showToast({
+            title: '出错了！',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '已经是第一页！',
+      })
+    }
+  },
+
+  next_on:function(){
+    if(this.data.current_on<app.globalData.onPages){
+      let that = this
+      object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on+1,"finishpage":this.data.current_finish},"GET").then(function(result){
+        if(result.statusCode == 0){
+          that.setData({
+            ongoingList:result.data.ongoingList,
+            current_on:that.data.current_on+1
+          })
+        }else{
+          wx.showToast({
+            title: '出错了！',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '已经是最后一页！',
+      })
+    }
+  },
+
+  last_finish:function(){
+    if(this.data.current_finish>1){
+      let that = this
+      object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on,"finishpage":this.data.current_finish-1},"GET").then(function(result){
+        if(result.statusCode == 0){
+          that.setData({
+            finishedList:result.data.finishedList,
+            current_finish:that.data.current_finish-1
+          })
+        }else{
+          wx.showToast({
+            title: '出错了！',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '已经是第一页！',
+      })
+    }
+  },
+
+  next_finish:function(){
+    if(this.data.current_finish<app.globalData.finishPages){
+      let that = this
+      object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on,"finishpage":this.data.current_finish+1},"GET").then(function(result){
+        if(result.statusCode == 0){
+          that.setData({
+            finishedList:result.data.finishedList,
+            current_finish:that.data.current_finish+1
+          })
+        }else{
+          wx.showToast({
+            title: '出错了！',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '已经是第一页！',
+      })
+    }
   }
-
-
 })

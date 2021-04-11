@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      unitname:options.telephone
+      unitname:options.unitname
     })
     console.log("unitname",this.data.unitname)
   },

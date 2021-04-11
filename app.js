@@ -39,9 +39,13 @@ App({
     username:null,
     password:null,
     ongoingProjects:null,
+    onPages:1,
     finishedProjects:null,
+    finishPages:1,
     publishedProjects:null,
+    publishPages:1,
     draftProjects:null,
+    draftPages:1,
     isUnit:false,
 
     // baseUrl:"https://shengwu",
@@ -51,6 +55,7 @@ App({
     login:"pages/public/login",
     // unit
     unit_login:"pages/unit/login",
+    unit_forgetPassword:"pages/unit/forgetPassword",
     unit_management:"pages/unit/management",
     unit_edit:"pages/unit/edit",
     unit_square:"pages/unit/square",
@@ -62,6 +67,7 @@ App({
     unit_forgetPassword:"pages/unit/forgetPassword",
     // user
     user_login:"pages/user/login",
+    user_forgetPassword:"pages/user/forgetPassword",
     user_my_program:"pages/user/my_program",
     user_investigation:"pages/user/investigation",
     user_square:"pages/user/square",

@@ -6,14 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     username:"志愿者手机号",
+    projectId:"",
     recognition :"面部、声纹、掌纹、指纹、基因序列等生物识别数据",
     shape:"形态特征数据",
     record:"电子医疗记录",
     brain:"脑影像资料",
     other:"剩余样本与样本中提取的其他数据",
     result:[],
-
+    search:""
   },
 
   /**
@@ -22,7 +24,25 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let that = this
-    object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":options.projectId},"GET").then(function(res){
+
+    object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":options.projectId,"search":""},"GET").then(function(res){
+      console.log("res",res)
+      console.log(res.data)
+      if(res.statusCode == 0){
+        that.setData({
+          result:res.data,
+          projectId:options.projectId
+        })
+      }
+    })
+  },
+  search:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      search:e.detail.value
+    })
+    let that = this
+    object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":this.data.projectId,"search":this.data.search},"GET").then(function(res){
       console.log("res",res)
       console.log(res.data)
       if(res.statusCode == 0){

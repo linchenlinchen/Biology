@@ -106,6 +106,8 @@ Page({
     app.globalData.draftProjects = null
     app.globalData.unitname = null
     app.globalData.password = null
+    app.globalData.publishPages = 0
+    app.globalData.draftPages = 0
 
     object.backLastPage()
     wx.showToast({

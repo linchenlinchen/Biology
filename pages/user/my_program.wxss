@@ -53,21 +53,6 @@ view{
   color: white;
 }
 
-/* .portrait{
-  width: 150rpx;
-  height: 250rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-content: center;
-}
-.portrait image{
-  height: 150rpx;
-  width: 150rpx;
-  border: 1px,solid,black;
-  border-radius: 75rpx;
-  overflow:hidden;
-} */
 .account{
   width: 500rpx;
   height: 250rpx;
@@ -98,7 +83,10 @@ view{
 
 
 .pj_list{
+  display: flex;
+  justify-content: space-between;
   height:60rpx;
+  
   background-color: #e6e6e6;
   font-size: small  ;
   color: #666666;
@@ -106,6 +94,21 @@ view{
   align-items: center;
   padding-left: 20rpx;
 }
+
+
+.pj_txt{
+  height: 130rpx;
+  line-height: 130rpx;
+  width: 500rpx;
+}
+.page_change{
+  width: 150rpx;
+  display: flex;
+}
+.page_change view{
+  width: 75rpx;
+}
+
 
 
 .list{
@@ -144,10 +147,7 @@ view{
   width: 100%;
   height: 2rpx;
 }
-.pj_txt{
-  height: 130rpx;
-  line-height: 130rpx;
-}
+
 
 page{
   width:100%;
