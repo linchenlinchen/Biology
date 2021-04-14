@@ -96,7 +96,7 @@ Page({
       that.doSuccessOfCode(res)
     })
   },
-  check:function(){
+  signUp:function(){
     HttpRequst("/api/user/register",1,'',{"username":this.data.username,"code":this.data.confirmCode,"password":this.data.pw},"POST").then(function(res){
       doSuccessOfSignUp(res)
     })

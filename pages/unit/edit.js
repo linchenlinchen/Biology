@@ -11,6 +11,8 @@ Page({
     projectName:"",
     projectGoal:"",
     projectDuration:"",
+    beginDate:"",
+    endDate:"",
     projectItems:[],
     agreeItems:[],
     dataNumber:0,
@@ -30,12 +32,15 @@ Page({
       console.log("is here")
       let that = this
       object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
-        console.log(result)
+        console.log(result.data.projectDuration.split("-")[0].replace(/\./g,"-"))
+        console.log(result.data.projectDuration.split("-")[0])
         that.setData({
           projectId:result.data.projectId,
           projectName:result.data.projectName,
           projectGoal:result.data.projectGoal,
           projectDuration:result.data.projectDuration,
+          beginDate:result.data.projectDuration.split("-")[0].replace(/\./g,"-"),
+          endDate:result.data.projectDuration.split("-")[1].replace(/\./g,"-"),
           projectItems:result.data.projectItems,
           agreeItems:result.data.agreeItems,
           dataNumber:result.data.projectItems.length,
@@ -92,53 +97,105 @@ Page({
   onShareAppMessage: function () {
 
   },
-  saveDraft:function(){
-    let that = this
-    object.HttpRequst("/api/unit/projectDraft",1,'',{
-      "unitname":getApp().globalData.unitname,
-      "projectId":this.data.projectId,
-      "projectName":this.data.projectName,
-      "projectGoal":this.data.projectGoal,
-      "projectDuration":this.data.projectDuration,
-      "projectItems":this.data.projectItems,
-      "agreeItems":this.data.agreeItems,
-      "isPublished":false
-    },'POST').then(function(result){
-      if(result.statusCode == 0){
-        object.backLastPage()
-        wx.showToast({
-          title: '成功保存到草稿箱！',
-        })
-      }else{
-        wx.showToast({
-          title: '出错了，请检查网络！',
-        })
+  checkNull:function(){
+    console.log("1")
+    for (const element in this.data) {
+      console.log(element)
+      console.log(this.data[element])
+      if(element == "tempDataName" || element == "tempDataDesc" || element == "tempagreeName" ||element == "tempagreeDesc" || element=="projectId"){
+        continue
       }
-    })
+      else if(this.data[element]==null || this.data[element]==""){
+        console.log("2")
+        return true
+      }
+    }
+    if(this.data.projectItems.length<1 || this.data.agreeItems.length<1){
+      return true
+    }
+    for (const element in this.data.projectItems) {
+      for (const key in element) {
+        if(element[key]==null || element[key]==""){
+          console.log("3")
+          return true
+        }
+      }
+      
+    }
+    for (const element in this.data.agreeItems) {
+      for (const key in element) {
+        if(element[key]==null || element[key]==""){
+          console.log("4")
+          return true
+        }
+      }
+    }
+    
+    return false
+  },
+  saveDraft:function(){
+    if(!this.checkNull()){
+      let that = this
+      object.HttpRequst("/api/unit/projectDraft",1,'',{
+        "unitname":getApp().globalData.unitname,
+        "projectId":this.data.projectId,
+        "projectName":this.data.projectName,
+        "projectGoal":this.data.projectGoal,
+        "projectDuration":this.data.projectDuration,
+        "projectItems":this.data.projectItems,
+        "agreeItems":this.data.agreeItems,
+        "isPublished":false
+      },'POST').then(function(result){
+        if(result.statusCode == 0){
+          object.backLastPage()
+          wx.showToast({
+            title: '成功保存到草稿箱！',
+          })
+        }else{
+          wx.showToast({
+            title: '出错了，请检查网络！',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '请填写完整信息！',
+        icon:'loading',
+        image:'../../images/error.png'
+      })
+    }
   },
 
   publish:function(){
-    object.HttpRequst("/api/unit/projectPublish",1,'',{
-      "unitname":getApp().globalData.unitname,
-      "projectId":this.data.projectId,
-      "projectName":this.data.projectName,
-      "projectGoal":this.data.projectGoal,
-      "projectDuration":this.data.projectDuration,
-      "projectItems":this.data.projectItems,
-      "agreeItems":this.data.agreeItems,
-      "isPublished":true
-    },'POST').then(function(result){
-      if(result.statusCode == 0){
-        object.backLastPage()
-        wx.showToast({
-          title: '成功发布！',
-        })
-      }else{
-        wx.showToast({
-          title: '出错了，请检查网络！',
-        })
-      }
-    })
+    if(!this.checkNull()){
+      object.HttpRequst("/api/unit/projectPublish",1,'',{
+        "unitname":getApp().globalData.unitname,
+        "projectId":this.data.projectId,
+        "projectName":this.data.projectName,
+        "projectGoal":this.data.projectGoal,
+        "projectDuration":this.data.projectDuration,
+        "projectItems":this.data.projectItems,
+        "agreeItems":this.data.agreeItems,
+        "isPublished":true
+      },'POST').then(function(result){
+        if(result.statusCode == 0){
+          object.backLastPage()
+          wx.showToast({
+            title: '成功发布！',
+          })
+        }else{
+          wx.showToast({
+            title: '出错了，请检查网络！',
+          })
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '请填写完整信息！',
+        icon:'loading',
+        image:'../../images/error.png'
+      })
+    }
   },
 
   inputName:function(e){
@@ -153,10 +210,48 @@ Page({
     this.data.projectGoal=e.detail.value
     console.log(this.data)
   },
-  inputDuration:function(e){
-    this.data.projectDuration=e.detail.value
-    console.log(this.data)
+
+  changeBeginDate(e) {
+    this.setData({
+        'beginDate': e.detail.value
+    });
+    this.changeDuration()
   },
+  changeEndDate(e) {
+    this.setData({
+        'endDate': e.detail.value
+    });
+    this.changeDuration()
+    
+  },
+  changeDuration(){
+    if(this.getDurationDay(this.data.beginDate,this.data.endDate)>=0){
+      console.log(this.data.beginDate.replace(/-/g,".")+"-"+this.data.endDate.replace(/-/g,"."))
+      this.setData({
+        'projectDuration':this.data.beginDate.replace(/-/g,".")+"-"+this.data.endDate.replace(/-/g,".")
+      })
+    }else{
+      this.setData({
+        'endDate': ""
+      });
+      wx.showToast({
+        title: '结束需晚于开始！',
+      })
+    }
+  },
+  getDurationDay: function(startTime,endTime) {
+      //日期格式化
+      var start_date = new Date(startTime.replace(/-/g, "/"));
+      var end_date = new Date(endTime.replace(/-/g, "/"));
+      //转成毫秒数，两个日期相减
+      var ms = end_date.getTime() - start_date.getTime();
+      //转换成天数
+      var day = parseInt(ms / (1000 * 60 * 60 * 24));
+      //do something
+      console.log("day = ", day);
+      return day
+  },
+
   inputDataName:function(e){
     console.log("e.currentTarget.itemId",e.currentTarget.id)
     if(e.currentTarget.id<=this.data.dataNumber){

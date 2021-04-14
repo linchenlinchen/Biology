@@ -9,14 +9,28 @@
     <view><input type="text" bindinput="inputGoal" value="{{projectGoal}}"></input></view>
   </view>
   <view class="content">
-    <view><p>时间周期: </p></view>
-    <view><input type="text" bindinput="inputDuration" value="{{projectDuration}}"></input></view>
+    <view><p>开始时间: </p></view>
+    <!-- <view><input type="text" bindinput="inputDuration" value="{{projectDuration}}"></input></view> -->
+    <view>
+      <picker mode="date" value="{{beginDate}}" bindchange="changeBeginDate">
+      <input placeholder="请输入项目开始时间" name="planToDate"  value="{{beginDate}}" readonly="true" ></input>
+    </picker>
+    </view>
+  </view>
+  <view class="content">
+    <view><p>结束时间: </p></view>
+    <!-- <view><input type="text" bindinput="inputDuration" value="{{projectDuration}}"></input></view> -->
+    <view>
+      <picker mode="date" value="{{endDate}}" bindchange="changeEndDate">
+      <input placeholder="请输入项目结束时间" name="planToDate"  value="{{endDate}}" readonly="true"></input>
+    </picker>
+    </view>
   </view>
   
   <view class="content">
     <view class="input"> 
       <input type="text" class="name_input" id="{{dataNumber+1}}" placeholder="请输入数据字段名"   bindinput="inputDataName" value="{{tempDataName}}"></input>
-      <input type="text" class="content_input" id="{{dataNumber+1}}" placeholder="点击输入数据字段简介"  bindinput="inputDataDescription" value="{{tempDataDesc}}"></input>
+      <textarea type="text" class="content_input" id="{{dataNumber+1}}" placeholder="点击输入数据字段简介"  bindinput="inputDataDescription" value="{{tempDataDesc}}"></textarea>
     </view>
     <view>
       <button class="circle" bindtap="addData"  id="{{dataNumber+1}}">增加数据类型字段</button>
@@ -27,7 +41,7 @@
     <view class="content">
       <view class="input"> 
         <input type="text" id="{{item.aid}}" class="name_input" placeholder="请输入数据字段名" value="{{item.name}}"  bindinput="inputDataName" ></input>
-        <input type="text" id="{{item.aid}}" class="content_input" placeholder="点击输入数据字段简介"  value="{{item.description}}"  bindinput="inputDataDescription"></input>
+        <textarea type="text" id="{{item.aid}}" class="content_input" placeholder="点击输入数据字段简介"  value="{{item.description}}"  bindinput="inputDataDescription"></textarea>
       </view>
       <view>
         <button class="delete"  id="{{item.aid}}" bindtap="deleteData">删除此字段</button>
@@ -39,7 +53,7 @@
   <view class="content">
     <view class="input"> 
       <input type="text" class="name_input" id="{{agreeNumber+1}}" placeholder="请输入同意类型字段名"  bindinput="inputAgreeName" value="{{tempagreeName}}"></input>
-      <input type="text" class="content_input" id="{{agreeNumber+1}}" placeholder="点击输入同意类型字段简介"  bindinput="inputAgreeDescription" value="{{tempagreeDesc}}"></input>
+      <textarea type="text" class="content_input" id="{{agreeNumber+1}}" placeholder="点击输入同意类型字段简介"  bindinput="inputAgreeDescription" value="{{tempagreeDesc}}"></textarea>
     </view>
     <view>
       <button class="circle" bindtap="addAgree" id="{{agreeNumber+1}}">增加同意类型字段</button>
@@ -49,7 +63,7 @@
     <view class="content">
       <view class="input"> 
         <input type="text" id="{{item.iid}}" class="name_input" placeholder="请输入同意类型字段名" value="{{item.value}}"  bindinput="inputAgreeName" ></input>
-        <input type="text" id="{{item.iid}}" class="content_input" placeholder="点击输入同意类型字段简介"  value="{{item.description}}"  bindinput="inputAgreeDescription"></input>
+        <textarea type="text" id="{{item.iid}}" class="content_input" placeholder="点击输入同意类型字段简介"  value="{{item.description}}"  bindinput="inputAgreeDescription"></textarea>
       </view>
       <view>
         <button class="delete" id="{{item.iid}}" bindtap="deleteAgree">删除此字段</button>

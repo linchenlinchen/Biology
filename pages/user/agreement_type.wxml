@@ -9,7 +9,7 @@
 
 
   <view class="note" wx:for="{{agreements}}">
-    <text class="abstract">{{item.name}}\n</text>
+    <text class="abstract">{{item.value}}\n</text>
     <text>{{item.description}}</text>
   </view>
   <view class="agree">
