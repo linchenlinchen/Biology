@@ -1,5 +1,6 @@
 // pages/individual/management.js
 const app = getApp()
+
 var object = require("../../utils/util")
 Page({
 
@@ -130,5 +131,5 @@ Page({
   },
   changeData:function(){
     object.direct2UnitChangePassword(app.globalData.unitname)
-  }
+  },
 })

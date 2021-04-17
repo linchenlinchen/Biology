@@ -58,7 +58,7 @@
                 
                 object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
-                    if(res.statusCode == 0){
+                    if(res.data.statusCode == 0){
                         object.direct2UserChangePassword(username)
                         wx.showToast({
                             title: '解锁成功！',
@@ -88,7 +88,7 @@
                     that = this
                     object.HttpRequst('/api/user/forgetSignature',1,'',{"username":username,"password":password,"code":code,"gesture":psw},"PUT")
                     .then(function(res){
-                        if(res.statusCode==0){
+                        if(res.data.statusCode==0){
                             needConsistency = false
                             object.backLastPage()
                             wx.showToast({
@@ -118,7 +118,7 @@
                         // 设置手势密码
                         that = this
                         object.HttpRequst("/api/user/signature",1,'',{"username":username,"password":password,"gesture":psw},'PUT').then(function(res){
-                            if(res.statusCode==0){
+                            if(res.data.statusCode==0){
                                 hasRelease = false
                                 needConsistency = false
                                 that.reset()
@@ -143,7 +143,7 @@
                     console.log("enter 2")
                     that = this
                     object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
-                        if(res.statusCode==0){
+                        if(res.data.statusCode==0){
                             that.reset()
                             that.lastPoint=[]
                             that.setBoolean(true,false)
@@ -181,9 +181,9 @@
                 that = this
                 object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
-                    if(res.statusCode == 0){
+                    if(res.data.statusCode == 0){
                         object.HttpRequst("/api/user/agreements",1,'',{"username":username,"projectId":projectId,"data":pairs},'PUT').then(function(res){
-                            if(res.statusCode ==0){
+                            if(res.data.statusCode ==0){
                                 object.direct2UserCommit()
                                 wx.showToast({
                                     title: '提交成功！',
@@ -213,7 +213,7 @@
         /**解锁来让修改密码**/
         wxlocker.prototype.doSuccessReleaseLock = function(res){
             console.log("doSuccessReleaseLock")
-            if(res.statusCode==0){
+            if(res.data.statusCode==0){
                 console.log("res",res)
                 that.setBoolean(true,false)
                 that.setType("解锁成功,请绘制新手势密码","succ",'#09bb07')

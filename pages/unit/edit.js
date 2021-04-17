@@ -32,19 +32,19 @@ Page({
       console.log("is here")
       let that = this
       object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
-        console.log(result.data.projectDuration.split("-")[0].replace(/\./g,"-"))
-        console.log(result.data.projectDuration.split("-")[0])
+        console.log(result.data.data.projectDuration.split("-")[0].replace(/\./g,"-"))
+        console.log(result.data.data.projectDuration.split("-")[0])
         that.setData({
-          projectId:result.data.projectId,
-          projectName:result.data.projectName,
-          projectGoal:result.data.projectGoal,
-          projectDuration:result.data.projectDuration,
-          beginDate:result.data.projectDuration.split("-")[0].replace(/\./g,"-"),
-          endDate:result.data.projectDuration.split("-")[1].replace(/\./g,"-"),
-          projectItems:result.data.projectItems,
-          agreeItems:result.data.agreeItems,
-          dataNumber:result.data.projectItems.length,
-          agreeNumber:result.data.agreeItems.length
+          projectId:result.data.data.projectId,
+          projectName:result.data.data.projectName,
+          projectGoal:result.data.data.projectGoal,
+          projectDuration:result.data.data.projectDuration,
+          beginDate:result.data.data.projectDuration.split("-")[0].replace(/\./g,"-"),
+          endDate:result.data.data.projectDuration.split("-")[1].replace(/\./g,"-"),
+          projectItems:result.data.data.projectItems,
+          agreeItems:result.data.data.agreeItems,
+          dataNumber:result.data.data.projectItems.length,
+          agreeNumber:result.data.data.agreeItems.length
         })
       })
     }
@@ -146,7 +146,8 @@ Page({
         "agreeItems":this.data.agreeItems,
         "isPublished":false
       },'POST').then(function(result){
-        if(result.statusCode == 0){
+        console.log(result)
+        if(result.data.statusCode == 0){
           object.backLastPage()
           wx.showToast({
             title: '成功保存到草稿箱！',
@@ -178,7 +179,7 @@ Page({
         "agreeItems":this.data.agreeItems,
         "isPublished":true
       },'POST').then(function(result){
-        if(result.statusCode == 0){
+        if(result.data.statusCode == 0){
           object.backLastPage()
           wx.showToast({
             title: '成功发布！',

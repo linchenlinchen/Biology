@@ -3,6 +3,9 @@
     <view class="body">
       <view class="bodyFlex">
         <label>
+          <input placeholder="邮箱" id="mail" value="{{mail}}" bindinput="inputMail"/>
+        </label>
+        <label>
           <input placeholder="手机号" id="account" value="{{username}}" bindinput="inputValue"/>
         </label>
         <label>

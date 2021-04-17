@@ -102,7 +102,7 @@ Page({
   },
 
   doSuccessOfCode(result){
-    if(result.statusCode==0){
+    if(result.data.statusCode==0){
       console.log("验证码发送成功！")
       wx.showToast({
         title: '验证码发送成功！',
@@ -116,7 +116,7 @@ Page({
   },
 
   doSuccessOfCheck(result){
-    if(result.statusCode==0){
+    if(result.data.statusCode==0){
       console.log("验证成功！")
       wx.showToast({
         title: '验证成功！',

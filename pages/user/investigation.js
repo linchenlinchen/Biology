@@ -29,12 +29,12 @@ Page({
       then(function(res){
         that.setData({
           projectId:pid,
-          isFinished:(res.data.isFinished=="true"?true:false),
+          isFinished:(res.data.data.isFinished=="true"?true:false),
           currentAID:1,
-          checkId:res.data.pairs[0].iid,
-          items:res.data.items,
-          agreements:res.data.agreements,
-          pairs:res.data.pairs
+          checkId:res.data.data.pairs[0].iid,
+          items:res.data.data.items,
+          agreements:res.data.data.agreements,
+          pairs:res.data.data.pairs
         })
       })
     }

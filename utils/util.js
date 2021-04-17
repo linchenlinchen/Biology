@@ -1,6 +1,6 @@
 var app = getApp()
 var path_head = "../../"
-var baseUrl = "https://shengwu"
+var baseUrl = "https://zqty.chenxistudio.cn"
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -294,6 +294,7 @@ function HttpRequst( url, sessionChoose, sessionId, params, method) {
       },
       fail:function(res){
         console.log("url:"+url+" 请求失败！")
+        console.log(res)
         // doFail(res)
         reject(res)
       },

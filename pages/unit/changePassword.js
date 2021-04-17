@@ -87,7 +87,7 @@ Page({
   login:function(event){
     let that = this
     object.HttpRequst('/api/unit/login',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(res){
-      switch(res.statusCode){
+      switch(res.data.statusCode){
         case 0:
           object.direct2UnitNewPassword(that.data.unitname)
           break;

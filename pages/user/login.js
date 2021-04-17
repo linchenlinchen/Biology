@@ -86,7 +86,8 @@ Page({
   login:function(event){
     let that = this
     object.HttpRequst('/api/user/login',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
-      switch(res.statusCode){
+      console.log(res)
+      switch(res.data.statusCode){
         case 0:
           that.doSuccessLogin(res);
           
@@ -112,11 +113,11 @@ Page({
   },
 
   doSuccessMyList(result){
-    if(result.statusCode == 0){
-      app.globalData.ongoingProjects = result.data.ongoingList
-      app.globalData.onPages = result.data.onPages
-      app.globalData.finishedProjects = result.data.finishedList
-      app.globalData.finishPages = result.data.finishPages
+    if(result.data.statusCode == 0){
+      app.globalData.ongoingProjects = result.data.data.ongoingList
+      app.globalData.onPages = result.data.data.onPages
+      app.globalData.finishedProjects = result.data.data.finishedList
+      app.globalData.finishPages = result.data.data.finishPages
       app.globalData.isUnit = false
       object.direct2UserMyProgram()
     }

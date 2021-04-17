@@ -193,9 +193,9 @@ Page({
     if(this.data.current_on>1){
       let that = this
       object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on-1,"finishpage":this.data.current_finish},"GET").then(function(result){
-        if(result.statusCode == 0){
+        if(result.data.statusCode == 0){
           that.setData({
-            ongoingList:result.data.ongoingList,
+            ongoingList:result.data.data.ongoingList,
             current_on:that.data.current_on-1
           })
         }else{
@@ -215,9 +215,9 @@ Page({
     if(this.data.current_on<app.globalData.onPages){
       let that = this
       object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on+1,"finishpage":this.data.current_finish},"GET").then(function(result){
-        if(result.statusCode == 0){
+        if(result.data.statusCode == 0){
           that.setData({
-            ongoingList:result.data.ongoingList,
+            ongoingList:result.data.data.ongoingList,
             current_on:that.data.current_on+1
           })
         }else{
@@ -237,9 +237,9 @@ Page({
     if(this.data.current_finish>1){
       let that = this
       object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on,"finishpage":this.data.current_finish-1},"GET").then(function(result){
-        if(result.statusCode == 0){
+        if(result.data.statusCode == 0){
           that.setData({
-            finishedList:result.data.finishedList,
+            finishedList:result.data.data.finishedList,
             current_finish:that.data.current_finish-1
           })
         }else{
@@ -259,9 +259,9 @@ Page({
     if(this.data.current_finish<app.globalData.finishPages){
       let that = this
       object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":this.data.current_on,"finishpage":this.data.current_finish+1},"GET").then(function(result){
-        if(result.statusCode == 0){
+        if(result.data.statusCode == 0){
           that.setData({
-            finishedList:result.data.finishedList,
+            finishedList:result.data.data.finishedList,
             current_finish:that.data.current_finish+1
           })
         }else{

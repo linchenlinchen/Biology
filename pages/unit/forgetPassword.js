@@ -105,12 +105,12 @@ Page({
   },
 
   doSuccessOfCode(result){
-    if(result.statusCode==0){
+    if(result.data.statusCode==0){
       console.log("验证码发送成功！")
       wx.showToast({
         title: '验证码发送成功！',
       })
-    }else if(result.statusCode==1){
+    }else if(result.data.statusCode==1101){
       console.log("该手机号已注册！")
       wx.showToast({
         title: '该手机号已注册！',
@@ -124,7 +124,7 @@ Page({
   },
 
   doSuccessOfCheck(result){
-    if(result.statusCode==0){
+    if(result.data.statusCode==0){
       console.log("验证成功！")
       wx.showToast({
         title: '验证成功！',

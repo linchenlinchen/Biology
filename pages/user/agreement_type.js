@@ -20,7 +20,7 @@ Page({
       console.log("rrrrrrrrrrrrrrrrrrrr:",res)
       that.setData({
         projectId:options.projectId,
-        agreements:res.data.items
+        agreements:res.data.data.items
       })
     })
   },

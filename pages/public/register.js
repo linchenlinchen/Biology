@@ -1,5 +1,5 @@
-const { HttpRequst, jump2VolunteerLoginWithPhone } = require("../../utils/util")
 
+let object = require("../../utils/util")
 // pages/individual/register.js
 Page({
 
@@ -14,7 +14,8 @@ Page({
     submit:"提交",
     username:"",
     confirmCode:"",
-    pw:""
+    pw:"",
+    mail:""
   },
 
   /**
@@ -72,6 +73,11 @@ Page({
   onShareAppMessage: function () {
 
   },
+  inputMail:function(e){
+    this.setData({
+      mail:e.detail.value
+    })
+  },
   inputValue:function(e){
     console.log(e.detail.value)
     this.setData({
@@ -92,25 +98,28 @@ Page({
   getCode:function(){
     // url, sessionChoose, sessionId, params, method, doSuccess, doFail
     let that = this
-    HttpRequst('/api/user/code',1,'',{"username":this.data.username},"GET").then(function(res){
+    object.HttpRequst('/api/user/code',1,'',{"mail":this.data.mail,"username":this.data.username},"GET").then(function(res){
+      console.log(res)
       that.doSuccessOfCode(res)
     })
   },
   signUp:function(){
-    HttpRequst("/api/user/register",1,'',{"username":this.data.username,"code":this.data.confirmCode,"password":this.data.pw},"POST").then(function(res){
-      doSuccessOfSignUp(res)
+    let that = this
+    object.HttpRequst("/api/user/register",1,'',{"mail":this.data.mail,"username":this.data.username,"code":this.data.confirmCode,"password":this.data.pw},"POST").then(function(res){
+      that.doSuccessOfSignUp(res)
     })
   },
 
 
 
   doSuccessOfCode(result){
-    if(result.statusCode==0){
+    console.log(result)
+    if(result.data.statusCode==0){
       console.log("验证码发送成功！")
       wx.showToast({
         title: '验证码发送成功！',
       })
-    }else if(result.statusCode==1101){
+    }else if(result.data.statusCode==1101){
       console.log("该手机号已注册！")
       wx.showToast({
         title: '该手机号已注册！',
@@ -124,19 +133,20 @@ Page({
   },
 
   doSuccessOfSignUp(result){
-    if(result.statusCode==0){
+    if(result.data.statusCode==0){
       console.log("注册成功！")
       wx.showToast({
         title: '注册成功！',
       })
-      jump2VolunteerLoginWithPhone(this.data.username)
-    }else if(result.statusCode==1){
+      object.jump2VolunteerLoginWithPhone(this.data.username)
+    }else if(result.data.statusCode==1){
       console.log("该手机号已注册！")
       wx.showToast({
         title: '该手机号已注册！',
       })
     }else{
       console.log("注册出错！")
+      console.log(result)
       wx.showToast({
         title: '注册出错！',
       })

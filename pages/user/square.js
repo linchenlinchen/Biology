@@ -180,9 +180,9 @@ Page({
     }
     object.HttpRequst(url,1,'',body,'GET').then(function(result){
       that.setData({
-        projects:result.data.content,
+        projects:result.data.data.content,
         currentpage:"1",
-        pages:result.data.pages
+        pages:result.data.data.pages
       })
     })
   },
@@ -213,9 +213,9 @@ Page({
 
     object.HttpRequst("/api/projects",1,'',{"method":this.data.method,"begin":"0","number":this.data.number,"search":this.data.inputValue},'GET').then(function(result){
       that.setData({
-        projects:result.data.content,
+        projects:result.data.data.content,
         currentpage:"1",
-        pages:result.data.pages
+        pages:result.data.data.pages
       })
     })
   },
@@ -235,7 +235,7 @@ Page({
     }
     object.HttpRequst(url,1,'',body,'GET').then(function(result){
       that.setData({
-        projects:result.data.content,
+        projects:result.data.data.content,
         currentpage:next
       })
     })
@@ -258,7 +258,7 @@ Page({
     }
     object.HttpRequst(url,1,'',body,'GET').then(function(result){
       that.setData({
-        projects:result.data.content,
+        projects:result.data.data.content,
         currentpage:next
       })
     })

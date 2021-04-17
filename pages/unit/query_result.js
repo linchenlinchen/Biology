@@ -28,9 +28,9 @@ Page({
     object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":options.projectId,"search":""},"GET").then(function(res){
       console.log("res",res)
       console.log(res.data)
-      if(res.statusCode == 0){
+      if(res.data.statusCode == 0){
         that.setData({
-          result:res.data,
+          result:res.data.data,
           projectId:options.projectId
         })
       }
@@ -45,9 +45,9 @@ Page({
     object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":this.data.projectId,"search":this.data.search},"GET").then(function(res){
       console.log("res",res)
       console.log(res.data)
-      if(res.statusCode == 0){
+      if(res.data.statusCode == 0){
         that.setData({
-          result:res.data
+          result:res.data.data
         })
       }
     })

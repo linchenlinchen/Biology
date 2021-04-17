@@ -96,7 +96,7 @@ Page({
     else if(this.data.newPassword1===this.data.newPassword2){
       let that = this
       object.HttpRequst('/api/unit/newPassword',1,'',{"unitname":this.data.unitname,"password":this.data.newPassword1},"POST").then(function(res){
-        switch(res.statusCode){
+        switch(res.data.statusCode){
           case 0:
             app.globalData.password = that.data.newPassword1
             // object.backLastPage()

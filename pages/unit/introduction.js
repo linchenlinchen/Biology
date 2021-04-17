@@ -44,7 +44,7 @@ Page({
     let that = this
     object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
         that.setData({
-          projectInfo:result.data,
+          projectInfo:result.data.data,
           hidden:getApp().globalData.isUnit
         })
     })

@@ -91,7 +91,7 @@ Page({
   login:function(event){
     let that = this
     object.HttpRequst('/api/unit/login',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(result){
-      switch(result.statusCode){
+      switch(result.data.statusCode){
         case 0:
           that.doSuccessLogin(result)
           break;
@@ -115,9 +115,9 @@ Page({
   },
 
   doSuccessMyList(result){
-    if(result.statusCode == 0){
-      app.globalData.publishedProjects = result.data.publishedList
-      app.globalData.draftProjects = result.data.draftList
+    if(result.data.statusCode == 0){
+      app.globalData.publishedProjects = result.data.data.publishedList
+      app.globalData.draftProjects = result.data.data.draftList
       app.globalData.isUnit=true
       object.direct2UnitManagement()
     }
