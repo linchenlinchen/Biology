@@ -41,8 +41,14 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.projectId)
+    this.setData({
+      projectInfo:{
+        "projectId":options.projectId
+      }
+    })
     let that = this
     object.HttpRequst("/api/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
+      console.log("instruduction:",result)
         that.setData({
           projectInfo:result.data.data,
           hidden:getApp().globalData.isUnit
@@ -108,7 +114,7 @@ Page({
   },
 
   goInvestigate:function(){
-    console.log("this.data.projectInfo.projectId:",this.data.projectInfo.projectId)
+    console.log("this.data.projectInfo:",this.data.projectInfo)
     object.direct2UserAgreementWithId(this.data.projectInfo.projectId)
   }
 })

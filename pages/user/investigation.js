@@ -1,5 +1,6 @@
 // pages/individual/investigation.js
 var object = require("../../utils/util")
+let app = getApp()
 Page({
 
   /**
@@ -25,8 +26,10 @@ Page({
     console.log("investigate onload pid:",pid)
     if(pid!=undefined && pid!=null){
       let that = this
-      object.HttpRequst("/api/user/agreements",1,'',{"username":this.data.username,"projectId":pid},"GET").
+      console.log("username",app.globalData.username)
+      object.HttpRequst("/api/user/agreements",1,'',{"username":app.globalData.username,"projectId":pid},"GET").
       then(function(res){
+        console.log(res)
         that.setData({
           projectId:pid,
           isFinished:(res.data.data.isFinished=="true"?true:false),

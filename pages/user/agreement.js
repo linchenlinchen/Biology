@@ -68,7 +68,8 @@ Page({
   },
 
   continue:function(){
-      object.direct2UserAgreementTypeWithId(this.data.projectId)
+    console.log("agreemenet pid:",this.data.projectId)
+    object.direct2UserAgreementTypeWithId(this.data.projectId)
   },
   back:function(){
     object.backLastPage()

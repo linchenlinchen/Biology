@@ -36,7 +36,7 @@
       <view>
         <button class="btnleft" type="primary" bindtap="queryResult" id="{{item.projectId}}">{{seeResult}}</button>
         <button class="btnleft" id='{{item.projectId}}' bindtap="derive" id="{{item.projectId}}">{{derive}}</button>
-        <button class="btnright" id='{{item.projectId}}' bindtap="modifyProject"  id="{{item.projectId}}">{{modify}}</button>
+        <button class="btnright" id='{{item.projectId}}' hidden="{{isPublished}}" bindtap="modifyProject"  id="{{item.projectId}}">{{modify}}</button>
       </view>
     </view>
   </view>

@@ -104,11 +104,12 @@ Page({
     for (const element in this.data) {
       console.log(element)
       console.log(this.data[element])
-      if(element == "tempDataName" || element == "tempDataDesc" || element == "tempagreeName" ||element == "tempagreeDesc" || element=="projectId"){
+      if(element == "tempDataName" || element == "tempDataDesc" || element == "tempagreeName" ||element == "tempagreeDesc" || element=="projectId" || element=="isPublished"){
         continue
       }
       else if(this.data[element]==null || this.data[element]==""){
-        console.log("2")
+        console.log(this.data[element]==null)
+        console.log(this.data[element]=="")
         return true
       }
     }

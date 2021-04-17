@@ -16,10 +16,13 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    this.setData({
+      projectId:options.projectId
+    })
+    console.log("username",app.globalData.username)
     object.HttpRequst("/api/user/agreements",1,'',{"username":app.globalData.username,"projectId":this.data.projectId},"GET").then(function(res){
       console.log("rrrrrrrrrrrrrrrrrrrr:",res)
       that.setData({
-        projectId:options.projectId,
         agreements:res.data.data.items
       })
     })
@@ -74,6 +77,7 @@ Page({
 
   },
   investigate:function(){
+    console.log("agreemenet type pid:",this.data.projectId)
       object.direct2UserInvestigateWithId(this.data.projectId)
   }
 })

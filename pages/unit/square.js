@@ -218,6 +218,12 @@ Page({
   jump2NextPage:function(){
     var next=parseInt(this.data.currentpage)+1;
     var begin=this.data.currentpage*this.data.number;
+    if(next>this.data.pages){
+      wx.showToast({
+        title: '已经是最后一页！',
+      })
+      return;
+    }
     var that=this;
     console.log(begin);
     let url;
@@ -239,6 +245,9 @@ Page({
   jump2PrePage:function(){
     var next=parseInt(this.data.currentpage)-1;
     if(this.data.currentpage=="1"){
+      wx.showToast({
+        title: '已经是第一页！',
+      })
       return;
     }
     var begin=(this.data.currentpage-2)*this.data.number;
