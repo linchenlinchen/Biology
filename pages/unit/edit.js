@@ -20,7 +20,8 @@ Page({
     tempDataName:"",
     tempDataDesc:"",
     tempagreeName:"",
-    tempagreeDesc:""
+    tempagreeDesc:"",
+    isPublished:false
   },
 
   /**
@@ -32,8 +33,8 @@ Page({
       console.log("is here")
       let that = this
       object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
-        console.log(result.data.data.projectDuration.split("-")[0].replace(/\./g,"-"))
-        console.log(result.data.data.projectDuration.split("-")[0])
+        console.log(result.data)
+        // console.log(result.data.data.projectDuration.split("-")[0])
         that.setData({
           projectId:result.data.data.projectId,
           projectName:result.data.data.projectName,
@@ -44,7 +45,8 @@ Page({
           projectItems:result.data.data.projectItems,
           agreeItems:result.data.data.agreeItems,
           dataNumber:result.data.data.projectItems.length,
-          agreeNumber:result.data.data.agreeItems.length
+          agreeNumber:result.data.data.agreeItems.length,
+          isPublished:result.data.data.isPublished
         })
       })
     }
@@ -256,7 +258,7 @@ Page({
   inputDataName:function(e){
     console.log("e.currentTarget.itemId",e.currentTarget.id)
     if(e.currentTarget.id<=this.data.dataNumber){
-      this.data.projectItems[e.currentTarget.id].name = e.detail.value
+      this.data.projectItems[e.currentTarget.id-1].name = e.detail.value
     }else{
       this.data.tempDataName = e.detail.value
     }
@@ -264,7 +266,7 @@ Page({
   inputDataDescription:function(e){
     console.log("e.currentTarget.itemId",e.currentTarget.id)
     if(e.currentTarget.id<=this.data.dataNumber){
-      this.data.projectItems[e.currentTarget.id].description = e.detail.value
+      this.data.projectItems[e.currentTarget.id-1].description = e.detail.value
     }else{
       this.data.tempDataDesc = e.detail.value
     }
@@ -272,7 +274,7 @@ Page({
   inputAgreeName:function(e){
     console.log("e.currentTarget.itemId",e.currentTarget.id)
     if(e.currentTarget.id<=this.data.agreeNumber){
-      this.data.agreeItems[e.currentTarget.id].value = e.detail.value
+      this.data.agreeItems[e.currentTarget.id-1].value = e.detail.value
     }else{
       this.data.tempagreeName = e.detail.value
     }
@@ -280,7 +282,7 @@ Page({
   inputAgreeDescription:function(e){
     console.log("e.currentTarget.itemId",e.currentTarget.id)
     if(e.currentTarget.id<=this.data.agreeNumber){
-      this.data.agreeItems[e.currentTarget.id].description = e.detail.value
+      this.data.agreeItems[e.currentTarget.id-1].description = e.detail.value
     }else{
       this.data.tempagreeDesc = e.detail.value
     }

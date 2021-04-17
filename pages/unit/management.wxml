@@ -35,8 +35,8 @@
       </view>
       <view>
         <button class="btnleft" type="primary" bindtap="queryResult" id="{{item.projectId}}">{{seeResult}}</button>
-        <button class="btnleft" id='{{item.projectId}}' bindtap="derive">{{derive}}</button>
-        <button class="btnright" id='{{item.projectId}}' bindtap="modifyProject">{{modify}}</button>
+        <button class="btnleft" id='{{item.projectId}}' bindtap="derive" id="{{item.projectId}}">{{derive}}</button>
+        <button class="btnright" id='{{item.projectId}}' bindtap="modifyProject"  id="{{item.projectId}}">{{modify}}</button>
       </view>
     </view>
   </view>
@@ -50,11 +50,12 @@
       </view>
     </view>
   </view>
-  <view class="content" wx:for="{{publishedList}}">
+
+  <view class="content" wx:for="{{draftList}}">
     <view>
-      <text class="txt2"> ·{{item.projectName}} 的问卷</text>
+      <text class="txt2"> {{item.projectName}} 的问卷</text>
     </view>
-    <view><button class="btnright" bindtap="modifyProject">{{modify}}</button></view>
+    <view><button class="btnright" bindtap="modifyProject" id="{{item.projectId}}">{{modify}}</button></view>
   </view>
 
   <view>

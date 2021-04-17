@@ -108,20 +108,21 @@ Page({
     console.log("RESULT",result)
     app.globalData.unitname = this.data.unitname
     app.globalData.password = this.data.password
-    let that = this
-    object.HttpRequst('/api/unit/projects',1,'',{"unitname":this.data.unitname},"GET").then(function(result){
-      that.doSuccessMyList(result)
-    })
+    object.direct2UnitManagement(this.data.unitname)
+    // let that = this
+    // object.HttpRequst('/api/unit/projects',1,'',{"unitname":this.data.unitname},"GET").then(function(result){
+    //   that.doSuccessMyList(result)
+    // })
   },
 
-  doSuccessMyList(result){
-    if(result.data.statusCode == 0){
-      app.globalData.publishedProjects = result.data.data.publishedList
-      app.globalData.draftProjects = result.data.data.draftList
-      app.globalData.isUnit=true
-      object.direct2UnitManagement()
-    }
-  },
+  // doSuccessMyList(result){
+  //   if(result.data.statusCode == 0){
+  //     app.globalData.publishedProjects = result.data.data.publishedList
+  //     app.globalData.draftProjects = result.data.data.draftList
+  //     app.globalData.isUnit=true
+  //     object.direct2UnitManagement(this.data.unitname)
+  //   }
+  // },
 
   goForget(){
     object.jump2UnitForgetPassword()

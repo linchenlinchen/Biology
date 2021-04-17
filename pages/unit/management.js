@@ -35,24 +35,41 @@ Page({
     this.load()
   },
   load:function(){
-    let publishedList = app.globalData.publishedProjects
-    let draftList =  app.globalData.draftProjects
-    let unitname =  app.globalData.unitname
-    let password =  app.globalData.password
-    let userInfo =  app.globalData.userInfo
-    let header = { 'Content-Type': 'application/x-www-form-urlencoded'};
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: userInfo,
-        password:password,
-        unitname:unitname,
-        draftList:draftList,
-        publishedList:publishedList,
-        hasUserInfo: true
+    let that = this
+    let unitname= app.globalData.unitname
+    object.HttpRequst('/api/unit/projects',1,'',{"unitname":unitname},"GET").then(function(result){
+      that.doSuccessMyList(result)
+      let publishedList = app.globalData.publishedProjects
+      let draftList =  app.globalData.draftProjects
+      let unitname =  app.globalData.unitname
+      let password =  app.globalData.password
+      let userInfo =  app.globalData.userInfo
+      let header = { 'Content-Type': 'application/x-www-form-urlencoded'};
+      if (app.globalData.userInfo) {
+        that.setData({
+          userInfo: userInfo,
+          password:password,
+          unitname:unitname,
+          draftList:draftList,
+          publishedList:publishedList,
+          hasUserInfo: true
+        })
+      }
+    })
+    
+  },
+  doSuccessMyList(result){
+    if(result.data.statusCode == 0){
+      app.globalData.publishedProjects = result.data.data.publishedList
+      app.globalData.draftProjects = result.data.data.draftList
+      app.globalData.isUnit=true
+    }else{
+      wx.showToast({
+        title: '获取问卷列表出错',
+        image:"../../images/error.png"
       })
     }
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -126,7 +143,8 @@ Page({
     object.jump2UnitEdit(null)
   },
   modifyProject:function(e){
-    console.log(e.currentTarget.id)
+    console.log("id:",e.detail.id)
+    console.log("id:",e.currentTarget.id)
     object.jump2UnitEdit(e.currentTarget.id)
   },
   changeData:function(){

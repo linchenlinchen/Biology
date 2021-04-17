@@ -71,6 +71,6 @@
     </view>
   </view>
 
-  <button class="btn" bindtap="saveDraft">保存至草稿箱</button>
+  <button class="btn" hidden="{{isPublished}}" bindtap="saveDraft">保存至草稿箱</button>
   <button class="btn" bindtap="publish">直接发布</button>
 </view>

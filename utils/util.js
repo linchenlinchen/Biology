@@ -42,9 +42,9 @@ function jump2UnitForgetPassword(){
   })
 }
 
-function direct2UnitManagement(){
+function direct2UnitManagement(unitname){
   wx.redirectTo({
-    url:  path_head+app.globalData.unit_management,
+    url:  path_head+app.globalData.unit_management+"?unitname="+unitname,
   })
 }
 function jump2UnitManagement(){
@@ -125,9 +125,9 @@ function jump2UserLoginWithPhone(telephone){
     url:  path_head+app.globalData.user_login+"?telephone="+telephone,
   })
 }
-function direct2UserMyProgram(){
+function direct2UserMyProgram(username){
   wx.redirectTo({
-    url:  path_head+app.globalData.user_my_program,
+    url:  path_head+app.globalData.user_my_program+"?username="+username,
   })
 }
 

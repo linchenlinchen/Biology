@@ -105,23 +105,24 @@ Page({
     app.globalData.username = this.data.username
     app.globalData.password = this.data.password
     console.log("app.globalData.username",app.globalData.username)
-    let that = this
-    object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":1,"finishpage":1},"GET").then(function(result){
-      that.doSuccessMyList(result)
-    })
+    object.direct2UserMyProgram(this.data.username)
+    // let that = this
+    // object.HttpRequst('/api/user/projects',1,'',{"username":this.data.username,"onpage":1,"finishpage":1},"GET").then(function(result){
+    //   that.doSuccessMyList(result)
+    // })
     
   },
 
-  doSuccessMyList(result){
-    if(result.data.statusCode == 0){
-      app.globalData.ongoingProjects = result.data.data.ongoingList
-      app.globalData.onPages = result.data.data.onPages
-      app.globalData.finishedProjects = result.data.data.finishedList
-      app.globalData.finishPages = result.data.data.finishPages
-      app.globalData.isUnit = false
-      object.direct2UserMyProgram()
-    }
-  },
+  // doSuccessMyList(result){
+  //   if(result.data.statusCode == 0){
+  //     app.globalData.ongoingProjects = result.data.data.ongoingList
+  //     app.globalData.onPages = result.data.data.onPages
+  //     app.globalData.finishedProjects = result.data.data.finishedList
+  //     app.globalData.finishPages = result.data.data.finishPages
+  //     app.globalData.isUnit = false
+  //     object.direct2UserMyProgram(this.data.username)
+  //   }
+  // },
 
   goForget(){
     object.jump2UserForgetPassword()
