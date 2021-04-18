@@ -8,7 +8,8 @@ Page({
   data: {
     username:"",
     password:"",
-    login:"登录"
+    login:"登录",
+    loadingHidden:true
   },
 
   /**
@@ -84,9 +85,15 @@ Page({
    * @param {*} event 
    */
   login:function(event){
+    this.setData({
+      loadingHidden:false
+    })
     let that = this
     object.HttpRequst('/api/user/login',1,'',{"username":this.data.username,"password":this.data.password},"POST").then(function(res){
       console.log(res)
+      that.setData({
+        loadingHidden:true
+      })
       switch(res.data.statusCode){
         case 0:
           that.doSuccessLogin(res);
@@ -96,11 +103,15 @@ Page({
           wx.showToast({
             title: '用户名或密码不正确！',
           })
+          this.setData({
+            loadingHidden:true
+          })
       }
     })
   },
 
   doSuccessLogin(result){
+    
     console.log("RESULT",result)
     app.globalData.username = this.data.username
     app.globalData.password = this.data.password

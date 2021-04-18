@@ -26,23 +26,44 @@ Page({
     console.log("investigate onload pid:",pid)
     if(pid!=undefined && pid!=null){
       let that = this
-      console.log("username",app.globalData.username)
       object.HttpRequst("/api/user/agreements",1,'',{"username":app.globalData.username,"projectId":pid},"GET").
       then(function(res){
-        console.log(res)
+        console.log("investigation:",res)
+        let temp_pairs = []
+        //如果原本的问卷填写内容是数据损坏的，或者是还未填写的，就给他初始化
+        if(!that.checkValid(res.data.data.pairs,res.data.data.agreements.length)){
+          for (const key in res.data.data.agreements) {
+            console.log(key)
+            temp_pairs.push({"aid":res.data.data.agreements[key].aid,"iid":0})
+          }
+        }else{
+          temp_pairs = res.data.data.pairs
+        }
         that.setData({
           projectId:pid,
-          isFinished:(res.data.data.isFinished=="true"?true:false),
+          isFinished:((res.data.data.isFinished=="true" || res.data.data.isFinished)?true:false),
           currentAID:1,
-          checkId:res.data.data.pairs[0].iid,
+          checkId:res.data.data.pairs[0]==undefined?0:res.data.data.pairs[0].iid,
           items:res.data.data.items,
           agreements:res.data.data.agreements,
-          pairs:res.data.data.pairs
+          pairs:temp_pairs
         })
+        console.log(that.data)
       })
     }
   },
 
+  checkValid:function(pairs,len){
+    if(pairs.length != len){
+      return false
+    }
+    for (let index = 0; index < len; index++) {
+      if(pairs[index].aid==undefined || pairs[index].iid==undefined){
+        return false
+      }
+    }
+    return true
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -93,7 +114,21 @@ Page({
   },
 
   submit:function(){
-      object.direct2UserLockWithData(false,false,false,this.data.projectId,this.data.pairs)
+      let can_submit = true
+      for (const key in this.data.pairs) {
+        if(this.data.pairs[key].iid==0){
+          can_submit = false
+        }
+      }
+      console.log("can_submit",can_submit)
+      if(can_submit){
+        object.direct2UserLockWithData(false,false,false,this.data.projectId,this.data.pairs)
+      }else{
+        wx.showToast({
+          title: '请填写完整',
+          image:"../../images/error.png"
+        })
+      }
   },
   onClick:function(e){
     console.log("onClick:",e)
@@ -104,6 +139,7 @@ Page({
     })
     console.log("agreements[currentAID-1].items:",this.data.agreements[this.data.currentAID-1].items)
   },
+  //这里要考虑原本没有选项的情况
   radioChange:function(e){
     console.log("radioChange e:",e.detail)
     let value = e.detail.value

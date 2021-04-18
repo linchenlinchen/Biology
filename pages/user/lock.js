@@ -17,7 +17,9 @@ Page({
       forgetGesture:options.forgetGesture
     })
     console.log("lock.js onload:",this.data)
-    wxlocker.lock.init(this,options.projectId,options.pairs);
+    console.log("lock.js onload:",options)
+    console.log("lock.js onload:",JSON.parse(options.pairs))
+    wxlocker.lock.init(this,options.projectId,JSON.parse(options.pairs));
     this.initState()
   },
   onReady:function(){

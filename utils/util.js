@@ -206,7 +206,7 @@ function jump2UserLock(changeGesture,changePassword,forgetGesture){
 function direct2UserLockWithData(changeGesture,changePassword,forgetGesture,pid,pairs){
   let p = JSON.stringify(pairs)
   wx.redirectTo({
-    url:  path_head+app.globalData.user_lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture+"projectId="+pid+"pairs="+p,
+    url:  path_head+app.globalData.user_lock+"?changeGesture="+changeGesture+"&changePassword="+changePassword+"&forgetGesture="+forgetGesture+"&projectId="+pid+"&pairs="+p,
   })
 }
 

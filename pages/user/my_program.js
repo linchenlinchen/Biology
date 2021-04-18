@@ -44,9 +44,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    console.log("myprogram")
     let that = this
     let username = app.globalData.username
     object.HttpRequst('/api/user/projects',1,'',{"username":username,"onpage":1,"finishpage":1},"GET").then(function(result){
+      console.log("result:",result)
       that.doSuccessMyList(result)
       // let cookie = wx.getStorageSync('cookieKey');//取出Cookie
       let ongoingList = app.globalData.ongoingProjects
@@ -64,11 +66,14 @@ Page({
         finishedList:finishedList,
         userInfo:userInfo
       })
+      console.log(that.data)
     })
     
   },
   doSuccessMyList(result){
+    console.log("doSuccessMyList")
     if(result.data.statusCode == 0){
+      console.log("doSuccessMyList 0")
       app.globalData.ongoingProjects = result.data.data.ongoingList
       app.globalData.onPages = result.data.data.onPages
       app.globalData.finishedProjects = result.data.data.finishedList

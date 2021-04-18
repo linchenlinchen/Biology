@@ -64,6 +64,11 @@
                             title: '解锁成功！',
                         })
                     }else{
+                        that.reset()
+                        that.setType("请解锁","error",'#e64340')
+                        that.lastPoint=[]
+                        needConsistency = false
+                        lock.initState()
                         wx.showToast({
                           title: '解锁出错！',
                         })
@@ -96,6 +101,11 @@
                             })
                             
                         }else{
+                            that.reset()
+    
+                            that.lastPoint=[]
+                            needConsistency = false
+                            lock.initState()
                             wx.showToast({
                               title: '修改手势密码失败！',
                             })
@@ -179,10 +189,17 @@
                 }
             }else{
                 that = this
+                console.log(username)
+                console.log(password)
+                console.log(psw)
                 object.HttpRequst('/api/user/signature',1,'',{"username":username,"password":password,"gesture":psw},"POST").then(function(res){
                     console.log("res post gesture:",res)
                     if(res.data.statusCode == 0){
+                        console.log("username:",username)
+                        console.log("projectId:",projectId)
+                        console.log("data:",pairs)
                         object.HttpRequst("/api/user/agreements",1,'',{"username":username,"projectId":projectId,"data":pairs},'PUT').then(function(res){
+                            console.log(res)
                             if(res.data.statusCode ==0){
                                 object.direct2UserCommit()
                                 wx.showToast({
