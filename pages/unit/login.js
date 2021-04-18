@@ -12,7 +12,8 @@ Page({
   data: {
     unitname:"",
     password:"",
-    login:"登录"
+    login:"登录",
+    loadingHidden:true
   },
 
   /**
@@ -89,8 +90,14 @@ Page({
    * @param {*} event 
    */
   login:function(event){
+    this.setData({
+      loadingHidden:false
+    })
     let that = this
     object.HttpRequst('/api/unit/login',1,'',{"unitname":this.data.unitname,"password":this.data.password},"POST").then(function(result){
+      that.setData({
+        loadingHidden:true
+      })
       switch(result.data.statusCode){
         case 0:
           that.doSuccessLogin(result)

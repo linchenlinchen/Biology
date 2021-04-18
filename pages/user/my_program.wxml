@@ -43,11 +43,11 @@
   <view  wx:for="{{ongoingList}}" wx:for-item='item' >
     <view  class="list">
       <view class="txt">
-        <text class="pjName">{{item.projectName}}</text>
+        <text class="pjName">{{item.name}}</text>
         <text class="time">加入项目时间：{{item.joinTime}} </text>
         <text class="time">项目发布时间：{{item.releaseTime}}</text>
       </view>
-      <button size="mini" class="agreeBt" type="primary" id="{{item.projectId}}" bindtap="visit_details">{{changeAgree}}</button>
+      <button size="mini" class="agreeBt" type="primary" id="{{item.id}}" bindtap="visit_details">{{changeAgree}}</button>
     </view>
     <view class="home-header-line"></view>
   </view>
@@ -65,11 +65,11 @@
   <view wx:for="{{finishedList}}"  wx:for-item='item'>
     <view  class="list">
       <view class="txt">
-        <text class="pjName">{{item.projectName}}</text>
+        <text class="pjName">{{item.name}}</text>
         <text class="time">加入项目时间：{{item.joinTime}} </text>
         <text class="time">项目发布时间：{{item.releaseTime}}</text>
       </view>
-      <button size="mini" class="agreeBt" type="primary"  id="{{item.projectId}}" bindtap="visit_details">{{seeAgree}}</button>
+      <button size="mini" class="agreeBt" type="primary"  id="{{item.id}}" bindtap="visit_details">{{seeAgree}}</button>
     </view>
     <view class="home-header-line"></view>
   </view>

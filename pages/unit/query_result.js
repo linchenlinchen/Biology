@@ -25,7 +25,7 @@ Page({
     console.log(options)
     let that = this
 
-    object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":options.projectId,"search":""},"GET").then(function(res){
+    object.HttpRequst("/api/unit/projectResult",1,'',{"projectId":options.projectId,"search":""},"GET").then(function(res){
       console.log("res",res)
       console.log(res.data)
       if(res.data.statusCode == 0){
@@ -42,7 +42,7 @@ Page({
       search:e.detail.value
     })
     let that = this
-    object.HttpRequst("/api/unit/projectResults",1,'',{"projectId":this.data.projectId,"search":this.data.search},"GET").then(function(res){
+    object.HttpRequst("/api/unit/projectResult",1,'',{"projectId":this.data.projectId,"search":this.data.search},"GET").then(function(res){
       console.log("res",res)
       console.log(res.data)
       if(res.data.statusCode == 0){

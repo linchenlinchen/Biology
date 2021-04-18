@@ -8,6 +8,7 @@
     </block>
   </swiper>
 </view>
+
 <view id="warm">
   <text>如果您授权</text>
   <text>您提供的生物样本与数据长期存储</text>

@@ -18,8 +18,9 @@ Page({
     })
     console.log("lock.js onload:",this.data)
     console.log("lock.js onload:",options)
-    console.log("lock.js onload:",JSON.parse(options.pairs))
-    wxlocker.lock.init(this,options.projectId,JSON.parse(options.pairs));
+    let pairs = (options.pairs!=undefined && options.pairs!=null)?JSON.parse(options.pairs):undefined
+    console.log("lock.js onload:",pairs)
+    wxlocker.lock.init(this,options.projectId,pairs);
     this.initState()
   },
   onReady:function(){

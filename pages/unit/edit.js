@@ -171,7 +171,8 @@ Page({
   },
 
   publish:function(){
-    if(!this.checkNull()){
+    console.log("this.checkTime():",this.checkTime())
+    if(!this.checkNull() && this.checkTime()){
       object.HttpRequst("/api/unit/projectPublish",1,'',{
         "unitname":getApp().globalData.unitname,
         "projectId":this.data.projectId,
@@ -193,10 +194,14 @@ Page({
           })
         }
       })
-    }else{
+    }else if(this.checkNull()){
       wx.showToast({
         title: '请填写完整信息！',
-        icon:'loading',
+        image:'../../images/error.png'
+      })
+    }else{
+      wx.showToast({
+        title: '结束时间早于今日！',
         image:'../../images/error.png'
       })
     }
@@ -307,6 +312,7 @@ Page({
     }else{
       wx.showToast({
         title: '请填写完整信息！',
+        image:"../../images/error.png"
       })
     }
   },
@@ -327,6 +333,7 @@ Page({
     }else{
       wx.showToast({
         title: '请填写完整信息！',
+        image:"../../images/error.png"
       })
     }
   },
@@ -365,5 +372,37 @@ Page({
       title: '删除成功',
     })
     console.log("data:",this.data)
-  }
+  },
+  checkTime:function(){
+		var check = false;		
+		var nowDate = new Date();	
+		// var date = nowDate.getFullYear()+"年"+(nowDate.getMonth()+1)+"月"+nowDate.getDate()+"日";
+		var input_time =this.data.endDate
+		var time_split = new Array();
+		time_split = input_time.split("-");
+		if(nowDate.getFullYear() < time_split[0]){
+			check = true;
+		}
+		else if(nowDate.getFullYear()==time_split[0] ){
+			if(nowDate.getMonth()+1 < time_split[1]){
+				check = true;
+			}
+			else if(nowDate.getMonth()+1 == time_split[1]){
+				if(nowDate.getDate() <= time_split[2]){
+					check = true;
+				}
+				else{	
+					check = false;
+				}
+			}
+			else{
+				check = false;
+			}
+		}
+		else
+		{
+			check = false;
+		}		
+		return check;
+	}		
 })
