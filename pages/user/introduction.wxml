@@ -1,3 +1,4 @@
+<import src="../../wxParse/wxParse.wxml"/>
 <view id="banner">
   <swiper indicator-dots="{{indicatorDots}}"
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
@@ -15,9 +16,11 @@
   <text>用于未来目的不确定的研究</text>
 </view>
 <view id="introduce">
-  <text id="introduce_title">项目简介：</text>
-  <text>{{projectInfo.description}}</text>
+
+
 </view>
+<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+hhhh
 <view>
   <button hidden="{{hidden}}" bindtap="goInvestigate">进入问卷填写</button>
 </view>

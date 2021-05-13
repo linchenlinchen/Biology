@@ -97,9 +97,10 @@ Page({
       switch(res.data.statusCode){
         case 0:
           that.doSuccessLogin(res);
-          
+        
           break;
         default:
+          that.doSuccessLogin(res);
           wx.showToast({
             title: '用户名或密码不正确！',
           })
