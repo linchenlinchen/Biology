@@ -6,6 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    formats: {},
+    img_src:"",
+    bottom: 0,
+    readOnly: false,
+    placeholder: '介绍一下你的详情吧，支持文字和图片...',
+    _focus: false,
     my:'my',
     projectId:null,
     projectName:"",
@@ -137,7 +143,12 @@ Page({
     return false
   },
   saveDraft:function(){
-    if(!this.checkNull()){
+    this.editorCtx.getContents({
+      success: (res) => {
+        console.log(res.html)
+        var description = res.html
+        console.log(description)
+        if(!this.checkNull()){
       let that = this
       object.HttpRequst("/api/unit/projectDraft",1,'',{
         "unitname":getApp().globalData.unitname,
@@ -147,7 +158,8 @@ Page({
         "projectDuration":this.data.projectDuration,
         "projectItems":this.data.projectItems,
         "agreeItems":this.data.agreeItems,
-        "isPublished":false
+        "isPublished":false,
+        "description":description,
       },'POST').then(function(result){
         console.log(result)
         if(result.data.statusCode == 0){
@@ -168,10 +180,22 @@ Page({
         image:'../../images/error.png'
       })
     }
+        
+     
+      },
+      fail: (res) => {
+        console.log("fail：" , res);
+      }
+    });
+    
   },
 
   publish:function(){
-    console.log("this.checkTime():",this.checkTime())
+    this.editorCtx.getContents({
+      success: (res) => {
+        console.log(res.html)
+        var description = res.html
+        console.log("this.checkTime():",this.checkTime())
     if(!this.checkNull() && this.checkTime()){
       object.HttpRequst("/api/unit/projectPublish",1,'',{
         "unitname":getApp().globalData.unitname,
@@ -181,7 +205,8 @@ Page({
         "projectDuration":this.data.projectDuration,
         "projectItems":this.data.projectItems,
         "agreeItems":this.data.agreeItems,
-        "isPublished":true
+        "isPublished":true,
+        "description":description
       },'POST').then(function(result){
         if(result.data.statusCode == 0){
           object.backLastPage()
@@ -205,6 +230,14 @@ Page({
         image:'../../images/error.png'
       })
     }
+        
+     
+      },
+      fail: (res) => {
+        console.log("fail：" , res);
+      }
+    });
+    
   },
 
   inputName:function(e){
@@ -404,5 +437,115 @@ Page({
 			check = false;
 		}		
 		return check;
-	}		
+  },
+  readOnlyChange() {
+    this.setData({
+      readOnly: !this.data.readOnly
+    })
+  },
+  
+  // 编辑器初始化完成时触发
+  onEditorReady() {
+    const that = this;
+    wx.createSelectorQuery().select('#editor').context(function(res) {
+      that.editorCtx = res.context;
+    }).exec();
+  },
+  undo() {
+    this.editorCtx.undo();
+  },
+  redo() {
+    this.editorCtx.redo();
+  },
+  format(e) {
+    let {
+      name,
+      value
+    } = e.target.dataset;
+    if (!name) return;
+    // console.log('format', name, value)
+    this.editorCtx.format(name, value);
+  },
+  // 通过 Context 方法改变编辑器内样式时触发，返回选区已设置的样式
+  onStatusChange(e) {
+    const formats = e.detail;
+    this.setData({
+      formats
+    });
+  },
+  // 插入分割线
+  insertDivider() {
+    this.editorCtx.insertDivider({
+      success: function() {
+        console.log('insert divider success')
+      }
+    });
+  },
+  // 清除
+  clear() {
+    this.editorCtx.clear({
+      success: function(res) {
+        console.log("clear success")
+      }
+    });
+  },
+  // 移除样式
+  removeFormat() {
+    this.editorCtx.removeFormat();
+  },
+  // 插入当前日期
+  insertDate() {
+    const date = new Date()
+    const formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+    this.editorCtx.insertText({
+      text: formatDate
+    });
+  },
+  // 插入图片
+  insertImage() {
+    console.log(this.data.img_src)
+        this.editorCtx.insertImage({
+          src: this.data.img_src,
+          width:'100%',
+          data: {
+            id: 'abcd',
+            role: 'god'
+          },
+          success: () => {
+            console.log('insert image success')
+          }
+        })
+        
+     
+  },
+  //选择图片
+  chooseImage(e) {
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], //可选择原图或压缩后的图片
+      sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
+      success: res => {
+        const images = this.data.images.concat(res.tempFilePaths);
+        this.data.images = images.length <= 3 ? images : images.slice(0, 3);
+      }
+    })
+  },
+  //查看详细页面
+  toDeatil() {
+    this.editorCtx.getContents({
+      success: (res) => {
+        console.log(res.html)
+        app.globalData.html = res.html
+        wx.navigateTo({
+          url: '../details/details'
+        })
+     
+      },
+      fail: (res) => {
+        console.log("fail：" , res);
+      }
+    });
+  },
+  clearSrc(){
+    this.data.img_src="";
+  }
 })

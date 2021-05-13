@@ -90,6 +90,7 @@ Page({
    * @param {*} event 
    */
   login:function(event){
+    //object.direct2UnitManagement(this.data.unitname)
     this.setData({
       loadingHidden:false
     })
@@ -103,6 +104,7 @@ Page({
           that.doSuccessLogin(result)
           break;
         default:
+          
           wx.showToast({
             title: '企业名或密码不正确！',
           })

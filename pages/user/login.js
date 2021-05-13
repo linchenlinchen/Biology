@@ -100,7 +100,7 @@ Page({
         
           break;
         default:
-          that.doSuccessLogin(res);
+          //that.doSuccessLogin(res);
           wx.showToast({
             title: '用户名或密码不正确！',
           })
