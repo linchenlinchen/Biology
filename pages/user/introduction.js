@@ -56,7 +56,7 @@ Page({
         
           var projectInfo=result.data.data;
           var article=projectInfo.description;
-          
+          //var article='<p><img src="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=图片&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=2496571732,442429806&os=1196735030,3074154647&simid=4138296572,513061360&pn=0&rn=1&di=169180&ln=1828&fr=&fmq=1621168732995_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%253A%252F%252F1812.img.pp.sohu.com.cn%252Fimages%252Fblog%252F2009%252F11%252F18%252F18%252F8%252F125b6560a6ag214.jpg%26refer%3Dhttp%253A%252F%252F1812.img.pp.sohu.com.cn%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1623760732%26t%3D4027802e056a68292590cf20de894101&rpstart=0&rpnum=0&adpicid=0&force=undefined" width="100%" data-custom="id=abcd&amp;role=god"><img src="fsdsfdsf" width="100%" data-custom="id=abcd&amp;role=god"></p><p><br></p><p><br>l</p>'
           WxParse.wxParse('article','html',article,that,5);
           //hidden:getApp().globalData.isUnit
         //})

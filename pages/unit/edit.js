@@ -110,7 +110,7 @@ Page({
     for (const element in this.data) {
       console.log(element)
       console.log(this.data[element])
-      if(element == "tempDataName" || element == "tempDataDesc" || element == "tempagreeName" ||element == "tempagreeDesc" || element=="projectId" || element=="isPublished"){
+      if(element == "tempDataName" || element == "tempDataDesc" || element == "tempagreeName" ||element == "tempagreeDesc" || element=="projectId" || element=="isPublished"||element=="img_src"){
         continue
       }
       else if(this.data[element]==null || this.data[element]==""){
@@ -147,7 +147,7 @@ Page({
       success: (res) => {
         console.log(res.html)
         var description = res.html
-        console.log(description)
+        //console.log(description)
         if(!this.checkNull()){
       let that = this
       object.HttpRequst("/api/unit/projectDraft",1,'',{

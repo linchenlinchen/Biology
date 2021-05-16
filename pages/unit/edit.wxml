@@ -78,8 +78,9 @@
   <view class="ajc">
     <view class="title">编辑图文详情</view>
   </view>
+  <button bindtap="clearSrc" style="float:right">清除</button>
   <textarea type="text" maxlength="100000" class="content_input" placeholder="请输入插入图片网址" model:value="{{img_src}}"></textarea>
-  <button bindtap="clearSrc">清除</button>
+  
   <view>
     <view class='wrapper'>
       <view class='toolbar' bindtap="format">
@@ -124,9 +125,7 @@
     </view>
 
   </view>
-  <view class="ajc" style="margin:10px;">
-    <button type="primary" bindtap="toDeatil">查看生成页面</button>
-  </view>
+
 </view>
 
   <button class="btn" hidden="{{isPublished}}" bindtap="saveDraft">保存至草稿箱</button>

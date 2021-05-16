@@ -14,13 +14,14 @@
   <text>如果您授权</text>
   <text>您提供的生物样本与数据长期存储</text>
   <text>用于未来目的不确定的研究</text>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
 <view id="introduce">
 
 
 </view>
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-hhhh
+
+
 <view>
   <button hidden="{{hidden}}" bindtap="goInvestigate">进入问卷填写</button>
 </view>
