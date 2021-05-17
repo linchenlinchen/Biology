@@ -30,7 +30,7 @@
   <view class="content">
     <view class="input"> 
       <input type="text" class="name_input" id="{{dataNumber+1}}" placeholder="请输入数据字段名"   bindinput="inputDataName" value="{{tempDataName}}"></input>
-      <textarea type="text" class="content_input" id="{{dataNumber+1}}" placeholder="点击输入数据字段简介"  bindinput="inputDataDescription" value="{{tempDataDesc}}"></textarea>
+      <input type="text" class="content_input" id="{{dataNumber+1}}" placeholder="点击输入数据字段简介"  bindinput="inputDataDescription" value="{{tempDataDesc}}"></input>
     </view>
     <view>
       <button class="circle" bindtap="addData"  id="{{dataNumber+1}}">增加数据类型字段</button>
@@ -41,7 +41,7 @@
     <view class="content">
       <view class="input"> 
         <input type="text" id="{{item.aid}}" class="name_input" placeholder="请输入数据字段名" value="{{item.name}}"  bindinput="inputDataName" ></input>
-        <textarea type="text" id="{{item.aid}}" class="content_input" placeholder="点击输入数据字段简介"  value="{{item.description}}"  bindinput="inputDataDescription"></textarea>
+        <input type="text" id="{{item.aid}}" class="content_input" placeholder="点击输入数据字段简介"  value="{{item.description}}"  bindinput="inputDataDescription"></input>
       </view>
       <view>
         <button class="delete"  id="{{item.aid}}" bindtap="deleteData">删除此字段</button>
@@ -53,7 +53,7 @@
   <view class="content">
     <view class="input"> 
       <input type="text" class="name_input" id="{{agreeNumber+1}}" placeholder="请输入同意类型字段名"  bindinput="inputAgreeName" value="{{tempagreeName}}"></input>
-      <textarea type="text" class="content_input" id="{{agreeNumber+1}}" placeholder="点击输入同意类型字段简介"  bindinput="inputAgreeDescription" value="{{tempagreeDesc}}"></textarea>
+      <input type="text" class="content_input" id="{{agreeNumber+1}}" placeholder="点击输入同意类型字段简介"  bindinput="inputAgreeDescription" value="{{tempagreeDesc}}"></input>
     </view>
     <view>
       <button class="circle" bindtap="addAgree" id="{{agreeNumber+1}}">增加同意类型字段</button>
@@ -63,7 +63,7 @@
     <view class="content">
       <view class="input"> 
         <input type="text" id="{{item.iid}}" class="name_input" placeholder="请输入同意类型字段名" value="{{item.value}}"  bindinput="inputAgreeName" ></input>
-        <textarea type="text" id="{{item.iid}}" class="content_input" placeholder="点击输入同意类型字段简介"  value="{{item.description}}"  bindinput="inputAgreeDescription"></textarea>
+        <input type="text" id="{{item.iid}}" class="content_input" placeholder="点击输入同意类型字段简介"  value="{{item.description}}"  bindinput="inputAgreeDescription"></input>
       </view>
       <view>
         <button class="delete" id="{{item.iid}}" bindtap="deleteAgree">删除此字段</button>
@@ -79,7 +79,7 @@
     <view class="title">编辑图文详情</view>
   </view>
   <button bindtap="clearSrc" style="float:right">清除</button>
-  <textarea type="text" maxlength="100000" class="content_input" placeholder="请输入插入图片网址" model:value="{{img_src}}"></textarea>
+  <input type="text" maxlength="100000" class="content_input" placeholder="请输入插入图片网址" model:value="{{img_src}}" bindinput="inputSrc"></input>
   
   <view>
     <view class='wrapper'>

@@ -1,6 +1,6 @@
 var app = getApp()
 var path_head = "../../"
-var baseUrl = "https://zqty.chenxistudio.cn"
+var baseUrl = "https://zqty.fudanchenxi.cn"
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1

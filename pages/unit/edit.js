@@ -27,7 +27,8 @@ Page({
     tempDataDesc:"",
     tempagreeName:"",
     tempagreeDesc:"",
-    isPublished:false
+    isPublished:false,
+    notCheckList : ["tempDataName","tempDataDesc","tempagreeName","tempagreeDesc","projectId","isPublished","img_src" ,"bottom","readOnly","_focus"]
   },
 
   /**
@@ -106,12 +107,13 @@ Page({
 
   },
   checkNull:function(){
-    console.log("1")
+
     for (const element in this.data) {
       console.log(element)
-      console.log(this.data[element])
-      if(element == "tempDataName" || element == "tempDataDesc" || element == "tempagreeName" ||element == "tempagreeDesc" || element=="projectId" || element=="isPublished"||element=="img_src"){
+      console.log(this.data[element]==null || this.data[element]=="")
+      if(this.data.notCheckList.indexOf(element)!=-1){
         continue
+        // console.log(element)
       }
       else if(this.data[element]==null || this.data[element]==""){
         console.log(this.data[element]==null)
@@ -148,7 +150,7 @@ Page({
         console.log(res.html)
         var description = res.html
         //console.log(description)
-        if(!this.checkNull()){
+      if(!this.checkNull()){
       let that = this
       object.HttpRequst("/api/unit/projectDraft",1,'',{
         "unitname":getApp().globalData.unitname,
@@ -326,6 +328,9 @@ Page({
       this.data.tempagreeDesc = e.detail.value
     }
     // console.log( this.data.agreeItems[e.currentTarget.id].description)
+  },
+  inputSrc:function(e){
+    this.data.img_src=e.detail.value
   },
   addData:function(e){
     if(this.data.tempDataName.length>0 && this.data.tempDataDesc.length>0){
