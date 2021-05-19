@@ -18,7 +18,7 @@
   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
 <view>
-  <button hidden="{{hidden}}" bindtap="goInvestigate">进入问卷填写</button>
+  <!--<button hidden="{{hidden}}" bindtap="goInvestigate">进入问卷填写</button>-->
 </view>
 <!-- <button bindtap="changeIndicatorDots"> indicator-dots </button>
 <button bindtap="changeAutoplay"> autoplay </button>
