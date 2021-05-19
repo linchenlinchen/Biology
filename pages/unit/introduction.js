@@ -1,5 +1,6 @@
 // pages/individual/contents.js
 const object= require("../../utils/util")
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -41,12 +42,13 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.projectId)
+    
     let that = this
-    object.HttpRequst("/api/unit/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
-        that.setData({
-          projectInfo:result.data.data,
-          hidden:getApp().globalData.isUnit
-        })
+    object.HttpRequst("/api/projectInfo",1,'',{"projectId":options.projectId},'GET').then(function(result){
+        var projectInfo=result.data.data;
+        var article=projectInfo.description;
+          
+        WxParse.wxParse('article','html',article,that,5);
     })
   },
 

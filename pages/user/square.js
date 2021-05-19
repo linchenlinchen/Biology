@@ -13,12 +13,7 @@ Page({
   data: {
     publishedTime:"项目发布时间",
     description:"项目简介",
-    projects:[{
-      "projectId":1,
-      "projectName":"xxx",
-      "rleasedTime":"2017.12.12",
-      "organization":"xxx"
-    }],
+    projects:[],
     focus:false,  //控制是否显示带取消按钮的搜索框
     inputValue:"",
     userInfo: {},
